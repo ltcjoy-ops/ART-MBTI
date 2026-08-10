@@ -312,29 +312,31 @@
     }
 
     .result-avatar-box {
-      width: 100%;
-      height: 220px;
-      border: 1px solid var(--border-color);
-      background: #e8e8e8;
-      margin-bottom: 25px;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
+    width: 100%;
+    /* 1. 使用 aspect-ratio 決定直式比例（3:4 適合頭像/卡牌；9:16 適合手機滿版） */
+    aspect-ratio: 3 / 4; 
+  /* 2. 移除原有的固定高度 height: 220px */
+  border: 1px solid var(--border-color);
+  background: #e8e8e8;
+  margin-bottom: 25px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
 
-    .result-avatar-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: grayscale(100%) contrast(120%);
-      transition: filter 0.3s;
-    }
+.result-avatar-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 確保圖片不變形並填滿直式框 */
+  filter: grayscale(100%) contrast(120%);
+  transition: filter 0.3s;
+}
 
-    .result-avatar-box:hover img {
-      filter: grayscale(0%);
-    }
+.result-avatar-box:hover img {
+  filter: grayscale(0%);
+}
 
     .quote-box {
       font-style: italic;
@@ -453,7 +455,7 @@
 
     <div class="intro-box">
       歡迎嚟到當代藝術嘅殘酷舞台！呢個測試係專為藝術從業者、設計奴隸、劇場地縛靈及各類文青量身打造。<br><br>
-      無論你係藝術新人，定係老屎忽，都歡迎你通過 30 道廣東話情境選擇題，揭穿你隱藏係「藝術追求」背後嘅現實真相！
+      無論你係藝術新人，定係老屎忽，都歡迎你通過 30 道情境選擇題，揭穿你隱藏係「藝術追求」背後嘅現實真相！
     </div>
     <button class="btn" onclick="startQuiz()">即刻開始測試 🚀</button>
   </div>
@@ -752,9 +754,9 @@ const questions = [
      options: [
          { text: "無所謂啊，我戶口多咗幾十萬，等佢哋繼續清高。", type: "GALLERY-PET" },
          { text: "我本來就想反體制，賣得出去先係對我嘅侮辱！", type: "INDIE-REBEL" },
-         { text: "用德文同法文哲學名詞將佢懟到懷疑人生。", type: "INTEL-PROUD" },
-         { text: "點解要談錢？做藝術係純粹嘅獻祭與愛！", type: "LOVE-POWER" },
-         { text: "沒空理佢，我還有 3 個 Client 的修正檔要交。", type: "DESIGN-SLAVE" }
+         { text: "用哲學名詞將佢懟到懷疑人生。", type: "INTEL-PROUD" },
+         { text: "點解要講錢？做藝術係純粹嘅獻祭同愛！", type: "LOVE-POWER" },
+         { text: "唔得閒理佢，我仲有 3 個 Client 嘅修正檔要交。", type: "DESIGN-SLAVE" }
      ]
   },
   {
