@@ -276,11 +276,11 @@
     <!-- 開始頁面 -->
     <div id="start-page">
         <h1>ART-MBTI</h1>
-        <p class="subtitle">【藝術與設計界生存毒舌人格測驗 - 30題終極版】<br>涵蓋視覺藝術、平面設計、舞台劇場、產品建築！<br>測下你在呢個「用愛發電」嘅生態圈入面到底係邊種怪胎！</p>
+        <p class="subtitle">【藝術與設計界生存毒舌人格測驗 - 30題終極版】<br>涵蓋視覺藝術、平面設計、舞台劇場、產品建築！<br>無論你係藝壇新人家還係老屎忽，測下你在呢個「用愛發電」嘅生態圈入面，你係邊種怪胎！ 頭盔︰Just for fun!</p>
         
         <div style="background: #1a1d2b; padding: 18px; border-radius: 12px; margin-bottom: 25px; text-align: left; font-size: 0.9rem; border-left: 4px solid var(--accent-color);">
             <p style="color: #fff; font-weight: bold; margin-bottom: 5px;">測驗須知：</p>
-            <p style="color: var(--sub-text);">全劇共 30 條情境選擇題，請憑直覺回答。準備好接受無情嘅真相未？</p>
+            <p style="color: var(--sub-text);">共 30 條情境選擇題，請憑直覺回答。準備好接受無情嘅真相未？</p>
         </div>
 
         <button class="btn" onclick="startQuiz()">即刻入場接受現實 (30 題)</button>
@@ -348,7 +348,7 @@ const questions = [
             { text: "即時爆肝，飲三罐red bull，通宵狂做直到開幕前一分鐘。", score: "DEADLINE" },
             { text: "心諗「其實未做完都係一種藝術」，現場貼張白紙寫 Concept 算。", score: "TALK" },
             { text: "即刻打比藝發局/Funder 申請延期，順便出個post話因不可抗力因素取消。", score: "FUNDING" },
-            { text: "搞唔掂，寫辭職信，準備從此於藝術圈消失。", score: "QUIT" }
+            { text: "寫辭職信，呢單野唔係我跟開，準備從此於藝術圈消失。", score: "QUIT" }
         ]
     },
     {
@@ -375,33 +375,33 @@ const questions = [
             { text: "咬牙接！「算啦，為咗藝術，Exposure 都係一種報酬……（第50次咁講）」", score: "LOVE" },
             { text: "「無問題！但我用嘅係黑衫黑褲 + 劇場廢料，你比我在後台打燈就得。」", score: "STAGE_GHOST" },
             { text: "寫一份 20 頁 Proposal 叫佢去申請政府資助，申請到先再搵我。", score: "FUNDING" },
-            { text: "直接 Block 對方，並於 IG Story 發佈 500 字長文批判當代職場剝削。", score: "QUIT" }
+            { text: "反手 Block 對方，再順手 Story 發佈 500 字長文批判藝文界的剝削。", score: "QUIT" }
         ]
     },
     {
         q: "Q5. 去街見到地下有舊奇怪嘅廢木、廢鐵或者廢棄紙箱，你嘅反應係：",
         options: [
-            { text: "眼光發亮！即刻搬返工作室，覺得可以做下一展覽嘅 Core Piece！", score: "GARBAGE_MASTER" },
+            { text: "雙眼發亮！即刻搬返去studio，覺得可以做下個展覽嘅 Core Piece！", score: "GARBAGE_MASTER" },
             { text: "諗緊呢舊嘢如果放喺舞台舞台燈光下，會投射出點樣嘅陰影效果。", score: "STAGE_GHOST" },
-            { text: "感嘆它的 Texture 幾好，然後影相做 Moodboard 素材。", score: "GRID_FREAK" },
+            { text: "感嘆佢嘅 Texture 幾好，然後影相做 Moodboard 素材。", score: "GRID_FREAK" },
             { text: "繞過佢，心想：「千祈唔好俾我 Client 見到，如果唔係佢又叫我用廢料做 Design。」", score: "CLIENT_SLAVE" }
         ]
     },
     {
-        q: "Q6. Client 要求你喺一張 A4 海報上面放 15 個 Sponsor Logo，仲要「全部都要大」：",
+        q: "Q6. 個客要求你喺一張 A4 poster 上面放 15 個 Sponsor Logo，仲要「全部都要大」：",
         options: [
             { text: "崩潰，但依然認命地打開 Illustrator，精確計算每個 Logo 嘅像素。", score: "CLIENT_SLAVE" },
             { text: "堅持用 0.5pt 嘅邊框同瑞士排版 Grid 把它們排列得像現代藝術品。", score: "GRID_FREAK" },
             { text: "「不如全部做成透明 Opacity 5%，這叫『隱喻式贊助』，好 Deep 㗎！」", score: "TALK" },
-            { text: "直接把 Logo 縮到睇唔到，心想：「反正是曝光，印出來再算。」", score: "DEADLINE" }
+            { text: "直接將 Logo 縮到睇唔到，心想：「反正是曝光，印出來再算。」", score: "DEADLINE" }
         ]
     },
     {
         q: "Q7. 劇場 / 展場燈光忽然故障全黑，首演仲有 10 分鐘，你會：",
         options: [
-            { text: "極速拿起膠紙同電線，冷靜衝上去 Lighting Console 盲操修復！", score: "STAGE_GHOST" },
-            { text: "同觀眾講：「這正是我們設計嘅『黑暗沉浸式體驗』，請感受靜止。」", score: "TALK" },
-            { text: "心跳加速到 180，邊喊邊祈禱，手速極快地重啟所有機器。", score: "DEADLINE" },
+            { text: "極速拎起膠紙同電線，冷靜衝上去 Lighting Console 盲操修復！", score: "STAGE_GHOST" },
+            { text: "冷靜同觀眾講：「呢個係我地設計嘅『黑暗沉浸式體驗』，請感受靜止。」", score: "TALK" },
+            { text: "心跳加速到 180，喊住祈禱，手速極快地重啟所有機器。", score: "DEADLINE" },
             { text: "即時拍照發 IG Story：「Art Failure Moment」，然後去喝香檳。", score: "GALLERY_PARTY" }
         ]
     },
