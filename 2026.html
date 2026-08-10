@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>香港藝文人格測驗 | Hong Kong Contemporary Art Personality Test</title>
-  <!-- Google Fonts: Space Mono & Inter -->
+  <!-- Google Fonts: Space Mono & Noto Sans TC -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
@@ -313,9 +313,7 @@
 
     .result-avatar-box {
       width: 100%;
-    /* 1. 使用 aspect-ratio 決定直式比例（3:4 適合頭像/卡牌；9:16 適合手機滿版） */
       aspect-ratio: 3 / 4; 
-  /* 2. 移除原有的固定高度 height: 220px */
       border: 1px solid var(--border-color);
       background: #e8e8e8;
       margin-bottom: 25px;
@@ -329,7 +327,7 @@
     .result-avatar-box img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* 確保圖片不變形並填滿直式框 */
+      object-fit: cover;
       filter: grayscale(100%) contrast(120%);
       transition: filter 0.3s;
     }
@@ -446,7 +444,7 @@
 
     <!-- FIRST PAGE BANNER -->
     <div class="hero-banner">
-      <img src="https://ltcjoy-ops.github.io./ART-MBTI/Gemini_Generated_Image_gt5eo7gt5eo7gt5e.png" alt="Exhibition Banner">
+      <img src="https://ltcjoy-ops.github.io/ART-MBTI/Gemini_Generated_Image_gt5eo7gt5eo7gt5e.png" alt="Exhibition Banner">
       <div class="banner-overlay">
         <span class="banner-text-tag">SPECIAL EXHIBITION</span>
         <div class="banner-heading">Who Are You In The Art World?</div>
@@ -529,7 +527,7 @@ const profiles = {
         weakness: "最怕比人問：「咁你幾時要開始做？」",
         liver: "非常健康（有時會夜晚睇下書）",
         bank: "💰💰 (因為未見到實際產出)",
-        avatar: "https://ltcjoy-ops.github.io./ART-MBTI/TALK-ARTIST.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/TALK-ARTIST.png"
     },
     "BURN-OUT": {
         code: "BURN-OUT",
@@ -540,7 +538,7 @@ const profiles = {
         weakness: "展覽開幕當天通常呈半解體狀態，企係作品旁邊似個地縛靈。",
         liver: "指數爆表（肝臟已呈現化石狀）",
         bank: "💰💰💰 (全拎去買提神飲料同宵夜)",
-        avatar: "https://ltcjoy-ops.github.io./ART-MBTI/BURN-OUT.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/BURN-OUT.png"
     },
     "LOVE-POWER": {
         code: "LOVE-POWER",
@@ -551,7 +549,7 @@ const profiles = {
         weakness: "帳戶餘額經常得個位數，心靈富足。",
         liver: "微弱運作中",
         bank: "💰 (只夠買個白面包)",
-        avatar: "https://ltcjoy-ops.github.io./ART-MBTI/LOVE-POWER.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/LOVE-POWER.png"
     },
     "FORM-MASTER": {
         code: "FORM-MASTER",
@@ -562,7 +560,7 @@ const profiles = {
         weakness: "proposal寫到曉飛，做就差咁啲。",
         liver: "亞健康（長期睇 Excel 導致眼花）",
         bank: "💰💰💰💰 (剛入帳嘅 Grants)",
-        avatar: "https://ltcjoy-ops.github.io./ART-MBTI/FORM-MASTER.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/FORM-MASTER.png"
     },
     "EXIT-PLAN": {
         code: "EXIT-PLAN",
@@ -573,7 +571,7 @@ const profiles = {
         weakness: "被同儕嘲笑唔夠熱誠，但通常係所有人之中金錢最穩定。",
         liver: "極度正常（早睡早起做運動）",
         bank: "💰💰💰💰💰 (夠食夠住，生活穩定)",
-        avatar: "https://ltcjoy-ops.github.io./ART-MBTI/EXIT-PLAN.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/EXIT-PLAN.png"
     },
     "DESIGN-SLAVE": {
         code: "DESIGN-SLAVE",
@@ -584,7 +582,7 @@ const profiles = {
         weakness: "睇到電腦螢幕出現loading圈圈會引發 PTSD。",
         liver: "瀕臨衰竭 (長期滑鼠手加熬夜)",
         bank: "💰💰💰 (等緊無數未過數尾款)",
-        avatar: "https://ltcjoy-ops.github.io./ART-MBTI/DESIGN-SLAVE.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/DESIGN-SLAVE.png"
     },
     "STAGE-GHOST": {
         code: "STAGE-GHOST",
@@ -595,7 +593,7 @@ const profiles = {
         weakness: "行入陽光下皮膚會發光（甚至眼睛會感到不適）。",
         liver: "晝夜顛倒，日夜不分",
         bank: "💰💰 (Stage Call 每日拆帳)",
-        avatar: "https://ltcjoy-ops.github.io./ART-MBTI/STAGE-GHOST.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/STAGE-GHOST.png"
     },
     "GARBAGE-KING": {
         code: "GARBAGE-KING",
@@ -606,7 +604,7 @@ const profiles = {
         weakness: "搬時需要叫三輛大貨車，其中兩輛裝嘅是執黎嘅垃圾。",
         liver: "體力極佳 (經常搬運重型垃圾，練得一身肌肉)",
         bank: "💰💰💰 (垃圾免費，但studio租金好貴)",
-        avatar: "https://ltcjoy-ops.github.io./ART-MBTI/GARBAGE-KING.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/GARBAGE-KING.png"
     },
     "GRID-FREAK": {
         code: "GRID-FREAK",
@@ -617,7 +615,7 @@ const profiles = {
         weakness: "睇到歪斜嘅手寫字或未對齊嘅指標會產生強烈焦慮。",
         liver: "強迫症發作導致肝氣鬱結",
         bank: "💰💰💰 (位數都要整整齊齊)",
-        avatar: "https://ltcjoy-ops.github.io./ART-MBTI/GRID-FREAK.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/GRID-FREAK.png"
     },
     "PARTY-SOCIAL": {
         code: "PARTY-SOCIAL",
@@ -628,7 +626,7 @@ const profiles = {
         weakness: "如果展覽開幕冇免費香檳，現場親和力大減。",
         liver: "酒精過量硬化中",
         bank: "💰💰💰 (包裝自己門面花費甚巨)",
-        avatar: "https://ltcjoy-ops.github.io./ART-MBTI/PARTY-SOCIAL.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/PARTY-SOCIAL.png"
     },
     "INTEL-PROUD": {
         code: "INTEL-PROUD",
@@ -639,7 +637,7 @@ const profiles = {
         weakness: "展覽論述寫得太難，連自己過左兩日都會睇唔明。",
         liver: "因過度沉思而缺氧",
         bank: "💰💰💰💰 (主要靠寫稿稿費)",
-        avatar: "https://ltcjoy-ops.github.io./ART-MBTI/INTEL-PROUD.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/INTEL-PROUD.png"
     },
     "PROMPT-GOD": {
         code: "PROMPT-GOD",
@@ -650,7 +648,7 @@ const profiles = {
         weakness: "遇到停電或斷網，創作生命立刻宣布死亡。",
         liver: "十分健康（全自動gen圖，有時間打機）",
         bank: "💰💰💰 (節省大量人力工時成本，但token永遠唔夠洗)",
-        avatar: "https://ltcjoy-ops.github.io./ART-MBTI/PROMPT-GOD.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/PROMPT-GOD.png"
     },
     "VINTAGE-SOUL": {
         code: "VINTAGE-SOUL",
@@ -661,7 +659,7 @@ const profiles = {
         weakness: "底片連年漲價，每㩒一次快門心臟就麻痺一下。",
         liver: "吸入過多藥水氣味",
         bank: "💰💰 (全掏空去買菲林與古著)",
-        avatar: "https://ltcjoy-ops.github.io./ART-MBTI/VINTAGE-SOUL.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/VINTAGE-SOUL.png"
     },
     "SELF-PROMOTER": {
         code: "SELF-PROMOTER",
@@ -672,7 +670,7 @@ const profiles = {
         weakness: "如果冇帶腳架或手機冇電，會突然失去創作動力。",
         liver: "焦慮跟隨流量上升跌伏",
         bank: "💰💰💰💰 (收入靠贊助同廣告)",
-        avatar: "https://ltcjoy-ops.github.io./ART-MBTI/SELF-PROMOTER.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/SELF-PROMOTER.png"
     },
     "GALLERY-PET": {
         code: "GALLERY-PET",
@@ -683,7 +681,7 @@ const profiles = {
         weakness: "經常被批判性藝術家指責「太過商業、冇深度」。",
         liver: "非常健康，偶爾同收藏家摸下酒杯底",
         bank: "💰💰💰💰 (拆帳拆得好爽)",
-        avatar: "https://ltcjoy-ops.github.io./ART-MBTI/GALLERY-PET.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/GALLERY-PET.png"
     },
     "INDIE-REBEL": {
         code: "INDIE-REBEL",
@@ -694,7 +692,7 @@ const profiles = {
         weakness: "雖然口講討厭體制，但都會偷偷申請政府funding。",
         liver: "憤世嫉俗導致肝火過旺",
         bank: "💰 (反對資本主義，拒絕積蓄)",
-        avatar: "https://ltcjoy-ops.github.io./ART-MBTI/INDIE-REBEL.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/INDIE-REBEL.png"
     }
 };
 
@@ -702,18 +700,18 @@ const questions = [
   {
      q: "1. 朋友問你最近忙緊咩藝術創作，你通常會點答？",
      options: [
-         { text: " 長篇大論講你近排睇左咩書，但其實連做咩都未有idea。", type: "TALK-ARTIST" },
+         { text: "長篇大論講你近排睇左咩書，但其實連做咩都未有idea。", type: "TALK-ARTIST" },
          { text: "「仲有兩日有個 deadline，我打算今晚開通宵！」", type: "BURN-OUT" },
          { text: "「做緊個好有意義但完全無錢嘅獨立企劃！」", type: "LOVE-POWER" },
          { text: "「寫緊個 50 萬嘅藝術基金 Funding proposal。」", type: "FORM-MASTER" },
-         { text: " 求其答下，但實際好耐冇創作。", type: "EXIT-PLAN" }
+         { text: "求其答下，但實際好耐冇創作。", type: "EXIT-PLAN" }
      ]
   },
   {
      q: "2. 當個客要求你「改到 Final_v99」嗰陣，你第一反應係？",
      options: [
          { text: "默默打開 PS/AI，邊忍住眼淚邊改到符合要求。", type: "DESIGN-SLAVE" },
-         { text: "直接話個客審美有問題，唔改！。", type: "INTEL-PROUD" },
+         { text: "直接話個客審美有問題，唔改！", type: "INTEL-PROUD" },
          { text: "叫 Midjourney 重新產出 50 張圖任佢揀。", type: "PROMPT-GOD" },
          { text: "好啊！客戶話點改就點改，最緊要快啲收錢！", type: "GALLERY-PET" },
          { text: "怒罵商業體制腐敗，直接將同客戶嘅對話貼上 Threads 暴走。", type: "INDIE-REBEL" }
@@ -983,7 +981,7 @@ const questions = [
      q: "29. 當你睇到其他同行拎到獎或爆紅時，你嘅內心想法係：",
      options: [
          { text: "「車，佢啲work背後完全冇強大嘅哲學理論支撐。」", type: "INTEL-PROUD" },
-         { text: " 即刻同佢影返張合照，係 IG tag 佢寫句congrats。", type: "PARTY-SOCIAL" },
+         { text: "即刻同佢影返張合照，係 IG tag 佢寫句congrats。", type: "PARTY-SOCIAL" },
          { text: "「佢 PR 做得真係好，我都要向佢學習下。」", type: "SELF-PROMOTER" },
          { text: "「我做藝術唔係為左呢啲世俗名利。」", type: "LOVE-POWER" },
          { text: "「真係好，唔知佢今轉賺幾多。」", type: "EXIT-PLAN" }
@@ -1051,18 +1049,18 @@ function selectOption(type) {
     if (scores[type] !== undefined) {
         scores[type]++;
     }
-    
     currentQuestion++;
+    
     if (currentQuestion < questions.length) {
         renderQuestion();
     } else {
-        showResult();
+        calculateResult();
     }
 }
 
-function showResult() {
+function calculateResult() {
     let maxScore = -1;
-    let winner = "TALK-ARTIST";
+    let winner = 'TALK-ARTIST';
     
     for (let key in scores) {
         if (scores[key] > maxScore) {
@@ -1071,25 +1069,28 @@ function showResult() {
         }
     }
     
-    const res = profiles[winner] || profiles["TALK-ARTIST"];
+    showResult(winner);
+}
+
+function showResult(typeKey) {
+    const profile = profiles[typeKey] || profiles['TALK-ARTIST'];
     
-    document.getElementById('res-type-code').innerText = res.code;
-    document.getElementById('res-title').innerText = res.title;
-    document.getElementById('res-quote').innerText = res.quote;
-    document.getElementById('res-core').innerText = res.core;
-    document.getElementById('res-skill').innerText = res.skill;
-    document.getElementById('res-weakness').innerText = res.weakness;
-    document.getElementById('res-liver').innerText = res.liver;
-    document.getElementById('res-bank').innerText = res.bank;
-    document.getElementById('res-avatar').src = res.avatar;
+    document.getElementById('res-type-code').innerText = profile.code;
+    document.getElementById('res-title').innerText = profile.title;
+    document.getElementById('res-avatar').src = profile.avatar;
+    document.getElementById('res-quote').innerText = profile.quote;
+    document.getElementById('res-liver').innerText = profile.liver;
+    document.getElementById('res-bank').innerText = profile.bank;
+    document.getElementById('res-core').innerText = profile.core;
+    document.getElementById('res-skill').innerText = profile.skill;
+    document.getElementById('res-weakness').innerText = profile.weakness;
     
     showScreen('result-screen');
 }
 
 function restartQuiz() {
-    startQuiz();
+    showScreen('start-screen');
 }
 </script>
-
 </body>
 </html>
