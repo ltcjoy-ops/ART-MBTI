@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ART-MBTI | 藝術界生存毒舌人格測驗 (30題完整版)</title>
+    <title>ART-MBTI | 藝術界生存毒舌人格測驗 (試玩版)</title>
     <style>
         :root {
             --bg-color: #0d0e12;
@@ -276,14 +276,14 @@
     <!-- 開始頁面 -->
     <div id="start-page">
         <h1>ART-MBTI</h1>
-        <p class="subtitle">【藝術與設計界生存毒舌人格測驗 - 30題終極版】<br>涵蓋視覺藝術、平面設計、舞台劇場、產品建築！<br>無論你係藝壇新人家還係老屎忽，測下你在呢個「用愛發電」嘅生態圈入面，你係邊種怪胎！ 頭盔︰Just for fun!</p>
+        <p class="subtitle">【ART-MBTI | 藝術界生存毒舌人格測驗 (試玩版)】<br>涵蓋視覺藝術、平面設計、舞台劇場、產品建築！<br>無論你係藝壇新人定係老屎忽，測下你在呢個「用愛發電」嘅生態圈入面，你係邊種怪胎！ ⛑️︰Just for fun~如有冒犯請見諒</p>
         
         <div style="background: #1a1d2b; padding: 18px; border-radius: 12px; margin-bottom: 25px; text-align: left; font-size: 0.9rem; border-left: 4px solid var(--accent-color);">
             <p style="color: #fff; font-weight: bold; margin-bottom: 5px;">測驗須知：</p>
-            <p style="color: var(--sub-text);">共 30 條情境選擇題，請憑直覺回答。準備好接受無情嘅真相未？</p>
+            <p style="color: var(--sub-text);">準備好接受無情嘅真相未？</p>
         </div>
 
-        <button class="btn" onclick="startQuiz()">即刻入場接受現實 (30 題)</button>
+        <button class="btn" onclick="startQuiz()">即刻入場接受現實洗禮</button>
     </div>
 
     <!-- 測驗進行頁面 -->
@@ -327,7 +327,7 @@
                     <span id="res-liver">10%</span>
                 </div>
                 <div class="badge-item">
-                    <strong>Bank Account 警號</strong>
+                    <strong>銀行存款</strong>
                     <span id="res-bank">長期赤字</span>
                 </div>
             </div>
@@ -336,7 +336,7 @@
             <p id="res-fate" style="margin-top: 5px;"></p>
         </div>
 
-        <button class="btn" onclick="restartQuiz()">重新投胎 (再測一次)</button>
+        <button class="btn" onclick="restartQuiz()">重新投胎</button>
     </div>
 </div>
 
@@ -408,23 +408,23 @@ const questions = [
     {
         q: "Q8. 你平日出門或者工作時，最常見嘅穿著風格係：",
         options: [
-            { text: "全身黑衫黑褲 + 工具包 / Gaffer Tape，極度耐髒與隱形。", score: "STAGE_GHOST" },
+            { text: "全身黑衫黑褲 + Gaffer Tape，極度耐髒與隱形。", score: "STAGE_GHOST" },
             { text: "極簡三宅一生 / 全黑山本耀司風格，眼鏡一定要係圓框 / 幾何框。", score: "GRID_FREAK" },
             { text: "沾滿漆油 / 木屑嘅舊 T-shirt，充滿「工作者」嘅滄桑感。", score: "GARBAGE_MASTER" },
             { text: "時尚名牌混合獨立設計師品牌，隨時準備出席 VIP Opening。", score: "GALLERY_PARTY" }
         ]
     },
     {
-        q: "Q9. 當你收到政府 / 基金會嘅拒絕信（Rejection Letter）時：",
+        q: "Q9. 當你收到政府 / 基金會嘅拒絕信時：",
         options: [
             { text: "即刻打開舊 Word 檔，將原本嘅 Proposal 改動 30% 關鍵字，再投另一個 Funding。", score: "FUNDING" },
-            { text: "早已習慣，默默繼續用自己正職薪水「用愛發電」支持創作。", score: "LOVE" },
+            { text: "早已習慣，默默繼續用自己正職人工課金支持自己創作。", score: "LOVE" },
             { text: "「哼，評審根本不懂當代前衛藝術嘅價值！」", score: "TALK" },
-            { text: "心安理得：「太好了，終於唔使做呢個 Project，可以安心考保險牌。」", score: "QUIT" }
+            { text: "心安理得：「個天叫我轉行，可以安心考保險牌。」", score: "QUIT" }
         ]
     },
     {
-        q: "Q10. 連續通宵工作 48 小時後，你身體現時嘅狀態係：",
+        q: "Q10. 連續通宵工作 48 個鐘後，你身體嘅狀態會係：",
         options: [
             { text: "靠黑咖啡同能量飲料維持心跳，眼神渙散但手指依然在動。", score: "DEADLINE" },
             { text: "「無事！只要劇場燈光一亮，我嘅腎上腺素就會爆發！」", score: "STAGE_GHOST" },
@@ -436,9 +436,9 @@ const questions = [
         q: "Q11. 開會時，對手講咗句聽唔明嘅 Term（例如「Paradigm Shift」、「Site-specific」）：",
         options: [
             { text: "即時點頭，順著對方講出更精深嘅 Derrida 哲學名詞反制對方。", score: "TALK" },
-            { text: "默默記下來，今晚寫 Grant Application 嘅時候一定要加進去。", score: "FUNDING" },
-            { text: "微笑回應：「非常同意，這跟我們在 Gallery 展出嘅解構主義概念一致。」", score: "GALLERY_PARTY" },
-            { text: "翻個白眼，心想：「講咁多廢話，最後咪又係要我改 Logo。」", score: "CLIENT_SLAVE" }
+            { text: "默默記低，留下次寫 Grant Application 嘅時候加入去。", score: "FUNDING" },
+            { text: "微笑回應：「I agree with you。」", score: "GALLERY_PARTY" },
+            { text: "翻白眼，心諗：「講咁多廢話，最後咪又係要我改。」", score: "CLIENT_SLAVE" }
         ]
     },
     {
@@ -446,26 +446,26 @@ const questions = [
         options: [
             { text: "絕對不能忍受！就算通宵都要將佢拉番對齊！強迫症發作！", score: "GRID_FREAK" },
             { text: "「微調 5cm 可以造成意想不到嘅陰影張力，這叫『有機嘅不完美』。」", score: "TALK" },
-            { text: "拿膠紙跟螺絲批，5秒鐘內直接手動修好。", score: "STAGE_GHOST" },
-            { text: "Client 睇唔睇得出？睇唔出就隨便啦，快啲 Sign-off 交稿付錢！", score: "QUIT" }
+            { text: "二話不說，憑多年嘅經驗同感覺整返好。", score: "STAGE_GHOST" },
+            { text: "個客睇唔睇得出？睇唔出就隨便啦，快啲 Sign-off 交稿付錢！", score: "QUIT" }
         ]
     },
     {
-        q: "Q13. 展覽開幕派對（Opening Cocktail）你主要喺度做咩：",
+        q: "Q13. 展覽開幕派對你主要喺度做咩：",
         options: [
             { text: "穿梭於畫廊主、收藏家同贊助商之間，華麗地交換 Business Card。", score: "GALLERY_PARTY" },
-            { text: "站在角落默默食免費沙律同飲免費紅酒，補充這星期嘅熱量。", score: "LOVE" },
-            { text: "同人大力介紹自己下一個需要 Funding 嘅大計劃。", score: "FUNDING" },
-            { text: "根本沒去，因為還喺工作室幫 Client 改緊另一份稿。", score: "CLIENT_SLAVE" }
+            { text: "企係角落默默食免費沙律同飲免費紅酒，開心自己又慳左一餐。", score: "LOVE" },
+            { text: "同人大力sell自己下一個需要 Funding 嘅大計劃。", score: "FUNDING" },
+            { text: "唔去，因為仲有其他job。", score: "CLIENT_SLAVE" }
         ]
     },
     {
-        q: "Q14. 你電腦 / 工作室最常見嘅檔案命名習慣係：",
+        q: "Q14. 你電腦最常見嘅file命名習慣係：",
         options: [
             { text: "Poster_Final_v1_RealFinal_v99_FinalOK_Printed.ai", score: "CLIENT_SLAVE" },
             { text: "2026_HKADC_Grant_Application_Draft_v4.docx", score: "FUNDING" },
             { text: "Untitled_1_Untitled_2_Concept_Draft_01.psd", score: "DEADLINE" },
-            { text: "01_BrandIdentity_GridSystem_CMYK_Master.ai", score: "GRID_FREAK" }
+            { text: "01_BrandIdentity_CMYK_Master.ai", score: "GRID_FREAK" }
         ]
     },
     {
@@ -478,7 +478,7 @@ const questions = [
         ]
     },
     {
-        q: "Q16. 朋友問你：「最近 busy 緊咩啊？」，你通常會答：",
+        q: "Q16. 朋友問你：「最近又有咩搞緊咩啊？」，你通常會答：",
         options: [
             { text: "「忙緊寫緊幾個 Funding proposal，跟住又有兩個 Residency 要 Apply。」", score: "FUNDING" },
             { text: "「咪又係嗰啲賤格 Client，改稿改到我就快死。」", score: "CLIENT_SLAVE" },
@@ -487,16 +487,16 @@ const questions = [
         ]
     },
     {
-        q: "Q17. 當你睇到人哋個作品極度爛，但居然攞到大獎 / 獲得大贊助：",
+        q: "Q17. 當你睇到人哋個作品極度爛(主觀)，但居然攞到大獎 / 獲得大贊助：",
         options: [
-            { text: "「哼！一定係因為佢 Proposal 入面寫滿咗政治正確嘅 Keyword！」", score: "FUNDING" },
-            { text: "「無言，論排版同視覺美學，呢個作品根本係視覺災難。」", score: "GRID_FREAK" },
+            { text: "「車！一定係因為佢 Proposal 入面寫滿咗政治正確嘅 Keyword！」", score: "FUNDING" },
+            { text: "「無言，呢個作品根本係視覺災難。」", score: "GRID_FREAK" },
             { text: "深感社會不公，但最後默默繼續埋頭做自己嘅「用愛發電」小作品。", score: "LOVE" },
             { text: "更加確定呢個圈子係奇葩，加速自己考保險牌 / 學 Coding 嘅決心。", score: "QUIT" }
         ]
     },
     {
-        q: "Q18. 你工作室 / 房間嘅整潔程度係：",
+        q: "Q18. 你studio / 房間嘅整潔程度係：",
         options: [
             { text: "堆滿廢木、破布、舊電器零件，外人覺得係垃圾崗，你覺得係寶庫。", score: "GARBAGE_MASTER" },
             { text: "極致整潔，工具按照顏色同尺寸完美排列，絕不容許塵埃。", score: "GRID_FREAK" },
@@ -652,7 +652,7 @@ const results = {
         title: "表格系 Funding 獵人",
         code: "FORM-MASTER",
         img: "http://googleusercontent.com/image_collection/image_retrieval/6586341639638700330_0",
-        tags: ["#官僚語言專家", "#Proposal神手", "#藝發局好朋友", "#寫計畫書多過畫畫"],
+        tags: ["#官僚語言專家", "#Proposal神手", "#藝發局老友", "#寫計畫書多過畫畫"],
         savage: "比起畫筆，你對 Excel 同 Word 更熟悉。你嘅專長唔係創作藝術，而係將「我拿公帑去旅行」寫成「跨文化在地文史考察與當代空間再造計畫」。",
         status: "每日醒來第一件事：打開各大基金會網站睇下有咩 Grant 可以 Apply，用語極度精準，充滿「場域」、「語境」與「異質性」。",
         liver: "60% (被文書折磨)",
@@ -725,6 +725,27 @@ const results = {
         bank: "表面風光 (社交開支極大)",
         fate: "畫廊總監、藝術經紀人（Art Dealer）。你才是當代藝術市場的最大贏家！"
     }
+     "INTEL-PROUD": {
+        title: "理論堆砌高冷學者",
+        code: "INTEL-PROUD",
+        img: "http://googleusercontent.com/image_collection/image_retrieval/2228381904114708408_0",
+        tags: ["#口水多過茶", "#沙文主義", "#哲學書", "#作品靠包裝"],
+        savage: "講話唔帶三個法文或德文哲學家名字就不會開口。",
+        status: "你係藝術界嘅文字迷宮製造者。作品本身可能只係一隻杯，但你硬要扯到資本主義嘅終極異化。你唔攰，聽嗰個都覺得攰。",
+        liver: "",
+        bank: "",
+        fate: ""
+    }
+     "PROMPT-GOD": {
+        title: "AI 算圖指令神仙",
+        code: "INTEL-PROUD",
+        img: "http://googleusercontent.com/image_collection/image_retrieval/2228381904114708408_0",
+        tags: ["#口水多過茶", "#沙文主義", "#哲學書", "#作品靠包裝"],
+        savage: "",
+        status: "你嘅顯卡比你嘅大腦更熱。你自稱當代藝術家，但實際上你只係 AI 嘅高級打字員。遇到停電或斷網，創作生命立刻宣布死亡。",
+        liver: "",
+        bank: "每月要買token",
+        fate: ""
 };
 
 let currentQ = 0;
