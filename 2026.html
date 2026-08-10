@@ -395,6 +395,7 @@
 
     .restart-btn {
       margin-top: 20px;
+      margin-bottom: 30px;
       background: #fff;
       color: var(--border-color);
     }
@@ -402,6 +403,140 @@
     .restart-btn:hover {
       background: var(--border-color);
       color: #fff;
+    }
+
+    /* Match Profile Cards Styling */
+    .match-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      border-top: 2px solid var(--border-color);
+      padding-top: 25px;
+      margin-top: 10px;
+      margin-bottom: 35px;
+    }
+
+    .match-card {
+      border: 1px solid var(--border-color);
+      padding: 15px;
+      background: #fff;
+      box-shadow: 3px 3px 0px var(--border-color);
+    }
+
+    .match-card.best {
+      border-top: 4px solid var(--accent-green);
+    }
+
+    .match-card.worst {
+      border-top: 4px solid var(--accent-red);
+    }
+
+    .match-header {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .match-card.best .match-header {
+      color: #00aa44;
+    }
+
+    .match-card.worst .match-header {
+      color: var(--accent-red);
+    }
+
+    .match-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .match-desc {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+
+    /* ALL PROFILES SECTION STYLING */
+    .all-profiles-wrapper {
+      border-top: 2px dashed var(--border-color);
+      padding-top: 25px;
+      margin-top: 25px;
+    }
+
+    .all-profiles-title {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .all-profiles-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .profile-summary-card {
+      border: 1px solid var(--border-color);
+      background: #fafafa;
+      padding: 15px;
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+      transition: background 0.2s;
+    }
+
+    .profile-summary-card:hover {
+      background: #f0f0f0;
+    }
+
+    .profile-summary-thumb {
+      width: 60px;
+      height: 80px;
+      object-fit: cover;
+      border: 1px solid var(--border-color);
+      flex-shrink: 0;
+      filter: grayscale(100%);
+    }
+
+    .profile-summary-card:hover .profile-summary-thumb {
+      filter: grayscale(0%);
+    }
+
+    .profile-summary-info {
+      flex: 1;
+    }
+
+    .profile-summary-code {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      background: var(--border-color);
+      color: #fff;
+      padding: 2px 6px;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    .profile-summary-name {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .profile-summary-quote {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.4;
     }
 
     @media (max-width: 600px) {
@@ -417,11 +552,18 @@
       .banner-heading {
         font-size: 1.1rem;
       }
-      .status-grid {
+      .status-grid, .match-container {
         grid-template-columns: 1fr;
       }
       .question-text {
         font-size: 1.1rem;
+      }
+      .profile-summary-card {
+        padding: 10px;
+      }
+      .profile-summary-thumb {
+        width: 50px;
+        height: 65px;
       }
     }
   </style>
@@ -513,6 +655,28 @@
     </div>
 
     <button class="btn restart-btn" onclick="restartQuiz()">再測一次 🔄</button>
+
+    <!-- 最合拍 & 最不合拍 PROFILE 區塊 -->
+    <div class="match-container">
+      <div class="match-card best">
+        <div class="match-header">🤝 最合拍拍檔 (BEST MATCH)</div>
+        <div class="match-title" id="match-best-title">--</div>
+        <div class="match-desc" id="match-best-desc">--</div>
+      </div>
+      <div class="match-card worst">
+        <div class="match-header">💥 最難相處 (WORST MATCH)</div>
+        <div class="match-title" id="match-worst-title">--</div>
+        <div class="match-desc" id="match-worst-desc">--</div>
+      </div>
+    </div>
+
+    <!-- 完整 16 個 PROFILE 資料區塊 -->
+    <div class="all-profiles-wrapper">
+      <div class="all-profiles-title">📂 完整 16 種藝術人格圖鑑 (ALL PROFILES)</div>
+      <div class="all-profiles-grid" id="all-profiles-grid">
+        <!-- 由 JavaScript 動態帶入 -->
+      </div>
+    </div>
   </div>
 </div>
 
@@ -527,7 +691,9 @@ const profiles = {
         weakness: "最怕比人問：「咁你幾時要開始做？」",
         liver: "非常健康（有時會夜晚睇下書）",
         bank: "💰💰 (因為未見到實際產出)",
-        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/TALK-ARTIST.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/TALK-ARTIST.png",
+        bestMatch: { key: "INTEL-PROUD", desc: "大家可以坐低講足 8 小時哲學，唔洗落手做任何嘢。" },
+        worstMatch: { key: "BURN-OUT", desc: "會因為你只吹水唔做嘢而想拿主機砸你。" }
     },
     "BURN-OUT": {
         code: "BURN-OUT",
@@ -538,7 +704,9 @@ const profiles = {
         weakness: "展覽開幕當天通常呈半解體狀態，企係作品旁邊似個地縛靈。",
         liver: "指數爆表（肝臟已呈現化石狀）",
         bank: "💰💰💰 (全拎去買提神飲料同宵夜)",
-        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/BURN-OUT.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/BURN-OUT.png",
+        bestMatch: { key: "DESIGN-SLAVE", desc: "同為爆肝受害者，凌晨 4 點互通訊息唔會孤單。" },
+        worstMatch: { key: "TALK-ARTIST", desc: "講就天下無敵，做就寸步難移，令你無端加倍爆肝。" }
     },
     "LOVE-POWER": {
         code: "LOVE-POWER",
@@ -549,7 +717,9 @@ const profiles = {
         weakness: "帳戶餘額經常得個位數，心靈富足。",
         liver: "微弱運作中",
         bank: "💰 (只夠買個白面包)",
-        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/LOVE-POWER.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/LOVE-POWER.png",
+        bestMatch: { key: "INDIE-REBEL", desc: "一同仇視商業資本，精神理想極度契合。" },
+        worstMatch: { key: "EXIT-PLAN", desc: "對方的現實同理性會瞬間打碎你嘅理想泡沫。" }
     },
     "FORM-MASTER": {
         code: "FORM-MASTER",
@@ -560,7 +730,9 @@ const profiles = {
         weakness: "proposal寫到曉飛，做就差咁啲。",
         liver: "亞健康（長期睇 Excel 導致眼花）",
         bank: "💰💰💰💰 (剛入帳嘅 Grants)",
-        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/FORM-MASTER.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/FORM-MASTER.png",
+        bestMatch: { key: "PROMPT-GOD", desc: "用 AI 5秒生成視覺圖搭配你嘅企劃書，呃 Funding 無往不利。" },
+        worstMatch: { key: "INDIE-REBEL", desc: "認為你係體制嘅走狗，完全不屑同你合作。" }
     },
     "EXIT-PLAN": {
         code: "EXIT-PLAN",
@@ -571,7 +743,9 @@ const profiles = {
         weakness: "被同儕嘲笑唔夠熱誠，但通常係所有人之中金錢最穩定。",
         liver: "極度正常（早睡早起做運動）",
         bank: "💰💰💰💰💰 (夠食夠住，生活穩定)",
-        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/EXIT-PLAN.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/EXIT-PLAN.png",
+        bestMatch: { key: "GALLERY-PET", desc: "大家都非常務實，講錢講條款清清楚楚。" },
+        worstMatch: { key: "LOVE-POWER", desc: "你勸佢清醒，佢嫌你庸俗，完全傾唔埋。" }
     },
     "DESIGN-SLAVE": {
         code: "DESIGN-SLAVE",
@@ -582,7 +756,9 @@ const profiles = {
         weakness: "睇到電腦螢幕出現loading圈圈會引發 PTSD。",
         liver: "瀕臨衰竭 (長期滑鼠手加熬夜)",
         bank: "💰💰💰 (等緊無數未過數尾款)",
-        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/DESIGN-SLAVE.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/DESIGN-SLAVE.png",
+        bestMatch: { key: "GRID-FREAK", desc: "大家對細節有極致執著，合作交接順暢如絲。" },
+        worstMatch: { key: "GALLERY-PET", desc: "一直傳達客戶刁鑽要求，改稿改到起飛。" }
     },
     "STAGE-GHOST": {
         code: "STAGE-GHOST",
@@ -593,7 +769,9 @@ const profiles = {
         weakness: "行入陽光下皮膚會發光（甚至眼睛會感到不適）。",
         liver: "晝夜顛倒，日夜不分",
         bank: "💰💰 (Stage Call 每日拆帳)",
-        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/STAGE-GHOST.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/STAGE-GHOST.png",
+        bestMatch: { key: "GARBAGE-KING", desc: "一個負責搬廢料，一個負責暗處架設，幕後完美搭檔。" },
+        worstMatch: { key: "PARTY-SOCIAL", desc: "逼你去聚光燈下開香檳交際，簡直係精神拷問。" }
     },
     "GARBAGE-KING": {
         code: "GARBAGE-KING",
@@ -604,7 +782,9 @@ const profiles = {
         weakness: "搬時需要叫三輛大貨車，其中兩輛裝嘅是執黎嘅垃圾。",
         liver: "體力極佳 (經常搬運重型垃圾，練得一身肌肉)",
         bank: "💰💰💰 (垃圾免費，但studio租金好貴)",
-        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/GARBAGE-KING.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/GARBAGE-KING.png",
+        bestMatch: { key: "STAGE-GHOST", desc: "默默幫你處理龐大廢棄物嘅展場空間與燈光。" },
+        worstMatch: { key: "GRID-FREAK", desc: "會把你囤積嘅寶物垃圾全當成髒亂污染源清掉。" }
     },
     "GRID-FREAK": {
         code: "GRID-FREAK",
@@ -615,7 +795,9 @@ const profiles = {
         weakness: "睇到歪斜嘅手寫字或未對齊嘅指標會產生強烈焦慮。",
         liver: "強迫症發作導致肝氣鬱結",
         bank: "💰💰💰 (位數都要整整齊齊)",
-        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/GRID-FREAK.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/GRID-FREAK.png",
+        bestMatch: { key: "DESIGN-SLAVE", desc: "同樣對 pixel 完美主義有病態般的理解。" },
+        worstMatch: { key: "GARBAGE-KING", desc: "混亂無章法嘅雜物場景會直接讓你強迫症發作崩潰。" }
     },
     "PARTY-SOCIAL": {
         code: "PARTY-SOCIAL",
@@ -626,7 +808,9 @@ const profiles = {
         weakness: "如果展覽開幕冇免費香檳，現場親和力大減。",
         liver: "酒精過量硬化中",
         bank: "💰💰💰 (包裝自己門面花費甚巨)",
-        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/PARTY-SOCIAL.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/PARTY-SOCIAL.png",
+        bestMatch: { key: "SELF-PROMOTER", desc: "互追 IG、互相 Tag，互利共生創造雙贏流量。" },
+        worstMatch: { key: "STAGE-GHOST", desc: "根本找不到他的人，完全無法進行任何公關社交。" }
     },
     "INTEL-PROUD": {
         code: "INTEL-PROUD",
@@ -637,7 +821,9 @@ const profiles = {
         weakness: "展覽論述寫得太難，連自己過左兩日都會睇唔明。",
         liver: "因過度沉思而缺氧",
         bank: "💰💰💰💰 (主要靠寫稿稿費)",
-        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/INTEL-PROUD.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/INTEL-PROUD.png",
+        bestMatch: { key: "TALK-ARTIST", desc: "一個敢講，一個敢聽，沉浸在理論高塔裡。" },
+        worstMatch: { key: "PROMPT-GOD", desc: "對方用指令秒速產出，玷污了你深邃嘅哲學思考。" }
     },
     "PROMPT-GOD": {
         code: "PROMPT-GOD",
@@ -648,7 +834,9 @@ const profiles = {
         weakness: "遇到停電或斷網，創作生命立刻宣布死亡。",
         liver: "十分健康（全自動gen圖，有時間打機）",
         bank: "💰💰💰 (節省大量人力工時成本，但token永遠唔夠洗)",
-        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/PROMPT-GOD.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/PROMPT-GOD.png",
+        bestMatch: { key: "FORM-MASTER", desc: "你出圖、佢寫企劃，高效率掠奪各類補助資金。" },
+        worstMatch: { key: "VINTAGE-SOUL", desc: "對方視數位與 AI 為無靈魂的異端垃圾。" }
     },
     "VINTAGE-SOUL": {
         code: "VINTAGE-SOUL",
@@ -659,7 +847,9 @@ const profiles = {
         weakness: "底片連年漲價，每㩒一次快門心臟就麻痺一下。",
         liver: "吸入過多藥水氣味",
         bank: "💰💰 (全掏空去買菲林與古著)",
-        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/VINTAGE-SOUL.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/VINTAGE-SOUL.png",
+        bestMatch: { key: "LOVE-POWER", desc: "能感同身受你對舊時代與純粹藝術感情嘅執著。" },
+        worstMatch: { key: "PROMPT-GOD", desc: "完全無法接受對方按個鍵就稱自己為「創作者」。" }
     },
     "SELF-PROMOTER": {
         code: "SELF-PROMOTER",
@@ -670,7 +860,9 @@ const profiles = {
         weakness: "如果冇帶腳架或手機冇電，會突然失去創作動力。",
         liver: "焦慮跟隨流量上升跌伏",
         bank: "💰💰💰💰 (收入靠贊助同廣告)",
-        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/SELF-PROMOTER.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/SELF-PROMOTER.png",
+        bestMatch: { key: "PARTY-SOCIAL", desc: "互互相互打卡，將彼此流量極大化。" },
+        worstMatch: { key: "INTEL-PROUD", desc: "會當面用晦澀理論嗆你的內容淺薄低俗。" }
     },
     "GALLERY-PET": {
         code: "GALLERY-PET",
@@ -681,7 +873,9 @@ const profiles = {
         weakness: "經常被批判性藝術家指責「太過商業、冇深度」。",
         liver: "非常健康，偶爾同收藏家摸下酒杯底",
         bank: "💰💰💰💰 (拆帳拆得好爽)",
-        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/GALLERY-PET.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/GALLERY-PET.png",
+        bestMatch: { key: "EXIT-PLAN", desc: "兩人都把藝術當商業營運，溝通極度順暢高效。" },
+        worstMatch: { key: "INDIE-REBEL", desc: "開口閉口罵你係資本主義賣身狗。" }
     },
     "INDIE-REBEL": {
         code: "INDIE-REBEL",
@@ -692,7 +886,9 @@ const profiles = {
         weakness: "雖然口講討厭體制，但都會偷偷申請政府funding。",
         liver: "憤世嫉俗導致肝火過旺",
         bank: "💰 (反對資本主義，拒絕積蓄)",
-        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/INDIE-REBEL.png"
+        avatar: "https://ltcjoy-ops.github.io/ART-MBTI/INDIE-REBEL.png",
+        bestMatch: { key: "LOVE-POWER", desc: "同甘共苦，一起在地下空間發揮反骨精神。" },
+        worstMatch: { key: "GALLERY-PET", desc: "最看不慣這種為了賣畫討好市場嘅「體制寵兒」。" }
     }
 };
 
@@ -1085,7 +1281,43 @@ function showResult(typeKey) {
     document.getElementById('res-skill').innerText = profile.skill;
     document.getElementById('res-weakness').innerText = profile.weakness;
     
+    // 渲染最合拍與最不合拍 Profile
+    if (profile.bestMatch && profiles[profile.bestMatch.key]) {
+        const bestProfile = profiles[profile.bestMatch.key];
+        document.getElementById('match-best-title').innerText = `${bestProfile.title} (${bestProfile.code})`;
+        document.getElementById('match-best-desc').innerText = profile.bestMatch.desc;
+    }
+    
+    if (profile.worstMatch && profiles[profile.worstMatch.key]) {
+        const worstProfile = profiles[profile.worstMatch.key];
+        document.getElementById('match-worst-title').innerText = `${worstProfile.title} (${worstProfile.code})`;
+        document.getElementById('match-worst-desc').innerText = profile.worstMatch.desc;
+    }
+
+    // 動態渲染所有 16 個 Profile 資料
+    renderAllProfiles();
+
     showScreen('result-screen');
+}
+
+function renderAllProfiles() {
+    const container = document.getElementById('all-profiles-grid');
+    container.innerHTML = '';
+
+    for (let key in profiles) {
+        const p = profiles[key];
+        const card = document.createElement('div');
+        card.className = 'profile-summary-card';
+        card.innerHTML = `
+            <img class="profile-summary-thumb" src="${p.avatar}" alt="${p.title}">
+            <div class="profile-summary-info">
+                <span class="profile-summary-code">${p.code}</span>
+                <div class="profile-summary-name">${p.title}</div>
+                <div class="profile-summary-quote">${p.quote}</div>
+            </div>
+        `;
+        container.appendChild(card);
+    }
 }
 
 function restartQuiz() {
