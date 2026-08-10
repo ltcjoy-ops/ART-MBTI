@@ -3,64 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>藝術界毒舌人格測驗 ART MBTI TEST</title>
+    <title>藝術界毒舌人格測驗 | Art World Personality Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f0f11;
-            --card-bg: #18181c;
-            --accent-color: #ccff00; /* 藝術展覽常見螢光黃綠 */
-            --text-color: #f0f0f0;
-            --text-muted: #a0a0a0;
-            --border-color: #2e2e35;
-            --danger-color: #ff3366;
+            --bg-color: #0f1015;
+            --card-bg: #1a1c23;
+            --accent-color: #ff3366;
+            --accent-glow: rgba(255, 51, 102, 0.4);
+            --secondary-color: #00f2fe;
+            --text-color: #f0f2f5;
+            --text-dim: #a0a5b5;
+            --border-color: #2e3240;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: 'Noto Sans TC', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            padding: 20px 10px;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 51, 102, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 242, 254, 0.05) 0%, transparent 20%);
         }
 
         .container {
             width: 100%;
             max-width: 680px;
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            position: relative;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             overflow: hidden;
+            position: relative;
         }
 
-        h1 {
-            font-size: 1.8rem;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-            text-transform: uppercase;
+        /* BANNER */
+        .banner-container {
+            width: 100%;
+            height: 220px;
+            position: relative;
+            background-color: #232733;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85) contrast(1.1);
+        }
+
+        .banner-badge {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(5px);
+            color: var(--secondary-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            border: 1px solid var(--secondary-color);
+            font-weight: bold;
             letter-spacing: 1px;
         }
 
-        p.subtitle {
-            color: var(--text-muted);
-            margin-bottom: 25px;
-            font-size: 0.95rem;
-            line-height: 1.5;
+        .screen {
+            padding: 30px 25px;
+            display: none;
         }
 
-        /* Progress Bar */
-        .progress-container {
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* START SCREEN */
+        .title-group {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .main-title {
+            font-size: 28px;
+            font-weight: 900;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            background: linear-gradient(45deg, #ff3366, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sub-title {
+            font-size: 14px;
+            color: var(--text-dim);
+        }
+
+        .intro-box {
+            background: rgba(255,255,255,0.03);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+            font-size: 15px;
+            line-height: 1.7;
+            color: #d1d5db;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(45deg, var(--accent-color), #ff6b8b);
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 20px var(--accent-glow);
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px var(--accent-glow);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        /* QUESTION SCREEN */
+        .progress-bar-container {
             width: 100%;
             height: 8px;
             background-color: var(--border-color);
@@ -72,707 +170,770 @@
         .progress-bar {
             height: 100%;
             width: 0%;
-            background-color: var(--accent-color);
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
             transition: width 0.3s ease;
         }
 
-        .question-text {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            line-height: 1.4;
+        .q-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-weight: bold;
         }
 
-        .options-grid {
+        .question-text {
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            color: #ffffff;
+        }
+
+        .options-list {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
         .option-btn {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255,255,255,0.04);
             border: 1px solid var(--border-color);
-            color: var(--text-color);
             padding: 15px 18px;
-            border-radius: 8px;
+            border-radius: 12px;
+            color: var(--text-color);
+            font-size: 15px;
             text-align: left;
-            font-size: 0.95rem;
             cursor: pointer;
             transition: all 0.2s ease;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         .option-btn:hover {
-            background: var(--accent-color);
-            color: #000;
+            background: rgba(255, 51, 102, 0.1);
             border-color: var(--accent-color);
-            font-weight: 600;
-            transform: translateY(-2px);
+            transform: translateX(3px);
         }
 
-        .btn-start {
-            background: var(--accent-color);
-            color: #000;
-            font-weight: bold;
-            font-size: 1.1rem;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            transition: background 0.2s;
-        }
-
-        .btn-start:hover {
-            background: #b8e600;
-        }
-
-        /* Result View Component */
-        .result-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        /* RESULT SCREEN */
+        .result-header {
             text-align: center;
-        }
-
-        .result-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: var(--border-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            border: 3px solid var(--accent-color);
-        }
-
-        .result-title {
-            font-size: 1.6rem;
-            color: var(--accent-color);
-            margin-bottom: 5px;
-        }
-
-        .result-quote {
-            font-style: italic;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 10px 15px;
-            border-left: 3px solid var(--accent-color);
-            border-radius: 4px;
-            width: 100%;
-        }
-
-        .status-box {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .status-item {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color);
-            padding: 12px;
-            border-radius: 8px;
-            text-align: left;
-        }
-
-        .status-label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 5px;
-        }
-
-        .status-value {
-            font-size: 1rem;
-            font-weight: bold;
-            color: var(--danger-color);
-        }
-
-        .details-box {
-            text-align: left;
-            width: 100%;
-            font-size: 0.95rem;
-            line-height: 1.6;
             margin-bottom: 25px;
         }
 
-        .details-box div {
+        .result-tag {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
             margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
-        .badge {
-            background: rgba(204, 255, 0, 0.1);
+        .result-title {
+            font-size: 26px;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .result-avatar-box {
+            width: 50%;
+            height: 200px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 0 auto 20px auto;
+            border: 2px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .result-avatar-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .quote-box {
+            background: rgba(0, 242, 254, 0.05);
+            border: 1px dashed var(--secondary-color);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-style: italic;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .status-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            border-radius: 12px;
+        }
+
+        .status-label {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-value {
+            font-size: 15px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .section-block {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .section-block h4 {
+            font-size: 14px;
             color: var(--accent-color);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-right: 5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .hidden {
-            display: none !important;
+        .section-block p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #d1d5db;
+        }
+
+        .share-btn {
+            background: #25d366;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+            margin-top: 15px;
+        }
+        
+        .restart-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-dim);
+            margin-top: 10px;
+            box-shadow: none;
+        }
+        .restart-btn:hover {
+            color: #fff;
+            border-color: #fff;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- 1. START SCREEN -->
-    <div id="start-screen">
-        <h1>藝術界人格測試<br><span style="font-size: 1.2rem; color: #fff;">ART MBTI TEST</span></h1>
-        <p class="subtitle">針對香港/當代藝術圈生存現狀設計。測試你到底係眼高手低嘅嘴砲大師、爆肝 Deadline Fighter，定係準備隨時轉行嘅人間清醒？</p>
-        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px;">共 30 題情境選擇題 | 毒舌真相預警</p>
-        <button class="btn-start" onclick="startTest()">開始測試 (Start)</button>
+    <!-- BANNER PRESET -->
+    <div class="banner-container">
+        <!-- Default Banner placeholder or generated graphic -->
+        <img src="Gemini_Generated_Image_wc5vhlwc5vhlwc5v.png" alt="Art World Personality Banner" class="banner-img" onerror="this.src='https://via.placeholder.com/680x220/1a1c23/ff3366?text=ART+WORLD+PERSONALITY+TEST'">
+        <div class="banner-badge">MBTI 惡搞版 v1.0</div>
     </div>
 
-    <!-- 2. QUESTION SCREEN -->
-    <div id="question-screen" class="hidden">
-        <div class="progress-container">
+    <!-- START SCREEN -->
+    <div id="start-screen" class="screen active">
+        <div class="title-group">
+            <h1 class="main-title">藝術界毒舌人格測驗</h1>
+            <p class="sub-title">測出你在藝術圈（或貧窮線）的真實生存形態</p>
+        </div>
+        <div class="intro-box">
+            歡迎來到當代藝術殘酷舞台！本測試專為藝術從業者、設計奴隸、劇場地縛靈及各類文青量身打造。<br><br>
+            通過 30 道廣東話情境選擇題，揭穿你隱藏在「藝術追求」背後的毒舌真相！
+        </div>
+        <button class="btn" onclick="startQuiz()">即刻開始測試 🚀</button>
+    </div>
+
+    <!-- QUIZ SCREEN -->
+    <div id="quiz-screen" class="screen">
+        <div class="q-meta">
+            <span id="q-number">QUESTION 01/30</span>
+            <span id="q-progress-text">3%</span>
+        </div>
+        <div class="progress-bar-container">
             <div id="progress-bar" class="progress-bar"></div>
         </div>
-        <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;" id="question-number">Question 1/30</div>
-        <div class="question-text" id="question-text">載入中...</div>
-        <div class="options-grid" id="options-container"></div>
+        <div id="question-text" class="question-text"></div>
+        <div id="options-list" class="options-list"></div>
     </div>
 
-    <!-- 3. RESULT SCREEN -->
-    <div id="result-screen" class="hidden">
-        <div class="result-card">
-            <div class="result-avatar" id="res-avatar">🎨</div>
+    <!-- RESULT SCREEN -->
+    <div id="result-screen" class="screen">
+        <div class="result-header">
+            <span class="result-tag" id="res-type-code">TYPE-CODE</span>
             <h2 class="result-title" id="res-title">角色名稱</h2>
-            <div class="result-quote" id="res-quote">經典語錄</div>
-
-            <div class="status-box">
-                <div class="status-item">
-                    <div class="status-label">🫀 肝功能指數</div>
-                    <div class="status-value" id="res-liver">0%</div>
-                </div>
-                <div class="status-item">
-                    <div class="status-label">💳 戶口存款狀態</div>
-                    <div class="status-value" id="res-bank">HKD 0.00</div>
-                </div>
-            </div>
-
-            <div class="details-box">
-                <div><strong>【核心精神】</strong><br><span id="res-core">...</span></div>
-                <div><strong>【生存技能】</strong><br><span id="res-skill">...</span></div>
-                <div><strong>【致命弱點】</strong><br><span id="res-weak">...</span></div>
-                <div id="res-extra-container" class="hidden"><strong>【穿搭配件】</strong><br><span id="res-extra">...</span></div>
-            </div>
-
-            <button class="btn-start" onclick="restartTest()">再測一次 (Restart)</button>
         </div>
+
+        <div class="result-avatar-box">
+            <img id="res-avatar" src="" alt="Role Avatar">
+        </div>
+
+        <div class="quote-box" id="res-quote">
+            「經典語錄加載中...」
+        </div>
+
+        <div class="status-grid">
+            <div class="status-card">
+                <div class="status-label">🫀 肝功能狀況</div>
+                <div class="status-value" id="res-liver">--</div>
+            </div>
+            <div class="status-card">
+                <div class="status-label">💳 銀行存款金額</div>
+                <div class="status-value" id="res-bank">--</div>
+            </div>
+        </div>
+
+        <div class="section-block">
+            <h4>🔥 核心精神</h4>
+            <p id="res-core">--</p>
+        </div>
+
+        <div class="section-block">
+            <h4>⚔️ 生存技能</h4>
+            <p id="res-skill">--</p>
+        </div>
+
+        <div class="section-block">
+            <h4>⚠️ 致命弱點</h4>
+            <p id="res-weakness">--</p>
+        </div>
+
+        <button class="btn share-btn" onclick="shareResult()">分享測驗結果 📤</button>
+        <button class="btn restart-btn" onclick="restartQuiz()">再測一次 🔄</button>
     </div>
 </div>
 
 <script>
-// 人格資料庫 (包含毒舌屬性與狀態)
 const profiles = {
     "TALK-ARTIST": {
-        title: "TALK-ARTIST｜眼高手低概念大師",
-        avatar: "🗣️",
-        core: "作品未動，嘴砲先行；靈魂在雲端，雙手在打遊戲。",
+        code: "TALK-ARTIST",
+        title: "眼高手低概念大師",
         quote: "「這個作品重點不是視覺，是背後的 Deconstruction（解構）。」",
+        core: "作品未動，嘴砲先行；靈魂在雲端，雙手在打遊戲。",
         skill: "講了兩小時當代藝術理論，作品其實是一張白紙加上一個點。",
-        weak: "最怕別人問：「所以你什麼時候要開始做？」",
-        liver: "92% (未開工，肝臟好健康)",
-        bank: "HKD $840.00 (靠屋企微薄津貼)"
+        weakness: "最怕別人問：「所以你什麼時候要開始做？」",
+        liver: "非常健康（從不安夜爆肝）",
+        bank: "HKD $1,280 (講完理論順便飲咗杯拿鐵)",
+        avatar: "https://drive.google.com/file/d/1ePm_j0VdxELJqAcb2g-asQoLorOcBAd1/view?usp=drive_link"
     },
     "BURN-OUT": {
-        title: "BURN-OUT｜極限爆肝 Deadline Fighter",
-        avatar: "⚡",
-        core: "沒到截稿前 2 小時，繆斯女神絕不降臨。",
+        code: "BURN-OUT",
+        title: "極限爆肝 Deadline Fighter",
         quote: "「還有三個小時？那時間還很充裕，我先去刷個社群。」",
+        core: "沒到截稿前 2 小時，繆斯女神絕不降臨。",
         skill: "靠著紅牛與黑咖啡，能在 24 小時內產出別人做兩個月的展覽體量。",
-        weak: "展覽開幕當天通常呈半解體狀態，站在作品旁像個地縛靈。",
-        liver: "1.2% (呈纖維化硬化狀態)",
-        bank: "HKD $12,450.00 (隨時拿去睇中醫/睇急症)"
+        weakness: "展覽開幕當天通常呈半解體狀態，站在作品旁像個地縛靈。",
+        liver: "指數爆表（肝臟已呈現化石狀）",
+        bank: "HKD $4,500 (全拎去買提神飲料同通宵外賣)",
+        avatar: "https://drive.google.com/file/d/1ePm_j0VdxELJqAcb2g-asQoLorOcBAd1/view?usp=drive_link"
     },
     "LOVE-POWER": {
-        title: "LOVE-POWER｜用愛發電佛系殉道者",
-        avatar: "🍞",
-        core: "談錢傷感情，藝術至上；吃吐司邊也能維持靈魂的高度。",
+        code: "LOVE-POWER",
+        title: "用愛發電佛系殉道者",
         quote: "「沒預算沒關係，這企劃很有意義，我免費幫忙做。」",
-        skill: "光合作用、光靠「對藝術的熱情」就能在台北/香港高房租下存活。",
-        weak: "帳戶餘額經常個位數，戶頭裡最貴的東西是創作材料。",
-        liver: "45% (靠熱情苦苦支撐)",
-        bank: "HKD $7.50 (剛好夠搭一程電車)"
+        core: "談錢傷感情，藝術至上；吃吐司邊也能維持靈魂的高度。",
+        skill: "光合作用、光靠「對藝術的熱情」就能在高房租下存活。",
+        weakness: "帳戶餘額經常個位數，戶頭裡最貴的東西是創作材料。",
+        liver: "微弱運作中",
+        bank: "HKD $7.5 (只夠買個白面包)",
+        avatar: "https://drive.google.com/file/d/1ePm_j0VdxELJqAcb2g-asQoLorOcBAd1/view?usp=drive_link"
     },
     "FORM-MASTER": {
-        title: "FORM-MASTER｜表格系 Funding 獵人",
-        avatar: "📋",
-        core: "填表比畫畫還順手，補助案過關率 99%。",
+        code: "FORM-MASTER",
+        title: "表格系 Funding 獵人",
         quote: "「這案子只要把『跨界』、『永續』跟『AI 沉浸式』放進關鍵字，絕對拿 A 類。」",
+        core: "填表比畫畫還順手，補助案過關率 99%。",
         skill: "精通政府與財團各類補助格式，能把「在地塗鴉」寫成「城市邊緣空間之現象學重構計畫」。",
-        weak: "企劃書寫得比實際展覽好看十倍。",
-        liver: "65% (審查期夜審會爆肝)",
-        bank: "HKD $580,000.00 (但全是 Funding 專款專用)"
+        weakness: "企劃書寫得比實際展覽好看十倍。",
+        liver: "亞健康（長期看 Excel 導致眼花）",
+        bank: "HKD $680,000 (剛入帳政府第一期 Grants)",
+        avatar: "https://drive.google.com/file/d/1ePm_j0VdxELJqAcb2g-asQoLorOcBAd1/view?usp=drive_link"
     },
     "EXIT-PLAN": {
-        title: "EXIT-PLAN｜隨時轉行人間清醒",
-        avatar: "🚪",
-        core: "身在藝術圈，心在履歷表；隨時準備考公務員或轉行做科技業。",
+        code: "EXIT-PLAN",
+        title: "隨時轉行人間清醒",
         quote: "「做藝術只是我的副業，我的主業是尋找人生退路。」",
+        core: "身在藝術圈，心在履歷表；隨時準備考公務員或轉行做科技業。",
         skill: "創作時保持極度理智，絕不投入過多情感與個人資產，CP 值至上。",
-        weak: "被同儕嘲笑不夠純粹，但通常是所有人裡面最早買房的。",
-        liver: "98% (作息定時，極度健康)",
-        bank: "HKD $1,250,000.00 (已做定期及買藍籌股)"
+        weakness: "被同儕嘲笑不夠純粹，但通常是所有人裡面最早買房的。",
+        liver: "極度正常（早睡早起做運動）",
+        bank: "HKD $1,250,000 (首期已準備好)",
+        avatar: "https://drive.google.com/file/d/1ePm_j0VdxELJqAcb2g-asQoLorOcBAd1/view?usp=drive_link"
     },
     "DESIGN-SLAVE": {
-        title: "DESIGN-SLAVE｜「改到 Final_v99」設計奴隸",
-        avatar: "💻",
-        core: "世界上沒有 Final，只有 Final_of_Final_真的最後一次改_v99.pdf。",
+        code: "DESIGN-SLAVE",
+        title: "「改到 Final_v99」設計奴隸",
         quote: "「客戶說想要『大方一點但要低調』、『亮一點但要暗沈的質感』。」",
+        core: "世界上沒有 Final，只有 Final_of_Final_真的最後一次改_v99.pdf。",
         skill: "具備無限包容心，能聽懂各種匪夷所思的抽象需求並進行圖像化。",
-        weak: "看到電腦螢幕出現「重新導出」四個字會引發 PTSD。",
-        liver: "15% (長期夜班導出檔案)",
-        bank: "HKD $45,000.00 (全部係血汗尾數)"
+        weakness: "看到電腦螢幕出現「重新導出」四個字會引發 PTSD。",
+        liver: "瀕臨衰竭 (長期滑鼠手加熬夜)",
+        bank: "HKD $32,000 (等緊無數未過數尾款)",
+        avatar: "https://drive.google.com/file/d/1ePm_j0VdxELJqAcb2g-asQoLorOcBAd1/view?usp=drive_link"
     },
     "STAGE-GHOST": {
-        title: "STAGE-GHOST｜黑衫黑褲舞台劇通宵怪",
-        avatar: "🕯️",
-        core: "黑色是唯一的保護色；生活在劇場黑盒子的無日夜時空。",
+        code: "STAGE-GHOST",
+        title: "黑衫黑褲影子人",
         quote: "「外面現在是白天還是晚上？不管了，Cue 125 Go！」",
+        core: "黑色是唯一的保護色；生活在劇場黑盒子的無日夜時空。",
         skill: "能在大麥克音箱旁邊秒睡，且可以在完全無光的暗房中精準移動物品。",
-        weak: "走進陽光下皮膚會發光（甚至會感到不適）。",
-        liver: "20% (見唔到太陽導致維他命D嚴重缺失)",
-        bank: "HKD $18,300.00 (剛好夠買專業黑衫同手套)"
+        weakness: "走進陽光下皮膚會發光（甚至會感到不適）。",
+        liver: "晝夜顛倒，日夜不分",
+        bank: "HKD $18,500 (Stage Call 每日拆帳)",
+        avatar: "https://drive.google.com/file/d/1ePm_j0VdxELJqAcb2g-asQoLorOcBAd1/view?usp=drive_link"
     },
     "GARBAGE-KING": {
-        title: "GARBAGE-KING｜廢物利用裝置巨匠",
-        avatar: "📦",
-        core: "路邊拾荒是靈感來源，工作室像資源回收場。",
+        code: "GARBAGE-KING",
+        title: "廢物利用裝置巨匠",
         quote: "「不要丟！那個廢棄保麗龍和生鏽鐵絲我下個作品用得到！」",
+        core: "路邊拾荒是靈感來源，工作室像資源回收場。",
         skill: "能將任何廢棄物（如紙箱、落葉、舊電線）轉化為價值連城的當代裝置藝術。",
-        weak: "搬家時需要叫三輛大貨車，其中兩輛裝的是撿來的垃圾。",
-        liver: "75% (體力勞動多，當做運動)",
-        bank: "HKD $3,200.00 (但擁有價值連城嘅「資源」)"
+        weakness: "搬家時需要叫三輛大貨車，其中兩輛裝的是撿來的垃圾。",
+        liver: "體力極佳 (經常搬運重型垃圾)",
+        bank: "HKD $2,100 (垃圾免費，但工作室租金好貴)",
+        avatar: "https://drive.google.com/file/d/1ePm_j0VdxELJqAcb2g-asQoLorOcBAd1/view?usp=drive_link"
     },
     "GRID-FREAK": {
-        title: "GRID-FREAK｜1px 執著排版魔人",
-        avatar: "📐",
-        core: "差一像素，差之千里；對齊是生命的底線。",
+        code: "GRID-FREAK",
+        title: "執著排版魔人",
         quote: "「這個海報字距偏了 0.5pt，我看到心律不整。」",
+        core: "差一像素，差之千里；對齊是生命的底線。",
         skill: "自帶肉眼網格測量儀，能瞬間看出印刷品是否對齊版心。",
-        weak: "看見歪斜的手寫字或未對齊的指標會產生強烈焦慮。",
-        liver: "50% (強迫症發作導致精神耗損)",
-        bank: "HKD $68,000.00 (數字必須係整數才安心)"
+        weakness: "看見歪斜的手寫字或未對齊的指標會產生強烈焦慮。",
+        liver: "強迫症發作導致肝氣鬱結",
+        bank: "HKD $45,000 (個位數都要整整齊齊)",
+        avatar: "https://drive.google.com/file/d/1ePm_j0VdxELJqAcb2g-asQoLorOcBAd1/view?usp=drive_link"
     },
     "PARTY-SOCIAL": {
-        title: "PARTY-SOCIAL｜展覽 Champagne 社交名流",
-        avatar: "🥂",
-        core: "展覽作品不重要，酒會開香檳與誰拍照才重要。",
+        code: "PARTY-SOCIAL",
+        title: "展覽社交名流",
         quote: "「Oh darling! 你的新作品太棒了！我們改天一定要合作～（轉身忘記你是誰）」",
+        core: "展覽作品不重要，酒會開香檳與誰拍照才重要。",
         skill: "記得圈內所有畫廊主、收藏家與策展人的名字與喜好，永遠出現在 VIP 預展。",
-        weak: "如果展覽開幕沒有免費香檳和 VIP 禮包，現場親和力降為零。",
-        liver: "30% (酒精性脂肪肝高危)",
-        bank: "HKD $210,000.00 (全靠乾爹/貴人/收藏家賞飯)"
+        weakness: "如果展覽開幕沒有免費香檳和 VIP 禮包，現場親和力降為零。",
+        liver: "酒精過量硬化中",
+        bank: "HKD $88,000 (包裝自己門面花費甚巨)",
+        avatar: "https://drive.google.com/file/d/1ePm_j0VdxELJqAcb2g-asQoLorOcBAd1/view?usp=drive_link"
     },
     "INTEL-PROUD": {
-        title: "INTEL-PROUD｜理論堆砌高冷學者",
-        avatar: "📚",
-        core: "講話不帶三個法文或德文哲學家名字就不會開口。",
+        code: "INTEL-PROUD",
+        title: "理論堆砌高冷學者",
         quote: "「這個作品讓人想到拉岡（Lacan）的鏡像理論與阿多諾的審美異化……」",
+        core: "講話不帶三個法文或德文哲學家名字就不會開口。",
         skill: "能用長達 500 字的不加標點符號長句，讓所有人懷疑自己的智商。",
-        weak: "展覽論述寫得太難，連他自己過兩天看都看不懂。",
-        liver: "80% (主要傷腦，不傷肝)",
-        bank: "HKD $15,800.00 (稿費未出)"
+        weakness: "展覽論述寫得太難，連他自己過兩天看都看不懂。",
+        liver: "因過度沉思而缺氧",
+        bank: "HKD $15,600 (主要靠寫稿稿費)",
+        avatar: "https://drive.google.com/file/d/1ePm_j0VdxELJqAcb2g-asQoLorOcBAd1/view?usp=drive_link"
     },
     "PROMPT-GOD": {
-        title: "PROMPT-GOD｜AI 算圖指令神仙",
-        avatar: "🤖",
-        core: "手繪能力為零，但指令（Prompt）寫得像咒語一樣精準。",
+        code: "PROMPT-GOD",
+        title: "AI 算圖指令神仙",
         quote: "「--v 6.0 --ar 16:9，看吧，藝術創作就是這麼優雅。」",
+        core: "手繪能力為零，但指令（Prompt）寫得像咒語一樣精準。",
         skill: "5 秒內產出 40 張大師級風格圖像，精通各種渲染模型與參數。",
-        weak: "遇到停電或斷網，創作生命立刻宣布死亡。",
-        liver: "88% (顯示卡熱量比身體熱量高)",
-        bank: "HKD $92,000.00 (扣除每月 AI 訂閱費)"
+        weakness: "遇到停電或斷網，創作生命立刻宣布死亡。",
+        liver: "十分健康（全自動算圖，有時間打機）",
+        bank: "HKD $93,000 (節省大量人力工時成本)",
+        avatar: "https://drive.google.com/file/d/1ePm_j0VdxELJqAcb2g-asQoLorOcBAd1/view?usp=drive_link"
     },
     "VINTAGE-SOUL": {
-        title: "VINTAGE-SOUL｜Performative 文青復古魂",
-        avatar: "📸",
-        core: "數位都是沒有靈魂的，只有膠捲、黑膠與古董相機才是真理。",
+        code: "VINTAGE-SOUL",
+        title: "Performative Male/Female 復古文青",
         quote: "「你看這個底片的顆粒感和偏色，這才是歲月與光影的溫度。」",
+        core: "數位都是沒有靈魂的，只有膠捲、黑膠與古董相機才是真理。",
         skill: "能在暗房待上一整天洗照片，精通各種停產底片的保存方式。",
-        weak: "底片連年漲價，每按一次快門心臟就抽搐一下。",
-        extra: "手拿冰抹茶拿鐵、背著獨立書店帆布袋、使用有線耳機、身穿短版襯衫或七分牛仔短褲。",
-        liver: "60% (暗房藥水味吸太多年)",
-        bank: "HKD $120.00 (資產全變成停產底片)"
+        weakness: "底片連年漲價，每按一次快門心臟就抽搐一下。",
+        liver: "吸入過多暗房藥水氣味",
+        bank: "HKD $3,200 (全掏空去買菲林與古著)",
+        avatar: "https://drive.google.com/file/d/1ePm_j0VdxELJqAcb2g-asQoLorOcBAd1/view?usp=drive_link"
     },
     "SELF-PROMOTER": {
-        title: "SELF-PROMOTER｜流量密碼 KOL",
-        avatar: "🤳",
-        core: "創作過程比成果重要，短影片流量高於一切。",
+        code: "SELF-PROMOTER",
+        title: "流量密碼 KOL",
         quote: "「等等！先別動！我開個直播重拍一遍剛才潑墨的過程！」",
+        core: "創作過程比成果重要，短影片流量高於一切。",
         skill: "擅長把普通繪畫過程剪輯成沉浸式 Reels/TikTok，精通演算法與爆款封面。",
-        weak: "如果沒帶腳架或手機沒電，會突然失去創作動力。",
-        liver: "40% (半夜看演算法與回覆留言)",
-        bank: "HKD $340,000.00 (品牌贊助與流量收益)"
+        weakness: "如果沒帶腳架或手機沒電，會突然失去創作動力。",
+        liver: "焦慮於流量上升跌伏",
+        bank: "HKD $210,000 (靠贊助與接業配軟廣)",
+        avatar: "https://drive.google.com/file/d/1ePm_j0VdxELJqAcb2g-asQoLorOcBAd1/view?usp=drive_link"
     },
     "GALLERY-PET": {
-        title: "GALLERY-PET｜畫廊御用親和寵兒",
-        avatar: "🎀",
-        core: "作品甜美無害，配合度極高，畫廊與收藏家最愛的乖乖牌。",
+        code: "GALLERY-PET",
+        title: "畫廊親生仔",
         quote: "「畫廊希望改這個顏色比較好賣？沒問題，我今晚就改好！」",
+        core: "作品甜美無害，配合度極高，畫廊與收藏家最愛的乖乖牌。",
         skill: "創作風格極具裝飾性與商業市場價值，極度討喜且配合展期行銷。",
-        weak: "經常被批判性藝術家指責「太過商業、沒有批判深度」。",
-        liver: "70% (配合度高，生活規律)",
-        bank: "HKD $890,000.00 (市場賣爆，爽收版稅)"
+        weakness: "經常被批判性藝術家指責「太過商業、沒有批判深度」。",
+        liver: "非常健康，偶爾陪藏家飲酒",
+        bank: "HKD $540,000 (畫廊拆帳拆得好爽)",
+        avatar: "https://drive.google.com/file/d/1ePm_j0VdxELJqAcb2g-asQoLorOcBAd1/view?usp=drive_link"
     },
     "INDIE-REBEL": {
-        title: "INDIE-REBEL｜地下反骨批判先鋒",
-        avatar: "🔥",
-        core: "體制就是敵人，主流就是庸俗；越沒人看懂、越賣不出去越驕傲。",
+        code: "INDIE-REBEL",
+        title: "地下反骨批判先鋒",
         quote: "「如果我的作品被收藏家買走，那就是我創作生涯的最大失敗。」",
+        core: "體制就是敵人，主流就是庸俗；越沒人看懂、越賣不出去越驕傲。",
         skill: "永遠在展覽中搞破壞、發起街頭抗議或舉辦未經許可的快閃展覽。",
-        weak: "雖然嘴上說討厭體制，但偷偷投政府補助款時還是會被發現。",
-        liver: "35% (抽煙喝酒抗議打拼)",
-        bank: "HKD $1,050.00 (剛領到政府第一期資助)"
+        weakness: "雖然嘴上說討厭體制，但偷偷投政府補助款時還是會被發現。",
+        liver: "憤世嫉俗導致肝火過旺",
+        bank: "HKD $520 (反對資本主義，拒絕積蓄)",
+        avatar: "https://drive.google.com/file/d/1ePm_j0VdxELJqAcb2g-asQoLorOcBAd1/view?usp=drive_link"
     }
 };
 
-// 30 題完整問題庫
 const questions = [
-    {
-        q: "1. 朋友問你最近忙緊咩藝術創作，你通常會點答？",
-        options: [
-            { text: "長篇大論講兩小時解構主義，但其實連紙都未買。", type: "TALK-ARTIST" },
-            { text: "「仲有兩日過 deadline，我打算今晚通宵開工！」", type: "BURN-OUT" },
-            { text: "「做緊個好有意義但完全無錢嘅獨立企劃！」", type: "LOVE-POWER" },
-            { text: "「寫緊個 50 萬嘅藝術基金 Funding 申請表。」", type: "FORM-MASTER" },
-            { text: "「隨便答下啦，我正準備考 Foodpanda / 公務員。」", type: "EXIT-PLAN" }
-        ]
-    },
-    {
-        q: "2. 當客戶要求你「改到 Final_v99」嗰陣，你第一反應係？",
-        options: [
-            { text: "默默打開 PS/AI，邊忍住眼淚邊改到符合要求。", type: "DESIGN-SLAVE" },
-            { text: "一字不漏寫篇哲學理論回覆，證明係客戶審美有問題。", type: "INTEL-PROUD" },
-            { text: "直接叫 Midjourney 重新產出 50 張圖任佢揀。", type: "PROMPT-GOD" },
-            { text: "好啊！客戶話點改就點改，最緊要快啲收錢！", type: "GALLERY-PET" },
-            { text: "怒罵商業體制腐敗，直接將客戶 Mail 貼上 IG 暴走。", type: "INDIE-REBEL" }
-        ]
-    },
-    {
-        q: "3. 去到當代藝術展覽 Opening，你通常會做咩？",
-        options: [
-            { text: "第一時間搵免費 Champagne，同畫廊主 VIP 影相社交。", type: "PARTY-SOCIAL" },
-            { text: "著住全黑衫，匿喺展場最暗嘅角落觀察燈光 Cue 點。", type: "STAGE-GHOST" },
-            { text: "拎住底片相機同冰抹茶拿鐵，影下展場嘅光影細節。", type: "VINTAGE-SOUL" },
-            { text: "架好三腳架同手機，準備錄「沉浸式睇展」Reels。", type: "SELF-PROMOTER" },
-            { text: "研究現場啲廢棄木板同鐵絲，諗住展覽完偷走做作品。", type: "GARBAGE-KING" }
-        ]
-    },
-    {
-        q: "4. 你對「排版與細節」有幾大執著？",
-        options: [
-            { text: "差 1px 偏離版心，我都會心律不整、睡意全消。", type: "GRID-FREAK" },
-            { text: "細節唔重要，最緊要作品背後嘅哲學脈絡夠龐大。", type: "INTEL-PROUD" },
-            { text: "只要能通過 Funding 審查格式，字距隨便啦。", type: "FORM-MASTER" },
-            { text: "手作嘅瑕疵同膠捲嘅顆粒感先係靈魂所在！", type: "VINTAGE-SOUL" },
-            { text: "快！搞掂交貨最緊要，排版隨意！", type: "BURN-OUT" }
-        ]
-    },
-    {
-        q: "5. 遇到創作瓶頸、完全無靈感嗰陣，你會？",
-        options: [
-            { text: "上街拾荒，揀垃圾返工作室，看看有咩化腐朽為神奇。", type: "GARBAGE-KING" },
-            { text: "開啟 ChatGPT / Claude 幫忙寫 Prompt 算圖。", type: "PROMPT-GOD" },
-            { text: "開直播跟 Fan 抱怨，順便拍一集「藝術家低谷期的一天」。", type: "SELF-PROMOTER" },
-            { text: "打機打成日，反正對外講係「在進行大腦解構」。", type: "TALK-ARTIST" },
-            { text: "打開心水求職網頁，睇下近期有咩高薪工作。", type: "EXIT-PLAN" }
-        ]
-    },
-    {
-        q: "6. 當有人批評你作品「太商業、無藝術深度」時：",
-        options: [
-            { text: "無所謂啊，我戶口多咗幾十萬，等佢哋繼續清高。", type: "GALLERY-PET" },
-            { text: "我本來就想反體制，賣得出去先係對我嘅侮辱！", type: "INDIE-REBEL" },
-            { text: "用德文同法文哲學名詞將佢懟到懷疑人生。", type: "INTEL-PROUD" },
-            { text: "點解要談錢？做藝術係純粹嘅獻祭與愛！", type: "LOVE-POWER" },
-            { text: "沒空理佢，我還有 3 個 Client 的修正檔要交。", type: "DESIGN-SLAVE" }
-        ]
-    },
-    {
-        q: "7. 關於日常穿搭與配件，你最接近以下邊種風格？",
-        options: [
-            { text: "全身純黑、低調至極，永遠身處暗處。", type: "STAGE-GHOST" },
-            { text: "短版襯衫/七分褲、手拎冰抹茶拿鐵、文青帆布袋、有線耳機。", type: "VINTAGE-SOUL" },
-            { text: "永遠精緻時尚，適合隨時跟 VIP 拍照上鏡。", type: "PARTY-SOCIAL" },
-            { text: "極度隨便，身上常常沾滿顏料、灰塵或垃圾屑。", type: "GARBAGE-KING" },
-            { text: "面容憔悴、雙眼放空、手拎特大杯紅牛或黑咖啡。", type: "BURN-OUT" }
-        ]
-    },
-    {
-        q: "8. 當你看到一件由「白紙+一個黑點」組成的展覽作品時：",
-        options: [
-            { text: "太震撼了！這正是當代空間去中心化的深刻實踐！", type: "TALK-ARTIST" },
-            { text: "這企劃書一定寫得超棒，竟然能申請到大額補助！", type: "FORM-MASTER" },
-            { text: "這個黑點沒有對齊幾何中心，看了令人極度不適。", type: "GRID-FREAK" },
-            { text: "這根本是資本主義的垃圾，完全沒有批判性！", type: "INDIE-REBEL" },
-            { text: "我用 AI 0.1秒就能生成一百張這種圖。", type: "PROMPT-GOD" }
-        ]
-    },
-    {
-        q: "9. 你對「錢/預算」的看法是？",
-        options: [
-            { text: "談錢太俗氣，只要能繼續創作，食吐司邊我都願意。", type: "LOVE-POWER" },
-            { text: "錢是退路！做藝術只是副業，早日買樓才是王道。", type: "EXIT-PLAN" },
-            { text: "錢是政府跟補助機構的，只要表格填得好，預算用不完。", type: "FORM-MASTER" },
-            { text: "錢都拿去買停產底片跟古董相機了，心跳隨快門抽搐。", type: "VINTAGE-SOUL" },
-            { text: "客戶給錢就是老母，要我改 100 次都可以。", type: "GALLERY-PET" }
-        ]
-    },
-    {
-        q: "10. 你的工作環境/工作室通常長怎樣？",
-        options: [
-            { text: "堆滿路邊撿回來的紙箱、舊電線、破保麗龍，像回收場。", type: "GARBAGE-KING" },
-            { text: "極致整潔，螢幕、鍵盤、參考線全都要 100% 精準對齊。", type: "GRID-FREAK" },
-            { text: "暗無天日，只有螢幕光或專業 Stage Light 在閃爍。", type: "STAGE-GHOST" },
-            { text: "擺滿環形燈、三腳架、補光燈，隨時可以開直播。", type: "SELF-PROMOTER" },
-            { text: "電腦桌面全是 Final_v1.pdf, Final_v2.pdf... 亂成一團。", type: "DESIGN-SLAVE" }
-        ]
-    },
-    {
-        q: "11. 截稿前 3 小時，你通常在做什麼？",
-        options: [
-            { text: "才剩 3 小時？時間超充裕，我先去刷個社群/打機。", type: "BURN-OUT" },
-            { text: "在腦海中進行深度哲學構思，手完全還沒動。", type: "TALK-ARTIST" },
-            { text: "瘋狂狂按渲染鍵，禱告電腦千萬不要藍屏死機。", type: "PROMPT-GOD" },
-            { text: "聽著客戶的語音訊息，第 99 次重導出檔案。", type: "DESIGN-SLAVE" },
-            { text: "檢查企劃書的字體與表格邊框有沒有完美對齊。", type: "GRID-FREAK" }
-        ]
-    },
-    {
-        q: "12. 參加藝廊開幕派對，你最期待的是？",
-        options: [
-            { text: "認識大藏家，並在 IG 打卡標記所有圈內大佬。", type: "PARTY-SOCIAL" },
-            { text: "看有沒有免費的甜點跟飲料可以省一餐。", type: "LOVE-POWER" },
-            { text: "現場有沒有有趣的廢棄展架可以在會後撿走。", type: "GARBAGE-KING" },
-            { text: "觀察現場有沒有潛在的商業合作客戶。", type: "GALLERY-PET" },
-            { text: "偷偷評估這間畫廊的燈光跟音響設備有多差。", type: "STAGE-GHOST" }
-        ]
-    },
-    {
-        q: "13. 你最希望作品帶給觀者什麼感受？",
-        options: [
-            { text: "讓他們懷疑自己的智商與哲學素養。", type: "INTEL-PROUD" },
-            { text: "覺得很美、很療癒，然後爽快掏錢買回家。", type: "GALLERY-PET" },
-            { text: "感到被社會體制衝擊，甚至想跟我一起去抗議。", type: "INDIE-REBEL" },
-            { text: "點讚破萬，留言區瘋狂洗版詢問「求教學/求濾鏡」。", type: "SELF-PROMOTER" },
-            { text: "感受歲月、膠捲顆粒與光影交織的懷舊溫度。", type: "VINTAGE-SOUL" }
-        ]
-    },
-    {
-        q: "14. 關於「AI 生成藝術（AI Art）」，你的態度是？",
-        options: [
-            { text: "這就是未來！Prompt 就是我的魔法咒語。", type: "PROMPT-GOD" },
-            { text: "沒有靈魂的數位垃圾，只有底片與手作才是真理。", type: "VINTAGE-SOUL" },
-            { text: "太好了！企劃書裡又多了一個「AI 沉浸式」關鍵字拿 Funding！", type: "FORM-MASTER" },
-            { text: "無所謂，只要能幫我改 Client 的稿子，它就是我大哥。", type: "DESIGN-SLAVE" },
-            { text: "又一個可以拿來吹捧「後人類去主體化」的哲學概念。", type: "TALK-ARTIST" }
-        ]
-    },
-    {
-        q: "15. 當你需要搬家或整理工作室時，最大的災難是？",
-        options: [
-            { text: "撿回來的「寶物垃圾」太多，需要叫三輛大貨車。", type: "GARBAGE-KING" },
-            { text: "底片、膠卷、古董相機太多，防潮箱超重。", type: "VINTAGE-SOUL" },
-            { text: "滿屋子的三腳架、燈棒、直播背景布包裝不完。", type: "SELF-PROMOTER" },
-            { text: "沒有災難，我隨時準備轉行，資產極度輕量化。", type: "EXIT-PLAN" },
-            { text: "展覽後遺症，身體半解體，根本沒體力搬家。", type: "BURN-OUT" }
-        ]
-    },
-    {
-        q: "16. 喺藝術圈生存，你認為最不可或缺嘅「武器」係咩？",
-        options: [
-            { text: "一套天花亂墜、能將垃圾講成大師作嘅嘴砲能力。", type: "TALK-ARTIST" },
-            { text: "無限量供應嘅紅牛、黑咖啡與強大嘅肝臟。", type: "BURN-OUT" },
-            { text: "完美掌握政府與財團補助案嘅表格填寫技巧。", type: "FORM-MASTER" },
-            { text: "能夠隨時轉行、切割藝術圈嘅理智與履歷表。", type: "EXIT-PLAN" },
-            { text: "在 VIP 酒會上游刃有餘嘅社交公關手腕。", type: "PARTY-SOCIAL" }
-        ]
-    },
-    {
-        q: "17. 如果要你做一場個人藝術展覽，你首選嘅展出場地係？",
-        options: [
-            { text: "高檔商業畫廊，現場要有免費香檳跟 VIP 包廂。", type: "PARTY-SOCIAL" },
-            { text: "暗黑無光的劇場黑盒子（Black Box Theatre）。", type: "STAGE-GHOST" },
-            { text: "未開發的廢棄工廠或街頭非法快閃空間。", type: "INDIE-REBEL" },
-            { text: "網紅打卡打爆的熱門文創園區或 IG 熱點。", type: "SELF-PROMOTER" },
-            { text: "全線上 VR / 數位元宇宙展覽，免去實體維護成本。", type: "PROMPT-GOD" }
-        ]
-    },
-    {
-        q: "18. 面對藝術創作過程中的「重複勞動與手工細節」，你的態度是？",
-        options: [
-            { text: "享受手工暗房沖洗相片或復古工藝的每一步驟。", type: "VINTAGE-SOUL" },
-            { text: "追求 0.1mm 級別的精確度，任何錯位都是犯罪。", type: "GRID-FREAK" },
-            { text: "完全不想動手，能用 AI 工具自動化處理就自動化。", type: "PROMPT-GOD" },
-            { text: "無所謂，反正最後展出的效果好看能賣錢就行。", type: "GALLERY-PET" },
-            { text: "隨便做做，反正背後的理論註解寫得比作品本體精彩。", type: "INTEL-PROUD" }
-        ]
-    },
-    {
-        q: "19. 你對「當代藝術評論家」的看法是？",
-        options: [
-            { text: "非常崇拜，因為我自己講話也喜歡帶三個德文哲學家名字。", type: "INTEL-PROUD" },
-            { text: "只要他們寫的關鍵字能幫我申請到 Funding，我就感謝他們。", type: "FORM-MASTER" },
-            { text: "一群被資本主義養肥的寄生蟲，根本不懂街頭與反骨精神。", type: "INDIE-REBEL" },
-            { text: "最好能幫我在 IG 發限時動態 tag 我，流量越高越好。", type: "SELF-PROMOTER" },
-            { text: "不關我事，我只想知道今天下班前能不能交稿。", type: "DESIGN-SLAVE" }
-        ]
-    },
-    {
-        q: "20. 你最害怕在展覽開幕當天遇到什麼狀況？",
-        options: [
-            { text: "突然走進強烈的陽光下，皮膚感到極度不適。", type: "STAGE-GHOST" },
-            { text: "現場沒有免費香檳，大咖收藏家紛紛離場。", type: "PARTY-SOCIAL" },
-            { text: "作品被別人問：「這個是用路邊撿來的廢料做的嗎？」", type: "GARBAGE-KING" },
-            { text: "作品說明牌的字體排版歪了 0.5 度，而且沒對齊邊框。", type: "GRID-FREAK" },
-            { text: "發現同儕已經偷偷買房，而自己戶口只剩兩位數。", type: "LOVE-POWER" }
-        ]
-    },
-    {
-        q: "21. 如果可以獲得一項「藝術超能力」，你希望是：",
-        options: [
-            { text: "隨便吐出一個關鍵字就能瞬間生成 8K 精細作品。", type: "PROMPT-GOD" },
-            { text: "填寫任何政府表格都能 100% 獲得最高額資助。", type: "FORM-MASTER" },
-            { text: "24 小時不睡覺，肝功能永遠維持 100% 健康。", type: "BURN-OUT" },
-            { text: "光靠對藝術的熱情就能飽腹，不用再交房租。", type: "LOVE-POWER" },
-            { text: "瞬間看透商業規則，隨時能在職場高薪轉行。", type: "EXIT-PLAN" }
-        ]
-    },
-    {
-        q: "22. 當你的創作被大眾批評「完全看不懂」時，你會：",
-        options: [
-            { text: "「看不懂就對了！這代表當代意識形態的去中心化！」", type: "TALK-ARTIST" },
-            { text: "「大眾的庸俗正是商業社會的悲哀，我不需要庸俗者理解。」", type: "INDIE-REBEL" },
-            { text: "連忙詢問客戶意見，今晚立刻改成符合大眾審美的版本。", type: "GALLERY-PET" },
-            { text: "立刻拍一集「為什麼大眾看不懂我的作品」爆款解說 Reels。", type: "SELF-PROMOTER" },
-            { text: "掏出齊澤克與拉岡的論文，用 1000 字理論砸暈對方。", type: "INTEL-PROUD" }
-        ]
-    },
-    {
-        q: "23. 你日常最常造訪的地方是？",
-        options: [
-            { text: "獨立書店、古著店或暗房工作室。", type: "VINTAGE-SOUL" },
-            { text: "各種高端畫廊 VIP 預展與私人派對酒會。", type: "PARTY-SOCIAL" },
-            { text: "資源回收場、舊貨市場或建築廢料堆放處。", type: "GARBAGE-KING" },
-            { text: "暗黑無光的劇場舞台控台區（Dimmer Room）。", type: "STAGE-GHOST" },
-            { text: "補習班、科技業職訓中心或公務員考試考場。", type: "EXIT-PLAN" }
-        ]
-    },
-    {
-        q: "24. 當展覽現場設備突然斷電或故障時，你會？",
-        options: [
-            { text: "直接崩潰，因為我的創作生命全依賴電能與算力。", type: "PROMPT-GOD" },
-            { text: "憑藉在無光暗房的本能，精準在黑暗中移動並修好設備。", type: "STAGE-GHOST" },
-            { text: "順勢宣稱「斷電也是這場概念展覽的一部份：黑暗即解構」。", type: "TALK-ARTIST" },
-            { text: "立刻打開手機閃光燈開直播：「突發！展覽現場大斷電！」", type: "SELF-PROMOTER" },
-            { text: "冷靜評估損失，並檢查企劃書保險條款能賠多少錢。", type: "FORM-MASTER" }
-        ]
-    },
-    {
-        q: "25. 關於作品的「定價策略」，你的原則是？",
-        options: [
-            { text: "畫廊說賣多少就賣多少，甜美討喜最重要。", type: "GALLERY-PET" },
-            { text: "價格一定要訂得極高，這樣才能顯得我的理論很權威。", type: "INTEL-PROUD" },
-            { text: "不賣！賣給藏家就是對我批判靈魂的褻瀆！", type: "INDIE-REBEL" },
-            { text: "免費或象徵性收費，只要能推廣藝術價值我就開心。", type: "LOVE-POWER" },
-            { text: "精確計算每小時工時與 CP 值，絕不做虧本生意。", type: "EXIT-PLAN" }
-        ]
-    },
-    {
-        q: "26. 當你收到一份頁數極多、格式極嚴格的展覽申請表時：",
-        options: [
-            { text: "興奮不已，填表是我的強項，這根本是我的個人舞台。", type: "FORM-MASTER" },
-            { text: "感到極度焦慮，因為邊框和表格對齊常常不夠完美。", type: "GRID-FREAK" },
-            { text: "邊看邊打瞌睡，最後拖到截止前最後一小時才爆肝填完。", type: "BURN-OUT" },
-            { text: "直接扔進垃圾桶，體制內的表格只會扼殺藝術靈魂。", type: "INDIE-REBEL" },
-            { text: "交給 AI 工具，10 秒鐘自動生成整份申請企劃。", type: "PROMPT-GOD" }
-        ]
-    },
-    {
-        q: "27. 你希望別人如何形容你的創作風格？",
-        options: [
-            { text: "帶有濃厚的歲月顆粒感與懷舊詩意。", type: "VINTAGE-SOUL" },
-            { text: "精緻、甜美、非常適合掛在客廳的高雅作品。", type: "GALLERY-PET" },
-            { text: "充滿前衛批判性，直擊社會體制的痛處。", type: "INDIE-REBEL" },
-            { text: "視覺衝擊力極強，令人忍不住想拍照分享上傳。", type: "SELF-PROMOTER" },
-            { text: "將廢棄物轉化為高貴裝置的驚人魔法。", type: "GARBAGE-KING" }
-        ]
-    },
-    {
-        q: "28. 面對「交稿 Deadline」這件事，你的真實狀態是：",
-        options: [
-            { text: "離截稿剩 2 小時才是靈感大爆發的黃金時期。", type: "BURN-OUT" },
-            { text: "第 99 次重導出 PDF，永遠有下一個 Final 要改。", type: "DESIGN-SLAVE" },
-            { text: "作品還是一片空白，但已經準備好 3000 字說明稿。", type: "TALK-ARTIST" },
-            { text: "早早就按格式排版好並提前送出，絕不拖泥帶水。", type: "GRID-FREAK" },
-            { text: "如果快過期了，就先投履歷找後路再說。", type: "EXIT-PLAN" }
-        ]
-    },
-    {
-        q: "29. 當你看到其他同行獲得大獎或爆紅時，你的內心想法是：",
-        options: [
-            { text: "「哼，他的作品背後完全沒有強大的哲學理論支撐。」", type: "INTEL-PROUD" },
-            { text: "「明天立刻去跟他拍照社交，順便蹭一下熱度。」", type: "PARTY-SOCIAL" },
-            { text: "「他的演算法跟短影片封面做得真好，我得學習一下。」", type: "SELF-PROMOTER" },
-            { text: "「沒關係，藝術不是為了名利，我會繼續默默堅持。」", type: "LOVE-POWER" },
-            { text: "「真好，等他賺夠錢我也要問他買房經驗。」", type: "EXIT-PLAN" }
-        ]
-    },
-    {
-        q: "30. 一句話總結你在藝術圈的生存狀態：",
-        options: [
-            { text: "靠著紅牛與咖啡，在解體邊緣創造奇蹟。", type: "BURN-OUT" },
-            { text: "用愛發電，吃吐司邊也能維持靈魂的高度。", type: "LOVE-POWER" },
-            { text: "精通表格與關鍵字，補助款就是我的創作養分。", type: "FORM-MASTER" },
-            { text: "改稿到天荒地老，世界上沒有真的 Final。", type: "DESIGN-SLAVE" },
-            { text: "隨時準備轉行，買房才是人生真理。", type: "EXIT-PLAN" }
-        ]
-    }
+  {
+      q: "1. 朋友問你最近忙緊咩藝術創作，你通常會點答？",
+      options: [
+          { text: "長篇大論講兩小時解構主義，但其實連紙都未買。", type: "TALK-ARTIST" },
+          { text: "「仲有兩日過 deadline，我打算今晚通宵開工！」", type: "BURN-OUT" },
+          { text: "「做緊個好有意義但完全無錢嘅獨立企劃！」", type: "LOVE-POWER" },
+          { text: "「寫緊個 50 萬嘅藝術基金 Funding 申請表。」", type: "FORM-MASTER" },
+          { text: "「隨便答下啦，我正準備考 Foodpanda / 公務員。」", type: "EXIT-PLAN" }
+      ]
+  },
+  {
+      q: "2. 當客戶要求你「改到 Final_v99」嗰陣，你第一反應係？",
+      options: [
+          { text: "默默打開 PS/AI，邊忍住眼淚邊改到符合要求。", type: "DESIGN-SLAVE" },
+          { text: "一字不漏寫篇哲學理論回覆，證明係客戶審美有問題。", type: "INTEL-PROUD" },
+          { text: "直接叫 Midjourney 重新產出 50 張圖任佢揀。", type: "PROMPT-GOD" },
+          { text: "好啊！客戶話點改就點改，最緊要快啲收錢！", type: "GALLERY-PET" },
+          { text: "怒罵商業體制腐敗，直接將客戶 Mail 貼上 IG 暴走。", type: "INDIE-REBEL" }
+      ]
+  },
+  {
+      q: "3. 去到當代藝術展覽 Opening，你通常會做咩？",
+      options: [
+          { text: "第一時間搵免費 Champagne，同畫廊主 VIP 影相社交。", type: "PARTY-SOCIAL" },
+          { text: "著住全黑衫，匿喺展場最暗嘅角落觀察燈光 Cue 點。", type: "STAGE-GHOST" },
+          { text: "拎住底片相機同冰抹茶拿鐵，影下展場嘅光影細節。", type: "VINTAGE-SOUL" },
+          { text: "架好三腳架同手機，準備錄「沉浸式睇展」Reels。", type: "SELF-PROMOTER" },
+          { text: "研究現場啲廢棄木板同鐵絲，諗住展覽完偷走做作品。", type: "GARBAGE-KING" }
+      ]
+  },
+  {
+      q: "4. 你對「排版與細節」有幾大執著？",
+      options: [
+          { text: "差 1px 偏離版心，我都會心律不整、睡意全消。", type: "GRID-FREAK" },
+          { text: "細節唔重要，最緊要作品背後嘅哲學脈絡夠龐大。", type: "INTEL-PROUD" },
+          { text: "只要能通過 Funding 審查格式，字距隨便啦。", type: "FORM-MASTER" },
+          { text: "手作嘅瑕疵同膠捲嘅顆粒感先係靈魂所在！", type: "VINTAGE-SOUL" },
+          { text: "快！搞掂交貨最緊要，排版隨意！", type: "BURN-OUT" }
+      ]
+  },
+  {
+      q: "5. 遇到創作瓶頸、完全無靈感嗰陣，你會？",
+      options: [
+          { text: "上街拾荒，揀垃圾返工作室，看看有咩化腐朽為神奇。", type: "GARBAGE-KING" },
+          { text: "開啟 ChatGPT / Claude 幫忙寫 Prompt 算圖。", type: "PROMPT-GOD" },
+          { text: "開直播跟 Fan 抱怨，順便拍一集「藝術家低谷期的一天」。", type: "SELF-PROMOTER" },
+          { text: "打機打成日，反正對外講係「在進行大腦解構」。", type: "TALK-ARTIST" },
+          { text: "打開心水求職網頁，睇下近期有咩高薪工作。", type: "EXIT-PLAN" }
+      ]
+  },
+  {
+      q: "6. 當有人批評你作品「太商業、無藝術深度」時：",
+      options: [
+          { text: "無所謂啊，我戶口多咗幾十萬，等佢哋繼續清高。", type: "GALLERY-PET" },
+          { text: "我本來就想反體制，賣得出去先係對我嘅侮辱！", type: "INDIE-REBEL" },
+          { text: "用德文同法文哲學名詞將佢懟到懷疑人生。", type: "INTEL-PROUD" },
+          { text: "點解要談錢？做藝術係純粹嘅獻祭與愛！", type: "LOVE-POWER" },
+          { text: "沒空理佢，我還有 3 個 Client 的修正檔要交。", type: "DESIGN-SLAVE" }
+      ]
+  },
+  {
+      q: "7. 關於日常穿搭與配件，你最接近以下邊種風格？",
+      options: [
+          { text: "全身純黑、低調至極，永遠身處暗處。", type: "STAGE-GHOST" },
+          { text: "短版襯衫/七分褲、手拎冰抹茶拿鐵、文青帆布袋、有線耳機。", type: "VINTAGE-SOUL" },
+          { text: "永遠精緻時尚，適合隨時跟 VIP 拍照上鏡。", type: "PARTY-SOCIAL" },
+          { text: "極度隨便，身上常常沾滿顏料、灰塵或垃圾屑。", type: "GARBAGE-KING" },
+          { text: "面容憔悴、雙眼放空、手拎特大杯紅牛或黑咖啡。", type: "BURN-OUT" }
+      ]
+  },
+  {
+      q: "8. 當你看到一件由「白紙+一個黑點」組成的展覽作品時：",
+      options: [
+          { text: "太震撼了！這正是當代空間去中心化的深刻實踐！", type: "TALK-ARTIST" },
+          { text: "這企劃書一定寫得超棒，竟然能申請到大額補助！", type: "FORM-MASTER" },
+          { text: "這個黑點沒有對齊幾何中心，看了令人極度不適。", type: "GRID-FREAK" },
+          { text: "這根本是資本主義的垃圾，完全沒有批判性！", type: "INDIE-REBEL" },
+          { text: "我用 AI 0.1秒就能生成一百張這種圖。", type: "PROMPT-GOD" }
+      ]
+  },
+  {
+      q: "9. 你對「錢/預算」的看法是？",
+      options: [
+          { text: "談錢太俗氣，只要能繼續創作，食吐司邊我都願意。", type: "LOVE-POWER" },
+          { text: "錢是退路！做藝術只是副業，早日買樓才是王道。", type: "EXIT-PLAN" },
+          { text: "錢是政府跟補助機構的，只要表格填得好，預算用不完。", type: "FORM-MASTER" },
+          { text: "錢都拿去買停產底片跟古董相機了，心跳隨快門抽搐。", type: "VINTAGE-SOUL" },
+          { text: "客戶給錢就是老母，要我改 100 次都可以。", type: "GALLERY-PET" }
+      ]
+  },
+  {
+      q: "10. 你的工作環境/工作室通常長怎樣？",
+      options: [
+          { text: "堆滿路邊撿回來的紙箱、舊電線、破保麗龍，像回收場。", type: "GARBAGE-KING" },
+          { text: "極致整潔，螢幕、鍵盤、參考線全都要 100% 精準對齊。", type: "GRID-FREAK" },
+          { text: "暗無天日，只有螢幕光或專業 Stage Light 在閃爍。", type: "STAGE-GHOST" },
+          { text: "擺滿環形燈、三腳架、補光燈，隨時可以開直播。", type: "SELF-PROMOTER" },
+          { text: "電腦桌面全是 Final_v1.pdf, Final_v2.pdf... 亂成一團。", type: "DESIGN-SLAVE" }
+      ]
+  },
+  {
+      q: "11. 截稿前 3 小時，你通常在做什麼？",
+      options: [
+          { text: "才剩 3 小時？時間超充裕，我先去刷個社群/打機。", type: "BURN-OUT" },
+          { text: "在腦海中進行深度哲學構思，手完全還沒動。", type: "TALK-ARTIST" },
+          { text: "瘋狂狂按渲染鍵，禱告電腦千萬不要藍屏死機。", type: "PROMPT-GOD" },
+          { text: "聽著客戶的語音訊息，第 99 次重導出檔案。", type: "DESIGN-SLAVE" },
+          { text: "檢查企劃書的字體與表格邊框有沒有完美對齊。", type: "GRID-FREAK" }
+      ]
+  },
+  {
+      q: "12. 參加藝廊開幕派對，你最期待的是？",
+      options: [
+          { text: "認識大藏家，並在 IG 打卡標記所有圈內大佬。", type: "PARTY-SOCIAL" },
+          { text: "看有沒有免費的甜點跟飲料可以省一餐。", type: "LOVE-POWER" },
+          { text: "現場有沒有有趣的廢棄展架可以在會後撿走。", type: "GARBAGE-KING" },
+          { text: "觀察現場有沒有潛在的商業合作客戶。", type: "GALLERY-PET" },
+          { text: "偷偷評估這間畫廊的燈光跟音響設備有多差。", type: "STAGE-GHOST" }
+      ]
+  },
+  {
+      q: "13. 你最希望作品帶給觀者什麼感受？",
+      options: [
+          { text: "讓他們懷疑自己的智商與哲學素養。", type: "INTEL-PROUD" },
+          { text: "覺得很美、很療癒，然後爽快掏錢買回家。", type: "GALLERY-PET" },
+          { text: "感到被社會體制衝擊，甚至想跟我一起去抗議。", type: "INDIE-REBEL" },
+          { text: "點讚破萬，留言區瘋狂洗版詢問「求教學/求濾鏡」。", type: "SELF-PROMOTER" },
+          { text: "感受歲月、膠捲顆粒與光影交織的懷舊溫度。", type: "VINTAGE-SOUL" }
+      ]
+  },
+  {
+      q: "14. 關於「AI生成藝術（AI Art）」，你的態度是？",
+      options: [
+          { text: "這就是未來！Prompt就是我的魔法咒語。", type: "PROMPT-GOD" },
+          { text: "沒有靈魂的數位垃圾，只有底片與手作才是真理。", type: "VINTAGE-SOUL" },
+          { text: "太好了！企劃書裡又多了一個「AI沉浸式」關鍵字拿 Funding！", type: "FORM-MASTER" },
+          { text: "無所謂，只要能幫我改 Client 的稿子，它就是我大哥。", type: "DESIGN-SLAVE" },
+          { text: "又一個可以拿來吹捧「後人類去主體化」的哲學概念。", type: "TALK-ARTIST" }
+      ]
+  },
+  {
+      q: "15. 當你需要搬家或整理工作室時，最大的災難是？",
+      options: [
+          { text: "撿回來的「寶物垃圾」太多，需要叫三輛大貨車。", type: "GARBAGE-KING" },
+          { text: "底片、膠卷、古董相機太多，防潮箱超重。", type: "VINTAGE-SOUL" },
+          { text: "滿屋子的三腳架、燈棒、直播背景布包裝不完。", type: "SELF-PROMOTER" },
+          { text: "沒有災難，我隨時準備轉行，資產極度輕量化。", type: "EXIT-PLAN" },
+          { text: "展覽後遺症，身體半解體，根本沒體力搬家。", type: "BURN-OUT" }
+      ]
+  },
+  {
+      q: "16. 喺藝術圈生存，你認為最不可或缺嘅「武器」係咩？",
+      options: [
+          { text: "一套天花亂墜、能將垃圾講成大師作嘅嘴砲能力。", type: "TALK-ARTIST" },
+          { text: "無限量供應嘅紅牛、黑咖啡與強大嘅肝臟。", type: "BURN-OUT" },
+          { text: "完美掌握政府與財團補助案嘅表格填寫技巧。", type: "FORM-MASTER" },
+          { text: "能夠隨時轉行、切割藝術圈嘅理智與履歷表。", type: "EXIT-PLAN" },
+          { text: "在 VIP 酒會上游刃有餘嘅社交公關手腕。", type: "PARTY-SOCIAL" }
+      ]
+  },
+  {
+      q: "17. 如果要你做一場個人藝術展覽，你首選嘅展出場地係？",
+      options: [
+          { text: "高檔商業畫廊，現場要有免費香檳跟 VIP 包廂。", type: "PARTY-SOCIAL" },
+          { text: "暗黑無光的劇場黑盒子（Black Box Theatre）。", type: "STAGE-GHOST" },
+          { text: "未開發的廢棄工廠或街頭非法快閃空間。", type: "INDIE-REBEL" },
+          { text: "網紅打卡打爆的熱門文創園區或 IG 熱點。", type: "SELF-PROMOTER" },
+          { text: "全線上 VR / 數位元宇宙展覽，免去實體維護成本。", type: "PROMPT-GOD" }
+      ]
+  },
+  {
+      q: "18. 面對藝術創作過程中的「重複勞動與手工細節」，你的態度是？",
+      options: [
+          { text: "享受手工暗房沖洗相片或復古工藝的每一步驟。", type: "VINTAGE-SOUL" },
+          { text: "追求 0.1mm 級別的精確度，任何錯位都是犯罪。", type: "GRID-FREAK" },
+          { text: "完全不想動手，能用 AI 工具自動化處理就自動化。", type: "PROMPT-GOD" },
+          { text: "無所謂，反正最後展出的效果好看能賣錢就行。", type: "GALLERY-PET" },
+          { text: "隨便做做，反正背後的理論註解寫得比作品本體精彩。", type: "INTEL-PROUD" }
+      ]
+  },
+  {
+      q: "19. 你對「當代藝術評論家」的看法是？",
+      options: [
+          { text: "非常崇拜，因為我自己講話也喜歡帶三個德文哲學家名字。", type: "INTEL-PROUD" },
+          { text: "只要他們寫的關鍵字能幫我申請到 Funding，我就感謝他們。", type: "FORM-MASTER" },
+          { text: "一群被資本主義養肥的寄生蟲，根本不懂街頭與反骨精神。", type: "INDIE-REBEL" },
+          { text: "最好能幫我在 IG 發限時動態 tag 我，流量越高越好。", type: "SELF-PROMOTER" },
+          { text: "不關我事，我只想知道今天下班前能不能交稿。", type: "DESIGN-SLAVE" }
+      ]
+  },
+  {
+      q: "20. 你最害怕在展覽開幕當天遇到什麼狀況？",
+      options: [
+          { text: "突然走進強烈的陽光下，皮膚感到極度不適。", type: "STAGE-GHOST" },
+          { text: "現場沒有免費香檳，大咖收藏家紛紛離場。", type: "PARTY-SOCIAL" },
+          { text: "作品被別人問：「這個是用路邊撿來的廢料做的嗎？」", type: "GARBAGE-KING" },
+          { text: "作品說明牌的字體排版歪了 0.5 度，而且沒對齊邊框。", type: "GRID-FREAK" },
+          { text: "發現同儕已經偷偷買房，而自己戶口只剩兩位數。", type: "LOVE-POWER" }
+      ]
+  },
+  {
+      q: "21. 如果可以獲得一項「藝術超能力」，你希望是：",
+      options: [
+          { text: "隨便吐出一個關鍵字就能瞬間生成 8K 精細作品。", type: "PROMPT-GOD" },
+          { text: "填寫任何政府表格都能 100% 獲得最高額資助。", type: "FORM-MASTER" },
+          { text: "24 小時不睡覺，肝功能永遠維持 100% 健康。", type: "BURN-OUT" },
+          { text: "光靠對藝術的熱情就能飽腹，不用再交房租。", type: "LOVE-POWER" },
+          { text: "瞬間看透商業規則，隨時能在職場高薪轉行。", type: "EXIT-PLAN" }
+      ]
+  },
+  {
+      q: "22. 當你的創作被大眾批評「完全看不懂」時，你會：",
+      options: [
+          { text: "「看不懂就對了！這代表當代意識形態的去中心化！」", type: "TALK-ARTIST" },
+          { text: "「大眾的庸俗正是商業社會的悲哀，我不需要庸俗者理解。」", type: "INDIE-REBEL" },
+          { text: "連忙詢問客戶意見，今晚立刻改成符合大眾審美的版本。", type: "GALLERY-PET" },
+          { text: "立刻拍一集「為什麼大眾看不懂我的作品」爆款解說 Reels。", type: "SELF-PROMOTER" },
+          { text: "掏出齊澤克與拉岡的論文，用 1000 字理論砸暈對方。", type: "INTEL-PROUD" }
+      ]
+  },
+  {
+      q: "23. 你日常最常造訪的地方是？",
+      options: [
+          { text: "獨立書店、古著店或暗房工作室。", type: "VINTAGE-SOUL" },
+          { text: "各種高端畫廊 VIP 預展與私人派對酒會。", type: "PARTY-SOCIAL" },
+          { text: "資源回收場、舊貨市場或建築廢料堆放處。", type: "GARBAGE-KING" },
+          { text: "暗黑無光的劇場舞台控台區（Dimmer Room）。", type: "STAGE-GHOST" },
+          { text: "補習班、科技業職訓中心或公務員考試考場。", type: "EXIT-PLAN" }
+      ]
+  },
+  {
+      q: "24. 當展覽現場設備突然斷電或故障時，你會？",
+      options: [
+          { text: "直接崩潰，因為我的創作生命全依賴電能與算力。", type: "PROMPT-GOD" },
+          { text: "憑藉在無光暗房的本能，精準在黑暗中移動並修好設備。", type: "STAGE-GHOST" },
+          { text: "順勢宣稱「斷電也是這場概念展覽的一部份：黑暗即解構」。", type: "TALK-ARTIST" },
+          { text: "立刻打開手機閃光燈開直播：「突發！展覽現場大斷電！」", type: "SELF-PROMOTER" },
+          { text: "冷靜評估損失，並檢查企劃書保險條款能賠多少錢。", type: "FORM-MASTER" }
+      ]
+  },
+  {
+      q: "25. 關於作品的「定價策略」，你的原則是？",
+      options: [
+          { text: "畫廊說賣多少就賣多少，甜美討喜最重要。", type: "GALLERY-PET" },
+          { text: "價格一定要訂得極高，這樣才能顯得我的理論很權威。", type: "INTEL-PROUD" },
+          { text: "不賣！賣給藏家就是對我批判靈魂的褻瀆！", type: "INDIE-REBEL" },
+          { text: "免費或象徵性收費，只要能推廣藝術價值我就開心。", type: "LOVE-POWER" },
+          { text: "精確計算每小時工時與 CP 值，絕不做虧本生意。", type: "EXIT-PLAN" }
+      ]
+  },
+  {
+      q: "26. 當你收到一份頁數極多、格式極嚴格的展覽申請表時：",
+      options: [
+          { text: "興奮不已，填表是我的強項，這根本是我的個人舞台。", type: "FORM-MASTER" },
+          { text: "感到極度焦慮，因為邊框和表格對齊常常不夠完美。", type: "GRID-FREAK" },
+          { text: "邊看邊打瞌睡，最後拖到截止前最後一小時才爆肝填完。", type: "BURN-OUT" },
+          { text: "直接扔進垃圾桶，體制內的表格只會扼殺藝術靈魂。", type: "INDIE-REBEL" },
+          { text: "交給 AI 工具，10 秒鐘自動生成整份申請企劃。", type: "PROMPT-GOD" }
+      ]
+  },
+  {
+      q: "27. 你希望別人如何形容你的創作風格？",
+      options: [
+          { text: "帶有濃厚的歲月顆粒感與懷舊詩意。", type: "VINTAGE-SOUL" },
+          { text: "精緻、甜美、非常適合掛在客廳的高雅作品。", type: "GALLERY-PET" },
+          { text: "充滿前衛批判性，直擊社會體制的痛處。", type: "INDIE-REBEL" },
+          { text: "視覺衝擊力極強，令人忍不住想拍照分享上傳。", type: "SELF-PROMOTER" },
+          { text: "將廢棄物轉化為高貴裝置的驚人魔法。", type: "GARBAGE-KING" }
+      ]
+  },
+  {
+      q: "28. 面對「交稿 Deadline」這件事，你的真實狀態是：",
+      options: [
+          { text: "離截稿剩 2 小時才是靈感大爆發的黃金時期。", type: "BURN-OUT" },
+          { text: "第 99 次重導出 PDF，永遠有下一個 Final 要改。", type: "DESIGN-SLAVE" },
+          { text: "作品還是一片空白，但已經準備好 3000 字說明稿。", type: "TALK-ARTIST" },
+          { text: "早早就按格式排版好並提前送出，絕不拖泥帶水。", type: "GRID-FREAK" },
+          { text: "如果快過期了，就先投履歷找後路再說。", type: "EXIT-PLAN" }
+      ]
+  },
+  {
+      q: "29. 當你看到其他同行獲得大獎或爆紅時，你的內心想法是：",
+      options: [
+          { text: "「哼，他的作品背後完全沒有強大的哲學理論支撐。」", type: "INTEL-PROUD" },
+          { text: "「明天立刻去跟他拍照社交，順便蹭一下熱度。」", type: "PARTY-SOCIAL" },
+          { text: "「他的演算法跟短影片封面做得真好，我得學習一下。」", type: "SELF-PROMOTER" },
+          { text: "「沒關係，藝術不是為了名利，我會繼續默默堅持。」", type: "LOVE-POWER" },
+          { text: "「真好，等他賺夠錢我也要問他買房經驗。」", type: "EXIT-PLAN" }
+      ]
+  },
+  {
+      q: "30. 一句話總結你在藝術圈的生存狀態：",
+      options: [
+          { text: "靠著紅牛與咖啡，在解體邊緣創造奇蹟。", type: "BURN-OUT" },
+          { text: "用愛發電，吃吐司邊也能維持靈魂的高度。", type: "LOVE-POWER" },
+          { text: "精通表格與關鍵字，補助款就是我的創作養分。", type: "FORM-MASTER" },
+          { text: "改稿到天荒地老，世界上沒有真的 Final。", type: "DESIGN-SLAVE" },
+          { text: "隨時準備轉行，買房才是人生真理。", type: "EXIT-PLAN" }
+      ]
+  }
 ];
 
-// Logic Control
-let currentQuestionIndex = 0;
-let scores = {};
+let currentQuestion = 0;
+let userScores = {};
 
-// 初始化分數
-function initScores() {
-    for (let key in profiles) {
-        scores[key] = 0;
-    }
+function startQuiz() {
+    currentQuestion = 0;
+    userScores = {};
+    document.getElementById('start-screen').classList.remove('active');
+    document.getElementById('quiz-screen').classList.add('active');
+    showQuestion();
 }
 
-function startTest() {
-    initScores();
-    currentQuestionIndex = 0;
-    document.getElementById('start-screen').classList.add('hidden');
-    document.getElementById('question-screen').classList.remove('hidden');
-    renderQuestion();
-}
-
-function renderQuestion() {
-    const qData = questions[currentQuestionIndex];
-    document.getElementById('question-number').innerText = `Question ${currentQuestionIndex + 1} / ${questions.length}`;
-    document.getElementById('question-text').innerText = qData.q;
+function showQuestion() {
+    const qData = questions[currentQuestion];
+    document.getElementById('q-number').innerText = `QUESTION ${String(currentQuestion + 1).padStart(2, '0')}/30`;
     
-    // Update progress bar
-    const progress = ((currentQuestionIndex) / questions.length) * 100;
+    const progress = Math.round(((currentQuestion) / 30) * 100);
     document.getElementById('progress-bar').style.width = `${progress}%`;
+    document.getElementById('q-progress-text').innerText = `${progress}%`;
 
-    const optionsContainer = document.getElementById('options-container');
+    document.getElementById('question-text').innerText = qData.q;
+
+    const optionsContainer = document.getElementById('options-list');
     optionsContainer.innerHTML = '';
 
-    qData.options.forEach(opt => {
+    qData.options.forEach((opt) => {
         const btn = document.createElement('button');
         btn.className = 'option-btn';
         btn.innerText = opt.text;
@@ -782,57 +943,52 @@ function renderQuestion() {
 }
 
 function selectOption(type) {
-    if (scores[type] !== undefined) {
-        scores[type] += 1;
-    }
+    userScores[type] = (userScores[type] || 0) + 1;
+    currentQuestion++;
 
-    currentQuestionIndex++;
-
-    if (currentQuestionIndex < questions.length) {
-        renderQuestion();
+    if (currentQuestion < questions.length) {
+        showQuestion();
     } else {
         showResult();
     }
 }
 
 function showResult() {
-    document.getElementById('question-screen').classList.add('hidden');
-    document.getElementById('result-screen').classList.remove('hidden');
+    document.getElementById('quiz-screen').classList.remove('active');
+    document.getElementById('result-screen').classList.add('active');
 
-    // 計算得分最高的人格
+    // Calculate highest score
     let maxScore = -1;
-    let winner = "TALK-ARTIST";
+    let finalType = "BURN-OUT"; // default fallback
 
-    for (let key in scores) {
-        if (scores[key] > maxScore) {
-            maxScore = scores[key];
-            winner = key;
+    for (const [type, score] of Object.entries(userScores)) {
+        if (score > maxScore) {
+            maxScore = score;
+            finalType = type;
         }
     }
 
-    const res = profiles[winner];
+    const resultData = profiles[finalType];
 
-    document.getElementById('res-avatar').innerText = res.avatar;
-    document.getElementById('res-title').innerText = res.title;
-    document.getElementById('res-quote').innerText = res.quote;
-    document.getElementById('res-liver').innerText = res.liver;
-    document.getElementById('res-bank').innerText = res.bank;
-    document.getElementById('res-core').innerText = res.core;
-    document.getElementById('res-skill').innerText = res.skill;
-    document.getElementById('res-weak').innerText = res.weak;
-
-    if (res.extra) {
-        document.getElementById('res-extra-container').classList.remove('hidden');
-        document.getElementById('res-extra').innerText = res.extra;
-    } else {
-        document.getElementById('res-extra-container').classList.add('hidden');
-    }
+    document.getElementById('res-type-code').innerText = resultData.code;
+    document.getElementById('res-title').innerText = resultData.title;
+    document.getElementById('res-avatar').src = resultData.avatar;
+    document.getElementById('res-quote').innerText = resultData.quote;
+    document.getElementById('res-liver').innerText = resultData.liver;
+    document.getElementById('res-bank').innerText = resultData.bank;
+    document.getElementById('res-core').innerText = resultData.core;
+    document.getElementById('res-skill').innerText = resultData.skill;
+    document.getElementById('res-weakness').innerText = resultData.weakness;
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function restartTest() {
-    document.getElementById('result-screen').classList.add('hidden');
-    document.getElementById('start-screen').classList.remove('hidden');
+function restartQuiz() {
+    document.getElementById('result-screen').classList.remove('active');
+    document.getElementById('start-screen').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
+
 </body>
 </html>
