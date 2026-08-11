@@ -626,8 +626,8 @@
     </div>
 
     <div class="player-input-box">
-      <label for="player-name">✍️ 請輸入你的名字 / 藝名：</label>
-      <input type="text" id="player-name" placeholder="例：無名文青 / ArtSlave99" />
+      <label for="player-name">✍️ 請輸入你嘅藝名：</label>
+      <input type="text" id="player-name" placeholder="例：藝團小薯 / ArtSlave99" />
     </div>
 
     <button class="btn" onclick="startQuiz()">即刻開始測試 🚀</button>
@@ -650,7 +650,7 @@
   <div id="result-screen" class="screen">
     <div class="result-header">
       <span class="result-tag" id="res-type-code">TYPE-CODE</span>
-      <h2 class="result-title"><span id="player-display-name"></span> 的藝文人格：<br><span id="res-title">角色名稱</span></h2>
+      <h2 class="result-title"><span id="player-display-name"></span> 嘅藝文人格：<br><span id="res-title">角色名稱</span></h2>
     </div>
 
     <div class="result-avatar-box">
@@ -719,7 +719,7 @@
 
     <!-- 🔥 新增的 Credit 區塊 -->
     <div class="credits-box">
-      CREATED BY <a href="https://www.instagram.com/ltcjoy?igsh=ajA5NnJqc3Fkdm01&utm_source=qr" target="_blank">@ltcjoy</a> // © 2026 HONG KONG CONTEMPORARY ART LAB
+      CREATED BY <a href="https://www.instagram.com/ltcjoy?igsh=ajA5NnJqc3Fkdm01&utm_source=qr" target="_blank">@ltcjoy</a> // © 2026 
     </div>
   </div>
 </div>
@@ -1271,7 +1271,7 @@ function startQuiz() {
     playerName = input.value.trim();
     
     if (!playerName) {
-        alert("請輸入你個名或藝名喔！");
+        alert("請輸入你個藝名喔！");
         input.focus();
         return;
     }
