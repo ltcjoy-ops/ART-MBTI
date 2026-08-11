@@ -38,7 +38,6 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-      /* Swiss Grid Background Lines */
       background-image: 
         linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
@@ -55,7 +54,6 @@
       padding: 40px;
     }
 
-    /* Catalogue Header Tag */
     .catalogue-tag {
       display: flex;
       justify-content: space-between;
@@ -78,7 +76,6 @@
       margin-right: 6px;
     }
 
-    /* Screens */
     .screen {
       display: none;
     }
@@ -87,7 +84,6 @@
       display: block;
     }
 
-    /* Start Screen */
     .title-group {
       margin-bottom: 25px;
     }
@@ -111,12 +107,11 @@
       padding-left: 10px;
     }
 
-    /* BANNER STYLE */
     .hero-banner {
       width: 100%;
       height: 200px;
       border: 2px solid var(--border-color);
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       position: relative;
       overflow: hidden;
       background: #000000;
@@ -174,7 +169,7 @@
       background: #fafafa;
       font-size: 1rem;
       line-height: 1.7;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       position: relative;
     }
 
@@ -190,7 +185,39 @@
       padding: 2px 8px;
     }
 
-    /* Buttons */
+    /* 新增：玩家姓名輸入框樣式 */
+    .player-input-box {
+      margin-bottom: 25px;
+      border: 1px solid var(--border-color);
+      padding: 20px;
+      background: #fff;
+    }
+
+    .player-input-box label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .player-input-box input {
+      width: 100%;
+      padding: 12px 15px;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      border: 2px solid var(--border-color);
+      outline: none;
+      background: #fdfdfd;
+      transition: border-color 0.2s;
+    }
+
+    .player-input-box input:focus {
+      background: #fff;
+      border-color: var(--accent-blue);
+    }
+
     .btn {
       display: block;
       width: 100%;
@@ -215,7 +242,6 @@
       transform: translate(-2px, -2px);
     }
 
-    /* Quiz Screen */
     .q-meta {
       display: flex;
       justify-content: space-between;
@@ -235,7 +261,7 @@
 
     .progress-bar {
       height: 100%;
-      width: 3.33%;
+      width: 0%;
       background: var(--border-color);
       transition: width 0.3s ease;
     }
@@ -279,7 +305,6 @@
 
     .option-btn:hover {
       background: #f0f0f0;
-      border-color: var(--border-color);
       padding-left: 25px;
     }
 
@@ -288,7 +313,6 @@
       color: var(--accent-red);
     }
 
-    /* Result Screen */
     .result-header {
       border-bottom: 2px solid var(--border-color);
       padding-bottom: 15px;
@@ -321,7 +345,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
     }
 
     .result-avatar-box img {
@@ -405,7 +428,6 @@
       color: #fff;
     }
 
-    /* Match Profile Cards Styling */
     .match-container {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -423,13 +445,8 @@
       box-shadow: 3px 3px 0px var(--border-color);
     }
 
-    .match-card.best {
-      border-top: 4px solid var(--accent-green);
-    }
-
-    .match-card.worst {
-      border-top: 4px solid var(--accent-red);
-    }
+    .match-card.best { border-top: 4px solid var(--accent-green); }
+    .match-card.worst { border-top: 4px solid var(--accent-red); }
 
     .match-header {
       font-family: var(--font-mono);
@@ -437,30 +454,14 @@
       font-weight: 700;
       margin-bottom: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
 
-    .match-card.best .match-header {
-      color: #00aa44;
-    }
+    .match-card.best .match-header { color: #00aa44; }
+    .match-card.worst .match-header { color: var(--accent-red); }
 
-    .match-card.worst .match-header {
-      color: var(--accent-red);
-    }
+    .match-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+    .match-desc { font-size: 0.85rem; line-height: 1.5; color: var(--text-muted); }
 
-    .match-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .match-desc {
-      font-size: 0.85rem;
-      line-height: 1.5;
-      color: var(--text-muted);
-    }
-
-    /* ALL PROFILES SECTION STYLING */
     .all-profiles-wrapper {
       border-top: 2px dashed var(--border-color);
       padding-top: 25px;
@@ -473,10 +474,6 @@
       font-weight: 700;
       margin-bottom: 20px;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .all-profiles-grid {
@@ -492,11 +489,6 @@
       display: flex;
       gap: 15px;
       align-items: flex-start;
-      transition: background 0.2s;
-    }
-
-    .profile-summary-card:hover {
-      background: #f0f0f0;
     }
 
     .profile-summary-thumb {
@@ -506,14 +498,6 @@
       border: 1px solid var(--border-color);
       flex-shrink: 0;
       filter: grayscale(100%);
-    }
-
-    .profile-summary-card:hover .profile-summary-thumb {
-      filter: grayscale(0%);
-    }
-
-    .profile-summary-info {
-      flex: 1;
     }
 
     .profile-summary-code {
@@ -526,52 +510,30 @@
       margin-bottom: 4px;
     }
 
-    .profile-summary-name {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
+    .profile-summary-name { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .profile-summary-quote { font-size: 0.8rem; color: var(--text-muted); font-style: italic; }
 
-    .profile-summary-quote {
-      font-size: 0.8rem;
+    .sync-status {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
       color: var(--text-muted);
-      font-style: italic;
-      line-height: 1.4;
+      margin-top: 10px;
+      text-align: center;
     }
 
     @media (max-width: 600px) {
-      .gallery-container {
-        padding: 20px;
-      }
-      .main-title {
-        font-size: 1.8rem;
-      }
-      .hero-banner {
-        height: 150px;
-      }
-      .banner-heading {
-        font-size: 1.1rem;
-      }
-      .status-grid, .match-container {
-        grid-template-columns: 1fr;
-      }
-      .question-text {
-        font-size: 1.1rem;
-      }
-      .profile-summary-card {
-        padding: 10px;
-      }
-      .profile-summary-thumb {
-        width: 50px;
-        height: 65px;
-      }
+      .gallery-container { padding: 20px; }
+      .main-title { font-size: 1.8rem; }
+      .hero-banner { height: 150px; }
+      .banner-heading { font-size: 1.1rem; }
+      .status-grid, .match-container { grid-template-columns: 1fr; }
+      .question-text { font-size: 1.1rem; }
     }
   </style>
 </head>
 <body>
 
 <div class="gallery-container">
-  <!-- CATALOGUE HEADER -->
   <div class="catalogue-tag">
     <span><span class="status-dot"></span>HONG KONG CONTEMPORARY ART LAB</span>
     <span id="cat-num">REF: QUIZ-2026</span>
@@ -584,7 +546,6 @@
       <p class="sub-title">測出你在藝術圈（或貧窮線）的真實生存形態</p>
     </div>
 
-    <!-- FIRST PAGE BANNER -->
     <div class="hero-banner">
       <img src="https://ltcjoy-ops.github.io/ART-MBTI/Gemini_Generated_Image_gt5eo7gt5eo7gt5e.png" alt="Exhibition Banner">
       <div class="banner-overlay">
@@ -595,9 +556,16 @@
 
     <div class="intro-box">
       歡迎嚟到當代藝術嘅殘酷舞台！呢個測試係專為香港藝術從業者、設計奴隸、劇場地縛靈及各類文青量身打造。<br><br>
-      無論你係藝術新人，定係老屎忽，都歡迎你通過 30 道情境選擇題，揭穿你隱藏係「藝術追求」背後嘅現實真相！<br><br>
-      嗱嗱嗱，戴返個頭盔先：Just for fun only，如有得罪請一笑置之～<br><br>
+      無論你係藝術新人，定係老屎忽，都歡迎你通過題目揭穿隱藏喺「藝術追求」背後嘅現實真相！<br><br>
+      嗱嗱嗱，戴返個頭盔先：Just for fun only，如有得罪請一笑置之～
     </div>
+
+    <!-- 名字輸入框 -->
+    <div class="player-input-box">
+      <label for="player-name">✍️ 請輸入你的名字 / 藝名：</label>
+      <input type="text" id="player-name" placeholder="例：無名文青 / ArtSlave99" />
+    </div>
+
     <button class="btn" onclick="startQuiz()">即刻開始測試 🚀</button>
   </div>
 
@@ -618,7 +586,7 @@
   <div id="result-screen" class="screen">
     <div class="result-header">
       <span class="result-tag" id="res-type-code">TYPE-CODE</span>
-      <h2 class="result-title" id="res-title">角色名稱</h2>
+      <h2 class="result-title"><span id="player-display-name"></span> 的藝文人格：<br><span id="res-title">角色名稱</span></h2>
     </div>
 
     <div class="result-avatar-box">
@@ -655,9 +623,10 @@
       <p id="res-weakness">--</p>
     </div>
 
+    <div id="sync-status" class="sync-status">數據同步中...</div>
+
     <button class="btn restart-btn" onclick="restartQuiz()">再測一次 🔄</button>
 
-    <!-- 最合拍 & 最不合拍 PROFILE 區塊 -->
     <div class="match-container">
       <div class="match-card best">
         <div class="match-header">🤝 最佳拍檔 (BEST MATCH)</div>
@@ -671,17 +640,17 @@
       </div>
     </div>
 
-    <!-- 完整 16 個 PROFILE 資料區塊 -->
     <div class="all-profiles-wrapper">
       <div class="all-profiles-title">📂 完整 16 種藝術人格圖鑑 (ALL PROFILES)</div>
-      <div class="all-profiles-grid" id="all-profiles-grid">
-        <!-- 由 JavaScript 動態帶入 -->
-      </div>
+      <div class="all-profiles-grid" id="all-profiles-grid"></div>
     </div>
   </div>
 </div>
 
 <script>
+// ⚠️ 請填入你在 Google Apps Script 部署後獲得的 Web App 網址 ⚠️
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxouFrfhAGljIKzhhtBxC1QMYh_0b--noZkQuIds28muEDMp_MHx9D4V7EigbGK1CWHow/exec";
+
 const profiles = {
     "TALK-ARTIST": {
         code: "TALK-ARTIST",
@@ -1198,44 +1167,47 @@ const questions = [
 
 let currentQuestion = 0;
 let scores = {};
+let playerName = "";
 
-function initScores() {
+function startQuiz() {
+    const input = document.getElementById("player-name");
+    playerName = input.value.trim();
+    
+    if (!playerName) {
+        alert("請輸入你的名字或暱稱喔！");
+        input.focus();
+        return;
+    }
+
+    // 重置分數與題號
     scores = {};
     for (let key in profiles) {
         scores[key] = 0;
     }
-}
-
-function showScreen(id) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-}
-
-function startQuiz() {
-    initScores();
     currentQuestion = 0;
-    showScreen('quiz-screen');
+
+    switchScreen("quiz-screen");
     renderQuestion();
 }
 
 function renderQuestion() {
-    const q = questions[currentQuestion];
+    const qData = questions[currentQuestion];
     const total = questions.length;
-    const qNumStr = (currentQuestion + 1).toString().padStart(2, '0');
     
-    document.getElementById('q-number').innerText = `CATALOGUE NO. ${qNumStr}/${total}`;
-    const progress = Math.round(((currentQuestion + 1) / total) * 100);
-    document.getElementById('q-progress-text').innerText = `${progress}%`;
-    document.getElementById('progress-bar').style.width = `${progress}%`;
+    document.getElementById("q-number").innerText = `CATALOGUE NO. ${String(currentQuestion + 1).padStart(2, '0')}/${total}`;
     
-    document.getElementById('question-text').innerText = q.q;
-    
-    const optionsContainer = document.getElementById('options-list');
-    optionsContainer.innerHTML = '';
-    
-    q.options.forEach(opt => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
+    const progressPercent = Math.round(((currentQuestion + 1) / total) * 100);
+    document.getElementById("q-progress-text").innerText = `${progressPercent}%`;
+    document.getElementById("progress-bar").style.width = `${progressPercent}%`;
+
+    document.getElementById("question-text").innerText = qData.q;
+
+    const optionsContainer = document.getElementById("options-list");
+    optionsContainer.innerHTML = "";
+
+    qData.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
         btn.innerText = opt.text;
         btn.onclick = () => selectOption(opt.type);
         optionsContainer.appendChild(btn);
@@ -1246,72 +1218,103 @@ function selectOption(type) {
     if (scores[type] !== undefined) {
         scores[type]++;
     }
+
     currentQuestion++;
-    
     if (currentQuestion < questions.length) {
         renderQuestion();
     } else {
-        calculateResult();
+        showResult();
     }
 }
 
-function calculateResult() {
+function showResult() {
+    // 找出最高分的角色
     let maxScore = -1;
-    let winner = 'TALK-ARTIST';
-    
+    let resultKey = "TALK-ARTIST";
     for (let key in scores) {
         if (scores[key] > maxScore) {
             maxScore = scores[key];
-            winner = key;
+            resultKey = key;
         }
     }
-    
-    showResult(winner);
-}
 
-function showResult(typeKey) {
-    const profile = profiles[typeKey] || profiles['TALK-ARTIST'];
-    
-    document.getElementById('res-type-code').innerText = profile.code;
-    document.getElementById('res-title').innerText = profile.title;
-    document.getElementById('res-avatar').src = profile.avatar;
-    document.getElementById('res-quote').innerText = profile.quote;
-    document.getElementById('res-liver').innerText = profile.liver;
-    document.getElementById('res-bank').innerText = profile.bank;
-    document.getElementById('res-core').innerText = profile.core;
-    document.getElementById('res-skill').innerText = profile.skill;
-    document.getElementById('res-weakness').innerText = profile.weakness;
-    
-    // 渲染最合拍與最不合拍 Profile
-    if (profile.bestMatch && profiles[profile.bestMatch.key]) {
-        const bestProfile = profiles[profile.bestMatch.key];
-        document.getElementById('match-best-title').innerText = `${bestProfile.title} (${bestProfile.code})`;
-        document.getElementById('match-best-desc').innerText = profile.bestMatch.desc;
+    const res = profiles[resultKey];
+
+    // 填充結果頁面
+    document.getElementById("player-display-name").innerText = playerName;
+    document.getElementById("res-type-code").innerText = res.code;
+    document.getElementById("res-title").innerText = res.title;
+    document.getElementById("res-avatar").src = res.avatar;
+    document.getElementById("res-quote").innerText = res.quote;
+    document.getElementById("res-liver").innerText = res.liver;
+    document.getElementById("res-bank").innerText = res.bank;
+    document.getElementById("res-core").innerText = res.core;
+    document.getElementById("res-skill").innerText = res.skill;
+    document.getElementById("res-weakness").innerText = res.weakness;
+
+    // 配對資訊
+    if (res.bestMatch && profiles[res.bestMatch.key]) {
+        document.getElementById("match-best-title").innerText = profiles[res.bestMatch.key].title;
+        document.getElementById("match-best-desc").innerText = res.bestMatch.desc;
     }
-    
-    if (profile.worstMatch && profiles[profile.worstMatch.key]) {
-        const worstProfile = profiles[profile.worstMatch.key];
-        document.getElementById('match-worst-title').innerText = `${worstProfile.title} (${worstProfile.code})`;
-        document.getElementById('match-worst-desc').innerText = profile.worstMatch.desc;
+    if (res.worstMatch && profiles[res.worstMatch.key]) {
+        document.getElementById("match-worst-title").innerText = profiles[res.worstMatch.key].title;
+        document.getElementById("match-worst-desc").innerText = res.worstMatch.desc;
     }
 
-    // 動態渲染所有 16 個 Profile 資料
+    // 渲染所有圖鑑
     renderAllProfiles();
 
-    showScreen('result-screen');
+    switchScreen("result-screen");
+
+    // 自動更新/提交至 Google Sheet
+    sendResultToGoogleSheet(playerName, res.code, res.title);
+}
+
+function sendResultToGoogleSheet(name, resultCode, resultTitle) {
+    const syncStatus = document.getElementById("sync-status");
+    
+    if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL")) {
+        syncStatus.innerText = "⚠️ 未設定 Google Apps Script 網址，跳過數據同步";
+        return;
+    }
+
+    syncStatus.innerText = "⏳ 正在同步數據至 Google Sheet...";
+
+    const payload = {
+        name: name,
+        resultCode: resultCode,
+        resultTitle: resultTitle
+    };
+
+    fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors", // Apps Script 需要跨域 POST
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(() => {
+        syncStatus.innerText = "✅ 測驗結果已成功更新至 Google Sheet！";
+    })
+    .catch(err => {
+        console.error(err);
+        syncStatus.innerText = "❌ 數據同步失敗，請檢查網路連線。";
+    });
 }
 
 function renderAllProfiles() {
-    const container = document.getElementById('all-profiles-grid');
-    container.innerHTML = '';
+    const container = document.getElementById("all-profiles-grid");
+    container.innerHTML = "";
 
     for (let key in profiles) {
         const p = profiles[key];
-        const card = document.createElement('div');
-        card.className = 'profile-summary-card';
+        const card = document.createElement("div");
+        card.className = "profile-summary-card";
         card.innerHTML = `
-            <img class="profile-summary-thumb" src="${p.avatar}" alt="${p.title}">
-            <div class="profile-summary-info">
+            <img class="profile-summary-thumb" src="${p.avatar}" alt="${p.title}" />
+            <div>
                 <span class="profile-summary-code">${p.code}</span>
                 <div class="profile-summary-name">${p.title}</div>
                 <div class="profile-summary-quote">${p.quote}</div>
@@ -1322,7 +1325,14 @@ function renderAllProfiles() {
 }
 
 function restartQuiz() {
-    showScreen('start-screen');
+    document.getElementById("player-name").value = "";
+    switchScreen("start-screen");
+}
+
+function switchScreen(screenId) {
+    document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+    document.getElementById(screenId).classList.add("active");
+    window.scrollTo(0, 0);
 }
 </script>
 </body>
