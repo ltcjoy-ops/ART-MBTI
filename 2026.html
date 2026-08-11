@@ -702,7 +702,7 @@
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyHckor7rqOGAXN1AQX9lyIdrQ3dLqC4conqfAHAGeCl7VdMqjfEu2FXtfQarvH1E9HAA/exec";
 
 // 指定的 5 大搞笑屬性標籤
-const radarLabels = ["吹水能力", "想像力", "時間管理", "自我感覺", "AI取代風險"];
+const radarLabels = ["吹水能力", "奉獻值", "時間管理", "自我感覺", "AI取代風險"];
 
 const profiles = {
     "TALK-ARTIST": {
@@ -715,7 +715,7 @@ const profiles = {
         liver: "非常健康（有時會夜晚睇下書）",
         bank: "💰💰 (因為未見到實際產出)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/TALK-ARTIST.png",
-        stats: [99, 85, 15, 95, 30], // [吹水能力, 想像力, 時間管理, 自我感覺, AI取代風險]
+        stats: [99, 30, 15, 95, 30], // [吹水能力, 想像力, 時間管理, 自我感覺, AI取代風險]
         bestMatch: { key: "INTEL-PROUD", desc: "大家可以坐低講足 8 小時哲學，唔洗落手做任何嘢。" },
         worstMatch: { key: "BURN-OUT", desc: "會因為你淨係吹水唔做嘢而想拿主機砸你。" }
     },
@@ -743,7 +743,7 @@ const profiles = {
         liver: "微弱運作中",
         bank: "💰 (只夠買個白面包)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/LOVE-POWER.png",
-        stats: [45, 90, 40, 85, 10],
+        stats: [45, 99, 40, 85, 10],
         bestMatch: { key: "INDIE-REBEL", desc: "一同仇視商業資本，精神理想極度契合。" },
         worstMatch: { key: "EXIT-PLAN", desc: "對方的現實同理性會瞬間打碎你嘅理想泡沫。" }
     },
@@ -771,7 +771,7 @@ const profiles = {
         liver: "極度正常（早睡早起做運動）",
         bank: "💰💰💰💰💰 (夠食夠住，生活穩定)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/EXIT-PLAN.png",
-        stats: [20, 30, 95, 50, 80],
+        stats: [20, 5, 95, 50, 80],
         bestMatch: { key: "GALLERY-PET", desc: "大家都非常務實，講錢講條款清清楚楚。" },
         worstMatch: { key: "LOVE-POWER", desc: "你勸佢清醒，佢嫌你庸俗，完全傾唔埋。" }
     },
@@ -785,7 +785,7 @@ const profiles = {
         liver: "瀕臨衰竭 (長期滑鼠手加熬夜)",
         bank: "💰💰💰 (等緊無數未過數尾款)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/DESIGN-SLAVE.png",
-        stats: [15, 65, 20, 20, 92],
+        stats: [15, 75, 20, 20, 92],
         bestMatch: { key: "GRID-FREAK", desc: "大家對細節有極致執著，合作交接順暢如絲。" },
         worstMatch: { key: "GALLERY-PET", desc: "一直傳達客戶刁鑽要求，改稿改到起飛。" }
     },
@@ -813,7 +813,7 @@ const profiles = {
         liver: "體力極佳 (經常搬運重型垃圾，練得一身肌肉)",
         bank: "💰💰💰 (垃圾免費，但studio租金好貴)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/GARBAGE-KING.png",
-        stats: [50, 95, 35, 80, 5],
+        stats: [50, 65, 35, 80, 5],
         bestMatch: { key: "STAGE-GHOST", desc: "默默幫你處理龐大廢棄物嘅展場空間與燈光。" },
         worstMatch: { key: "GRID-FREAK", desc: "會把你囤積嘅寶物垃圾全當成髒亂污染源清掉。" }
     },
@@ -855,7 +855,7 @@ const profiles = {
         liver: "因過度沉思而缺氧",
         bank: "💰💰💰💰 (主要靠寫稿稿費)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/INTEL-PROUD.png",
-        stats: [82, 88, 50, 99, 15],
+        stats: [82, 35, 50, 99, 15],
         bestMatch: { key: "TALK-ARTIST", desc: "一個敢講，一個敢聽，沉浸在理論高塔裡。" },
         worstMatch: { key: "PROMPT-GOD", desc: "對方用指令秒速產出，玷污了你深邃嘅哲學思考。" }
     },
@@ -869,7 +869,7 @@ const profiles = {
         liver: "十分健康（全自動gen圖，有時間打機）",
         bank: "💰💰💰 (節省大量人力工時成本，但token永遠唔夠洗)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/PROMPT-GOD.png",
-        stats: [70, 85, 88, 80, 0],
+        stats: [70, 25, 88, 80, 0],
         bestMatch: { key: "FORM-MASTER", desc: "你出圖、佢寫企劃，高效率掠奪各類補助資金。" },
         worstMatch: { key: "VINTAGE-SOUL", desc: "對方視數位與 AI 為無靈魂的異端垃圾。" }
     },
@@ -883,7 +883,7 @@ const profiles = {
         liver: "吸入過多藥水氣味",
         bank: "💰💰 (全掏空去買菲林與古著)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/VINTAGE-SOUL.png",
-        stats: [55, 80, 30, 75, 5],
+        stats: [55, 40, 30, 75, 5],
         bestMatch: { key: "LOVE-POWER", desc: "能感同身受你對舊時代與純粹藝術感情嘅執著。" },
         worstMatch: { key: "PROMPT-GOD", desc: "完全無法接受對方按個鍵就稱自己為「創作者」。" }
     },
@@ -897,7 +897,7 @@ const profiles = {
         liver: "焦慮跟隨流量上升跌伏",
         bank: "💰💰💰💰 (收入靠贊助同廣告)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/SELF-PROMOTER.png",
-        stats: [88, 60, 75, 95, 40],
+        stats: [88, 50, 75, 95, 40],
         bestMatch: { key: "PARTY-SOCIAL", desc: "互互相互打卡，將彼此流量極大化。" },
         worstMatch: { key: "INTEL-PROUD", desc: "會當面用晦澀理論嗆你的內容淺薄低俗。" }
     },
