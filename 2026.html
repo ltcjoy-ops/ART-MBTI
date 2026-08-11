@@ -185,7 +185,7 @@
       padding: 2px 8px;
     }
 
-    /* 新增：玩家姓名輸入框樣式 */
+    /* 玩家姓名輸入框樣式 */
     .player-input-box {
       margin-bottom: 25px;
       border: 1px solid var(--border-color);
@@ -416,9 +416,27 @@
       color: #333;
     }
 
+    /* 按鈕組樣式 */
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 25px;
+      margin-bottom: 25px;
+    }
+
+    .share-btn {
+      background: var(--accent-blue);
+      color: #fff;
+      border-color: var(--border-color);
+    }
+
+    .share-btn:hover {
+      background: #0033cc;
+      color: #fff;
+    }
+
     .restart-btn {
-      margin-top: 20px;
-      margin-bottom: 30px;
       background: #fff;
       color: var(--border-color);
     }
@@ -625,7 +643,11 @@
 
     <div id="sync-status" class="sync-status">數據同步中...</div>
 
-    <button class="btn restart-btn" onclick="restartQuiz()">再測一次 🔄</button>
+    <!-- 結果頁按鈕組（包含分享與重測） -->
+    <div class="btn-group">
+      <button class="btn share-btn" onclick="shareResult()">分享你的測試結果 📤</button>
+      <button class="btn restart-btn" onclick="restartQuiz()">再測一次 🔄</button>
+    </div>
 
     <div class="match-container">
       <div class="match-card best">
@@ -648,7 +670,7 @@
 </div>
 
 <script>
-// ⚠️ 請填入你在 Google Apps Script 部署後獲得的 Web App 網址 ⚠️
+// Google Apps Script Web App URL
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyHckor7rqOGAXN1AQX9lyIdrQ3dLqC4conqfAHAGeCl7VdMqjfEu2FXtfQarvH1E9HAA/exec";
 
 const profiles = {
@@ -1169,6 +1191,7 @@ let currentQuestion = 0;
 let scores = {};
 let playerName = "";
 let userAnswers = []; // 用來記錄每一題選了什麼
+let currentResult = null; // 紀錄目前測出的結果物件
 
 function startQuiz() {
     const input = document.getElementById("player-name");
@@ -1247,6 +1270,7 @@ function showResult() {
     }
 
     const res = profiles[resultKey];
+    currentResult = res; // 儲存供分享使用
 
     // 填充結果頁面
     document.getElementById("player-display-name").innerText = playerName;
@@ -1277,6 +1301,33 @@ function showResult() {
 
     // 自動更新/提交至 Google Sheet
     sendResultToGoogleSheet(playerName, res.code, res.title);
+}
+
+// 分享結果功能
+function shareResult() {
+    if (!currentResult) return;
+
+    const shareUrl = window.location.href;
+    const shareText = `🎭 我喺「香港藝文人格測驗」測出嘅結果係：【${currentResult.title}】！\n💬 ${currentResult.quote}\n\n快啲嚟測下你在藝術圈嘅真實生存狀態啦 👉`;
+
+    // 首選：使用系統原生 Web Share API (流動裝置支援佳)
+    if (navigator.share) {
+        navigator.share({
+            title: '香港藝文人格測驗',
+            text: shareText,
+            url: shareUrl
+        }).catch((err) => {
+            console.log('分享取消或失敗:', err);
+        });
+    } else {
+        // 備用方案：複製內容至剪貼簿
+        const fullCopyText = `${shareText} ${shareUrl}`;
+        navigator.clipboard.writeText(fullCopyText).then(() => {
+            alert("📋 結果連結與文案已複製到剪貼簿，快啲去分享比朋友啦！");
+        }).catch(err => {
+            alert("複製失敗，請手動複製網址分享！");
+        });
+    }
 }
 
 function sendResultToGoogleSheet(name, resultCode, resultTitle) {
