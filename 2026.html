@@ -605,8 +605,8 @@
     </div>
 
     <div class="player-input-box">
-      <label for="player-name">✍️ 請輸入你的名字 / 藝名：</label>
-      <input type="text" id="player-name" placeholder="例：無名文青 / ArtSlave99" />
+      <label for="player-name">✍️ 請輸入你嘅名 / 藝名：</label>
+      <input type="text" id="player-name" placeholder="例：藝文青 / ArtSlave" />
     </div>
 
     <button class="btn" onclick="startQuiz()">即刻開始測試 🚀</button>
@@ -647,7 +647,7 @@
 
     <div class="status-grid">
       <div class="status-card">
-        <div class="status-label">🫀 肝功能狀況</div>
+        <div class="status-label">🩸 肝功能狀況</div>
         <div class="status-value" id="res-liver">--</div>
       </div>
       <div class="status-card">
@@ -1245,7 +1245,7 @@ function startQuiz() {
     playerName = input.value.trim();
     
     if (!playerName) {
-        alert("請輸入你個名或藝名喔！");
+        alert("請輸入你個名或藝名");
         input.focus();
         return;
     }
@@ -1432,7 +1432,7 @@ function drawRadarChart(stats) {
         const x = centerX + labelR * Math.cos(angle);
         const y = centerY + labelR * Math.sin(angle);
 
-        const label = `${radarLabels[i]}:${stats[i]}`;
+        const label = `${radarLabels[i]};
         ctx.fillText(label, x, y);
     }
 }
@@ -1484,7 +1484,7 @@ function sendResultToGoogleSheet(name, resultCode, resultTitle) {
     .then(response => response.json())
     .then(data => {
         if (data.status === "success") {
-            syncStatus.innerText = "✅ 多謝參與！";
+            syncStatus.innerText = "條路自己揀，仆街自己喊";
         } else {
             syncStatus.innerText = "" + (data.error || "");
         }
