@@ -645,8 +645,8 @@
 
     <!-- 結果頁按鈕組（包含分享與重測） -->
     <div class="btn-group">
-      <button class="btn share-btn" onclick="shareResult()">分享你的測試結果 📤</button>
-      <button class="btn restart-btn" onclick="restartQuiz()">再測一次 🔄</button>
+      <button class="btn share-btn" onclick="shareResult()">分享你嘅測試結果 📤</button>
+      <button class="btn restart-btn" onclick="restartQuiz()">推翻結果 🔄</button>
     </div>
 
     <div class="match-container">
@@ -888,7 +888,7 @@ const questions = [
   {
      q: "1. 朋友問你最近忙緊咩藝術創作，你通常會點答？",
      options: [
-         { text: "長篇大論講你近排睇左咩書，但其實連做咩都未有idea。", type: "TALK-ARTIST" },
+         { text: " 長篇大論講你近排睇左咩書，但其實連做咩都未有idea。", type: "TALK-ARTIST" },
          { text: "「仲有兩日有個 deadline，我打算今晚開通宵！」", type: "BURN-OUT" },
          { text: "「做緊個好有意義但完全無錢嘅獨立企劃！」", type: "LOVE-POWER" },
          { text: "「寫緊個 50 萬嘅藝術基金 Funding proposal。」", type: "FORM-MASTER" },
@@ -1079,7 +1079,7 @@ const questions = [
      q: "20. 你最驚在展覽開幕當日遇到咩狀況？",
      options: [
          { text: "突然要出門同人social，身心感到極度不適。", type: "STAGE-GHOST" },
-         { text: "現場冇免費酒水，啲人唔黎。", type: "PARTY-SOCIAL" },
+         { text: "啲人唔黎，成為Opening毒L。", type: "PARTY-SOCIAL" },
          { text: "作品被其他人問：「呢個咪就係一件垃圾整成另一件垃圾」", type: "GARBAGE-KING" },
          { text: "作品caption字體排版歪了 0.5 度，而且冇對齊邊框。", type: "GRID-FREAK" },
          { text: "見返以前嘅同學，原來大家已經係成功人士，而自己戶口只剩兩位數。", type: "LOVE-POWER" }
@@ -1088,9 +1088,9 @@ const questions = [
   {
      q: "21. 如果可以獲得一項「藝術超能力」，你希望係：",
      options: [
-         { text: "隨便dum一個關鍵字就能瞬間生成 8K 精細作品。", type: "PROMPT-GOD" },
+         { text: "免費Token額度或永久免費模型。", type: "PROMPT-GOD" },
          { text: "填寫任何政府表格都 100% 拎到最高額資助。", type: "FORM-MASTER" },
-         { text: "24 個鐘唔訓覺，肝功能永遠維持健康。", type: "BURN-OUT" },
+         { text: "持續唔訓覺，肝功能永遠維持健康。", type: "BURN-OUT" },
          { text: "靠對藝術嘅熱情就能飽腹，唔洗煩三餐。", type: "LOVE-POWER" },
          { text: "瞬間睇透商業規則，隨時能在職場高薪轉行。", type: "EXIT-PLAN" }
      ]
@@ -1111,8 +1111,8 @@ const questions = [
          { text: "獨立書店、古著店或暗房工作室。", type: "VINTAGE-SOUL" },
          { text: "各種高端畫廊 VIP 預展與私人派對酒會。", type: "PARTY-SOCIAL" },
          { text: "資源回收場、舊貨市場或建築廢料堆放處。", type: "GARBAGE-KING" },
-         { text: "暗黑無光的劇場舞台控台區（Dimmer Room）。", type: "STAGE-GHOST" },
-         { text: "補習班、科技業職訓中心或公務員考試考場。", type: "EXIT-PLAN" }
+         { text: "暗黑無光嘅劇場舞台控台區（Dimmer Room）。", type: "STAGE-GHOST" },
+         { text: "屋企張床。", type: "EXIT-PLAN" }
      ]
   },
   {
@@ -1122,7 +1122,7 @@ const questions = [
          { text: "憑藉在無光暗房的本能，精準係黑暗中移動並修好設備。", type: "STAGE-GHOST" },
          { text: "順勢宣稱「斷電也係呢場概念展覽嘅一部份」。", type: "TALK-ARTIST" },
          { text: "立刻打開手機閃光燈開直播：「突發！展覽現場大斷電！」", type: "SELF-PROMOTER" },
-         { text: "冷靜評估損失，並檢查企劃書保險條款能賠多少錢。", type: "FORM-MASTER" }
+         { text: "冷靜評估損失，準備寫report。", type: "FORM-MASTER" }
      ]
   },
   {
@@ -1131,24 +1131,24 @@ const questions = [
          { text: "畫廊話賣幾多就賣幾多，最緊要下次有得合作。", type: "GALLERY-PET" },
          { text: "價格一定要訂得極高，咁才能顯得我嘅理論很權威。", type: "INTEL-PROUD" },
          { text: "唔賣！唔會屈服於資本主義之下！", type: "INDIE-REBEL" },
-         { text: "免費或象徵性收費，只要可以推廣藝術我就開心。", type: "LOVE-POWER" },
-         { text: "精確計算每小時工時與 CP 值，唔會蝕比你。", type: "GRID-FREAK" }
+         { text: "免費或象徵性收費，只要有人鐘意我就開心。", type: "LOVE-POWER" },
+         { text: "精確計算每個鐘工時與 CP 值，唔會蝕比你。", type: "GRID-FREAK" }
      ]
   },
   {
      q: "26. 當你收到一份頁數極多、格式極嚴格嘅展覽申請表時：",
      options: [
-         { text: "興奮不已，填表係我的強項，這根本是我嘅個人舞台。", type: "FORM-MASTER" },
-         { text: "感到極度焦慮，因為邊框和表格對齊成日都唔夠完美。", type: "GRID-FREAK" },
-         { text: "邊看邊打瞌睡，最後拖到截止前最後一秒先爆肝填完。", type: "BURN-OUT" },
+         { text: "興奮不已，填表係我強項，這根本係我嘅個人舞台。", type: "FORM-MASTER" },
+         { text: "感到極度焦慮，因為邊框同表格對齊成日都唔夠完美。", type: "GRID-FREAK" },
+         { text: "唔想睇，但會拖到截止前最後一秒先爆肝填完。", type: "BURN-OUT" },
          { text: "直接扔入垃圾桶，體制內嘅funding只會扼殺藝術靈魂。", type: "INDIE-REBEL" },
-         { text: "交比 AI 工具，10 秒鐘自動生成整份申請企劃。", type: "PROMPT-GOD" }
+         { text: "交比 AI 工具，10 秒鐘自動生成成份申請企劃。", type: "PROMPT-GOD" }
      ]
   },
   {
      q: "27. 你希望別人如何形容你嘅創作風格？",
      options: [
-         { text: "帶有濃厚嘅歲月顆粒感與懷舊詩意。", type: "VINTAGE-SOUL" },
+         { text: "帶有濃厚嘅歲月顆粒感同懷舊詩意。", type: "VINTAGE-SOUL" },
          { text: "精緻、甜美、非常適合掛在客廳嘅高雅作品。", type: "GALLERY-PET" },
          { text: "充滿前衛批判性，直擊社會體制嘅痛處。", type: "INDIE-REBEL" },
          { text: "視覺衝擊力極強，令人忍唔住想影相分享上傳。", type: "SELF-PROMOTER" },
@@ -1156,23 +1156,23 @@ const questions = [
      ]
   },
   {
-     q: "28. 面對「交稿 Deadline」這件事，你嘅真實狀態係：",
+     q: "28. 面對「交稿 Deadline」呢件事，你嘅真實狀態係：",
      options: [
-         { text: "離截稿剩 2 小時才是靈感大爆發嘅黃金時期。", type: "BURN-OUT" },
-         { text: "第 99 次重導出 PDF，永遠有下一個 Final 要改。", type: "DESIGN-SLAVE" },
+         { text: "離截稿剩 2 個鐘先係靈感大爆發嘅黃金時期。", type: "BURN-OUT" },
+         { text: "第 99 次重導出 PDF，永遠仲有下一個 Final 要改。", type: "DESIGN-SLAVE" },
          { text: "作品仲係一片空白，但已經準備好 3000 字 artist statement。", type: "TALK-ARTIST" },
          { text: "早早就按格式排版好並提前送出，從來唔會拖泥帶水。", type: "GRID-FREAK" },
-         { text: "過左 Deadline 咪唔交。", type: "EXIT-PLAN" }
+         { text: "冇事嘅，過左 Deadline 咪唔交。", type: "EXIT-PLAN" }
      ]
   },
   {
      q: "29. 當你睇到其他同行拎到獎或爆紅時，你嘅內心想法係：",
      options: [
-         { text: "「車，佢啲work背後完全冇強大嘅哲學理論支撐。」", type: "INTEL-PROUD" },
+         { text: "車，佢啲work背後完全冇強大嘅哲學理論支撐。", type: "INTEL-PROUD" },
          { text: "即刻同佢影返張合照，係 IG tag 佢寫句congrats。", type: "PARTY-SOCIAL" },
-         { text: "「佢 PR 做得真係好，我都要向佢學習下。」", type: "SELF-PROMOTER" },
-         { text: "「我做藝術唔係為左呢啲世俗名利。」", type: "LOVE-POWER" },
-         { text: "「真係好，唔知佢今轉賺幾多。」", type: "EXIT-PLAN" }
+         { text: "佢 PR 做得真係好，我都要向佢學習下。", type: "SELF-PROMOTER" },
+         { text: "我做藝術唔係為左呢啲世俗名利。", type: "LOVE-POWER" },
+         { text: "真係好，唔知佢今轉賺幾多。", type: "EXIT-PLAN" }
      ]
   },
   {
@@ -1180,7 +1180,7 @@ const questions = [
      options: [
          { text: "靠著 Red Bull 同咖啡，係解體邊緣創造奇蹟。", type: "BURN-OUT" },
          { text: "用愛發電，光合作用也能維持靈魂嘅高度。", type: "LOVE-POWER" },
-         { text: "精通表格與關鍵字，補助款就是我嘅創作養分。", type: "FORM-MASTER" },
+         { text: "精通表格同關鍵字，funding就係我嘅創作養分。", type: "FORM-MASTER" },
          { text: "改稿到天荒地老，世界上冇真正 Final。", type: "DESIGN-SLAVE" },
          { text: "隨時準備轉行，搵錢先係人生真理。", type: "EXIT-PLAN" }
      ]
@@ -1198,7 +1198,7 @@ function startQuiz() {
     playerName = input.value.trim();
     
     if (!playerName) {
-        alert("請輸入你的名字或暱稱喔！");
+        alert("請輸入你個名或藝名喔！");
         input.focus();
         return;
     }
@@ -1323,7 +1323,7 @@ function shareResult() {
         // 備用方案：複製內容至剪貼簿
         const fullCopyText = `${shareText} ${shareUrl}`;
         navigator.clipboard.writeText(fullCopyText).then(() => {
-            alert("📋 結果連結與文案已複製到剪貼簿，快啲去分享比朋友啦！");
+            alert("📋 快啲去分享比朋友啦！");
         }).catch(err => {
             alert("複製失敗，請手動複製網址分享！");
         });
@@ -1334,11 +1334,11 @@ function sendResultToGoogleSheet(name, resultCode, resultTitle) {
     const syncStatus = document.getElementById("sync-status");
     
     if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL")) {
-        syncStatus.innerText = "⚠️ 未設定 Google Apps Script 網址，跳過數據同步";
+        syncStatus.innerText = "";
         return;
     }
 
-    syncStatus.innerText = "⏳ 正在同步數據至 Google Sheet...";
+    syncStatus.innerText = "⏳ Loading...";
 
     const formData = new URLSearchParams();
     formData.append("name", name);
@@ -1355,14 +1355,14 @@ function sendResultToGoogleSheet(name, resultCode, resultTitle) {
     .then(response => response.json())
     .then(data => {
         if (data.status === "success") {
-            syncStatus.innerText = "✅ 數據同步成功！多謝參與！";
+            syncStatus.innerText = "✅ 多謝參與！";
         } else {
-            syncStatus.innerText = "❌ 同步失敗：" + (data.error || "未知錯誤");
+            syncStatus.innerText = "" + (data.error || "");
         }
     })
     .catch(err => {
         console.error("Sync Error:", err);
-        syncStatus.innerText = "❌ 網路錯誤，無法同步數據";
+        syncStatus.innerText = "";
     });
 }
 
