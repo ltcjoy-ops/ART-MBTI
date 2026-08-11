@@ -185,7 +185,6 @@
       padding: 2px 8px;
     }
 
-    /* 玩家姓名輸入框樣式 */
     .player-input-box {
       margin-bottom: 25px;
       border: 1px solid var(--border-color);
@@ -369,6 +368,34 @@
       margin-bottom: 25px;
     }
 
+    .radar-box {
+      border: 1px solid var(--border-color);
+      background: #fafafa;
+      padding: 20px;
+      margin-bottom: 25px;
+      text-align: center;
+      position: relative;
+    }
+
+    .radar-box::before {
+      content: "STATUS RADAR // 搞笑毒舌屬性分析";
+      position: absolute;
+      top: -10px;
+      left: 15px;
+      background: var(--border-color);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      padding: 2px 8px;
+    }
+
+    .radar-canvas {
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+      display: block;
+    }
+
     .status-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -416,7 +443,6 @@
       color: #333;
     }
 
-    /* 按鈕組樣式 */
     .btn-group {
       display: flex;
       flex-direction: column;
@@ -578,7 +604,6 @@
       嗱嗱嗱，戴返個頭盔先：Just for fun only，如有得罪請一笑置之～
     </div>
 
-    <!-- 名字輸入框 -->
     <div class="player-input-box">
       <label for="player-name">✍️ 請輸入你的名字 / 藝名：</label>
       <input type="text" id="player-name" placeholder="例：無名文青 / ArtSlave99" />
@@ -615,6 +640,11 @@
       「經典語錄加載中...」
     </div>
 
+    <!-- 雷達圖 (語錄下方) -->
+    <div class="radar-box">
+      <canvas id="radarCanvas" class="radar-canvas" width="360" height="320"></canvas>
+    </div>
+
     <div class="status-grid">
       <div class="status-card">
         <div class="status-label">🫀 肝功能狀況</div>
@@ -643,7 +673,6 @@
 
     <div id="sync-status" class="sync-status">數據同步中...</div>
 
-    <!-- 結果頁按鈕組（包含分享與重測） -->
     <div class="btn-group">
       <button class="btn share-btn" onclick="shareResult()">分享你嘅測試結果 📤</button>
       <button class="btn restart-btn" onclick="restartQuiz()">推翻結果 🔄</button>
@@ -670,20 +699,23 @@
 </div>
 
 <script>
-// Google Apps Script Web App URL
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyHckor7rqOGAXN1AQX9lyIdrQ3dLqC4conqfAHAGeCl7VdMqjfEu2FXtfQarvH1E9HAA/exec";
+
+// 指定的 5 大搞笑屬性標籤
+const radarLabels = ["吹水能力", "想像力", "時間管理", "自我感覺", "AI取代風險"];
 
 const profiles = {
     "TALK-ARTIST": {
         code: "TALK-ARTIST",
         title: "眼高手低概念大師",
         quote: "「作品重點唔係視覺，而係背後嘅concept。」",
-        core: "作品未動，把口先行；靈魂在雲端，雙情在打遊戲。",
+        core: "作品未動，把口先行；靈魂在雲端，雙手喺打遊戲。",
         skill: "講左兩個鐘當代藝術理論，作品其實係一張白紙加上一個點。",
         weakness: "最怕比人問：「咁你幾時要開始做？」",
         liver: "非常健康（有時會夜晚睇下書）",
         bank: "💰💰 (因為未見到實際產出)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/TALK-ARTIST.png",
+        stats: [99, 85, 15, 95, 30], // [吹水能力, 想像力, 時間管理, 自我感覺, AI取代風險]
         bestMatch: { key: "INTEL-PROUD", desc: "大家可以坐低講足 8 小時哲學，唔洗落手做任何嘢。" },
         worstMatch: { key: "BURN-OUT", desc: "會因為你淨係吹水唔做嘢而想拿主機砸你。" }
     },
@@ -697,19 +729,21 @@ const profiles = {
         liver: "指數爆表（肝臟已呈現化石狀）",
         bank: "💰💰💰 (全拎去買提神飲料同宵夜)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/BURN-OUT.png",
+        stats: [30, 70, 5, 40, 45],
         bestMatch: { key: "DESIGN-SLAVE", desc: "同為爆肝受害者，凌晨 4 點互通訊息唔會孤單。" },
         worstMatch: { key: "TALK-ARTIST", desc: "講就天下無敵，做就寸步難移，令你無端加倍爆肝。" }
     },
     "LOVE-POWER": {
         code: "LOVE-POWER",
         title: "用愛發電殉道者",
-        quote: "「冇錢唔緊要，我捱義氣，免費幫你做。」",
+        quote: "「冇錢唔緊要，我捱義心，免費幫你做。」",
         core: "講錢傷感情，有情飲水飽。",
         skill: "光合作用、靠「對藝術的熱情」就能存活。",
         weakness: "帳戶餘額經常得個位數，心靈富足。",
         liver: "微弱運作中",
         bank: "💰 (只夠買個白面包)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/LOVE-POWER.png",
+        stats: [45, 90, 40, 85, 10],
         bestMatch: { key: "INDIE-REBEL", desc: "一同仇視商業資本，精神理想極度契合。" },
         worstMatch: { key: "EXIT-PLAN", desc: "對方的現實同理性會瞬間打碎你嘅理想泡沫。" }
     },
@@ -723,6 +757,7 @@ const profiles = {
         liver: "亞健康（長期睇 Excel 導致眼花）",
         bank: "💰💰💰💰 (剛入帳嘅 Grants)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/FORM-MASTER.png",
+        stats: [88, 50, 90, 75, 25],
         bestMatch: { key: "PROMPT-GOD", desc: "用 AI 5秒生成視覺圖搭配你嘅企劃書，呃 Funding 無往不利。" },
         worstMatch: { key: "INDIE-REBEL", desc: "認為你係體制嘅走狗，完全不屑同你合作。" }
     },
@@ -736,6 +771,7 @@ const profiles = {
         liver: "極度正常（早睡早起做運動）",
         bank: "💰💰💰💰💰 (夠食夠住，生活穩定)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/EXIT-PLAN.png",
+        stats: [20, 30, 95, 50, 80],
         bestMatch: { key: "GALLERY-PET", desc: "大家都非常務實，講錢講條款清清楚楚。" },
         worstMatch: { key: "LOVE-POWER", desc: "你勸佢清醒，佢嫌你庸俗，完全傾唔埋。" }
     },
@@ -749,6 +785,7 @@ const profiles = {
         liver: "瀕臨衰竭 (長期滑鼠手加熬夜)",
         bank: "💰💰💰 (等緊無數未過數尾款)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/DESIGN-SLAVE.png",
+        stats: [15, 65, 20, 20, 92],
         bestMatch: { key: "GRID-FREAK", desc: "大家對細節有極致執著，合作交接順暢如絲。" },
         worstMatch: { key: "GALLERY-PET", desc: "一直傳達客戶刁鑽要求，改稿改到起飛。" }
     },
@@ -762,6 +799,7 @@ const profiles = {
         liver: "晝夜顛倒，日夜不分",
         bank: "💰💰 (Stage Call 每日拆帳)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/STAGE-GHOST.png",
+        stats: [10, 75, 80, 30, 15],
         bestMatch: { key: "GARBAGE-KING", desc: "一個負責搬廢料，一個負責暗處架設，幕後完美搭檔。" },
         worstMatch: { key: "PARTY-SOCIAL", desc: "逼你去聚光燈下開香檳交際，簡直係精神拷問。" }
     },
@@ -775,6 +813,7 @@ const profiles = {
         liver: "體力極佳 (經常搬運重型垃圾，練得一身肌肉)",
         bank: "💰💰💰 (垃圾免費，但studio租金好貴)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/GARBAGE-KING.png",
+        stats: [50, 95, 35, 80, 5],
         bestMatch: { key: "STAGE-GHOST", desc: "默默幫你處理龐大廢棄物嘅展場空間與燈光。" },
         worstMatch: { key: "GRID-FREAK", desc: "會把你囤積嘅寶物垃圾全當成髒亂污染源清掉。" }
     },
@@ -788,6 +827,7 @@ const profiles = {
         liver: "強迫症發作導致肝氣鬱結",
         bank: "💰💰💰 (位數都要整整齊齊)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/GRID-FREAK.png",
+        stats: [25, 40, 99, 65, 75],
         bestMatch: { key: "DESIGN-SLAVE", desc: "同樣對 pixel 完美主義有病態般的理解。" },
         worstMatch: { key: "GARBAGE-KING", desc: "混亂無章法嘅雜物場景會直接讓你強迫症發作崩潰。" }
     },
@@ -801,6 +841,7 @@ const profiles = {
         liver: "酒精過量硬化中",
         bank: "💰💰💰 (包裝自己門面花費甚巨)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/PARTY-SOCIAL.png",
+        stats: [95, 55, 60, 90, 20],
         bestMatch: { key: "SELF-PROMOTER", desc: "互追 IG、互相 Tag，互利共生創造雙贏流量。" },
         worstMatch: { key: "STAGE-GHOST", desc: "根本找不到他的人，完全無法進行任何公關社交。" }
     },
@@ -814,6 +855,7 @@ const profiles = {
         liver: "因過度沉思而缺氧",
         bank: "💰💰💰💰 (主要靠寫稿稿費)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/INTEL-PROUD.png",
+        stats: [82, 88, 50, 99, 15],
         bestMatch: { key: "TALK-ARTIST", desc: "一個敢講，一個敢聽，沉浸在理論高塔裡。" },
         worstMatch: { key: "PROMPT-GOD", desc: "對方用指令秒速產出，玷污了你深邃嘅哲學思考。" }
     },
@@ -827,6 +869,7 @@ const profiles = {
         liver: "十分健康（全自動gen圖，有時間打機）",
         bank: "💰💰💰 (節省大量人力工時成本，但token永遠唔夠洗)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/PROMPT-GOD.png",
+        stats: [70, 85, 88, 80, 0],
         bestMatch: { key: "FORM-MASTER", desc: "你出圖、佢寫企劃，高效率掠奪各類補助資金。" },
         worstMatch: { key: "VINTAGE-SOUL", desc: "對方視數位與 AI 為無靈魂的異端垃圾。" }
     },
@@ -840,6 +883,7 @@ const profiles = {
         liver: "吸入過多藥水氣味",
         bank: "💰💰 (全掏空去買菲林與古著)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/VINTAGE-SOUL.png",
+        stats: [55, 80, 30, 75, 5],
         bestMatch: { key: "LOVE-POWER", desc: "能感同身受你對舊時代與純粹藝術感情嘅執著。" },
         worstMatch: { key: "PROMPT-GOD", desc: "完全無法接受對方按個鍵就稱自己為「創作者」。" }
     },
@@ -853,6 +897,7 @@ const profiles = {
         liver: "焦慮跟隨流量上升跌伏",
         bank: "💰💰💰💰 (收入靠贊助同廣告)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/SELF-PROMOTER.png",
+        stats: [88, 60, 75, 95, 40],
         bestMatch: { key: "PARTY-SOCIAL", desc: "互互相互打卡，將彼此流量極大化。" },
         worstMatch: { key: "INTEL-PROUD", desc: "會當面用晦澀理論嗆你的內容淺薄低俗。" }
     },
@@ -866,6 +911,7 @@ const profiles = {
         liver: "非常健康，偶爾同收藏家摸下酒杯底",
         bank: "💰💰💰💰 (拆帳拆得好爽)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/GALLERY-PET.png",
+        stats: [50, 45, 85, 60, 85],
         bestMatch: { key: "EXIT-PLAN", desc: "兩人都把藝術當商業營運，溝通極度順暢高效。" },
         worstMatch: { key: "INDIE-REBEL", desc: "開口閉口罵你係資本主義賣身狗。" }
     },
@@ -879,6 +925,7 @@ const profiles = {
         liver: "憤世嫉俗導致肝火過旺",
         bank: "💰 (反對資本主義，拒絕積蓄)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/INDIE-REBEL.png",
+        stats: [65, 92, 25, 90, 8],
         bestMatch: { key: "LOVE-POWER", desc: "同甘共苦，一起在地下空間發揮反骨精神。" },
         worstMatch: { key: "GALLERY-PET", desc: "最看不慣這種為了賣畫討好市場嘅「體制寵兒」。" }
     }
@@ -999,7 +1046,7 @@ const questions = [
      q: "12. 參加藝廊opening，你最期待係？",
      options: [
          { text: "認識收藏家，並係 IG 打卡tag曬所有圈內大佬。", type: "PARTY-SOCIAL" },
-         { text: "睇下有冇免費嘅野食同野飲可以省返一餐。", type: "LOVE-POWER" },
+         { text: "睇下有冇免費嘅野食同野饮可以省返一餐。", type: "LOVE-POWER" },
          { text: "現場有冇有趣嘅廢棄展架可以在會後撿走。", type: "GARBAGE-KING" },
          { text: "觀察現場有冇潛在嘅商業合作客戶。", type: "GALLERY-PET" },
          { text: "偷偷評估呢間畫廊嘅燈光同音響設備有幾差。", type: "STAGE-GHOST" }
@@ -1118,7 +1165,7 @@ const questions = [
   {
      q: "24. 當展覽現場設備突然斷電或故障時，你會？",
      options: [
-         { text: "直接崩潰，因為我嘅創作生命全依心賴電能與算力。", type: "PROMPT-GOD" },
+         { text: "直接崩潰，因為我嘅創作生命全依賴電能與算力。", type: "PROMPT-GOD" },
          { text: "憑藉在無光暗房的本能，精準係黑暗中移動並修好設備。", type: "STAGE-GHOST" },
          { text: "順勢宣稱「斷電也係呢場概念展覽嘅一部份」。", type: "TALK-ARTIST" },
          { text: "立刻打開手機閃光燈開直播：「突發！展覽現場大斷電！」", type: "SELF-PROMOTER" },
@@ -1190,8 +1237,8 @@ const questions = [
 let currentQuestion = 0;
 let scores = {};
 let playerName = "";
-let userAnswers = []; // 用來記錄每一題選了什麼
-let currentResult = null; // 紀錄目前測出的結果物件
+let userAnswers = []; 
+let currentResult = null; 
 
 function startQuiz() {
     const input = document.getElementById("player-name");
@@ -1208,7 +1255,7 @@ function startQuiz() {
         scores[key] = 0;
     }
     currentQuestion = 0;
-    userAnswers = []; // 開始測驗時清空紀錄
+    userAnswers = []; 
 
     switchScreen("quiz-screen");
     renderQuestion();
@@ -1219,7 +1266,6 @@ function selectOption(type, text) {
         scores[type]++;
     }
 
-    // 記錄當前題目、選擇的類型與選項文字
     userAnswers.push({
         q: currentQuestion + 1,
         type: type,
@@ -1259,7 +1305,6 @@ function renderQuestion() {
 }
 
 function showResult() {
-    // 找出最高分的角色
     let maxScore = -1;
     let resultKey = "TALK-ARTIST";
     for (let key in scores) {
@@ -1270,9 +1315,8 @@ function showResult() {
     }
 
     const res = profiles[resultKey];
-    currentResult = res; // 儲存供分享使用
+    currentResult = res;
 
-    // 填充結果頁面
     document.getElementById("player-display-name").innerText = playerName;
     document.getElementById("res-type-code").innerText = res.code;
     document.getElementById("res-title").innerText = res.title;
@@ -1284,7 +1328,9 @@ function showResult() {
     document.getElementById("res-skill").innerText = res.skill;
     document.getElementById("res-weakness").innerText = res.weakness;
 
-    // 配對資訊
+    // 繪製五角雷達圖
+    drawRadarChart(res.stats || [50, 50, 50, 50, 50]);
+
     if (res.bestMatch && profiles[res.bestMatch.key]) {
         document.getElementById("match-best-title").innerText = profiles[res.bestMatch.key].title;
         document.getElementById("match-best-desc").innerText = res.bestMatch.desc;
@@ -1294,23 +1340,109 @@ function showResult() {
         document.getElementById("match-worst-desc").innerText = res.worstMatch.desc;
     }
 
-    // 渲染所有圖鑑
     renderAllProfiles();
-
     switchScreen("result-screen");
-
-    // 自動更新/提交至 Google Sheet
     sendResultToGoogleSheet(playerName, res.code, res.title);
 }
 
-// 分享結果功能
+// 自動根據屬性數量 (5個) 繪製雷達圖
+function drawRadarChart(stats) {
+    const canvas = document.getElementById('radarCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    const width = canvas.width;
+    const height = canvas.height;
+    const centerX = width / 2;
+    const centerY = height / 2 + 10;
+    const radius = 95;
+    const numSides = radarLabels.length; // 5 個指標
+    const angleStep = (Math.PI * 2) / numSides;
+
+    ctx.clearRect(0, 0, width, height);
+
+    // 1. 繪製多角形背景網格 (3 層)
+    ctx.strokeStyle = '#dddddd';
+    ctx.lineWidth = 1;
+    for (let level = 1; level <= 3; level++) {
+        const r = (radius / 3) * level;
+        ctx.beginPath();
+        for (let i = 0; i < numSides; i++) {
+            const angle = i * angleStep - Math.PI / 2;
+            const x = centerX + r * Math.cos(angle);
+            const y = centerY + r * Math.sin(angle);
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+        ctx.stroke();
+    }
+
+    // 2. 繪製中心軸線
+    for (let i = 0; i < numSides; i++) {
+        const angle = i * angleStep - Math.PI / 2;
+        const x = centerX + radius * Math.cos(angle);
+        const y = centerY + radius * Math.sin(angle);
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+    }
+
+    // 3. 繪製玩家屬性區域 (紅色半透明)
+    ctx.beginPath();
+    for (let i = 0; i < numSides; i++) {
+        const value = stats[i] || 0;
+        const r = (radius * (value / 100));
+        const angle = i * angleStep - Math.PI / 2;
+        const x = centerX + r * Math.cos(angle);
+        const y = centerY + r * Math.sin(angle);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(255, 51, 51, 0.35)';
+    ctx.fill();
+    ctx.strokeStyle = '#ff3333';
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+
+    // 4. 繪製端點小圓圈
+    for (let i = 0; i < numSides; i++) {
+        const value = stats[i] || 0;
+        const r = (radius * (value / 100));
+        const angle = i * angleStep - Math.PI / 2;
+        const x = centerX + r * Math.cos(angle);
+        const y = centerY + r * Math.sin(angle);
+        ctx.beginPath();
+        ctx.arc(x, y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = '#111111';
+        ctx.fill();
+    }
+
+    // 5. 標註搞笑屬性文字及數值
+    ctx.font = 'bold 12px "Space Mono", "Noto Sans TC", sans-serif';
+    ctx.fillStyle = '#111111';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    for (let i = 0; i < numSides; i++) {
+        const angle = i * angleStep - Math.PI / 2;
+        const labelR = radius + 25;
+        const x = centerX + labelR * Math.cos(angle);
+        const y = centerY + labelR * Math.sin(angle);
+
+        const label = `${radarLabels[i]}:${stats[i]}`;
+        ctx.fillText(label, x, y);
+    }
+}
+
 function shareResult() {
     if (!currentResult) return;
 
     const shareUrl = window.location.href;
     const shareText = `🎭 我喺「香港藝文人格測驗」測出嘅結果係：【${currentResult.title}】！\n💬 ${currentResult.quote}\n\n快啲嚟測下你在藝術圈嘅真實生存狀態啦 👉`;
 
-    // 首選：使用系統原生 Web Share API (流動裝置支援佳)
     if (navigator.share) {
         navigator.share({
             title: '香港藝文人格測驗',
@@ -1320,7 +1452,6 @@ function shareResult() {
             console.log('分享取消或失敗:', err);
         });
     } else {
-        // 備用方案：複製內容至剪貼簿
         const fullCopyText = `${shareText} ${shareUrl}`;
         navigator.clipboard.writeText(fullCopyText).then(() => {
             alert("📋 快啲去分享比朋友啦！");
@@ -1344,8 +1475,6 @@ function sendResultToGoogleSheet(name, resultCode, resultTitle) {
     formData.append("name", name);
     formData.append("resultCode", resultCode);
     formData.append("resultTitle", resultTitle);
-    
-    // 將答題陣列轉成 JSON 字串發送
     formData.append("answers", JSON.stringify(userAnswers));
 
     fetch(GOOGLE_SCRIPT_URL, {
