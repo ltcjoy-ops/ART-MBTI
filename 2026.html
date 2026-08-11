@@ -565,6 +565,27 @@
       text-align: center;
     }
 
+    /* 🔥 新增 Credit 樣式 */
+    .credits-box {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .credits-box a {
+      color: var(--text-main);
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    .credits-box a:hover {
+      color: var(--accent-red);
+    }
+
     @media (max-width: 600px) {
       .gallery-container { padding: 20px; }
       .main-title { font-size: 1.8rem; }
@@ -674,7 +695,7 @@
     <div id="sync-status" class="sync-status">數據同步中...</div>
 
     <div class="btn-group">
-      <button class="btn share-btn" onclick="shareResult()">分享你嘅測試結果 📤</button>
+      <button class="btn share-btn" onclick="shareResult()">分享測試結果 📤</button>
       <button class="btn restart-btn" onclick="restartQuiz()">推翻結果 🔄</button>
     </div>
 
@@ -694,6 +715,11 @@
     <div class="all-profiles-wrapper">
       <div class="all-profiles-title">📂 完整 16 種藝術人格圖鑑 (ALL PROFILES)</div>
       <div class="all-profiles-grid" id="all-profiles-grid"></div>
+    </div>
+
+    <!-- 🔥 新增的 Credit 區塊 -->
+    <div class="credits-box">
+      CREATED BY <a href="https://www.instagram.com/ltcjoy?igsh=ajA5NnJqc3Fkdm01&utm_source=qr" target="_blank">@ltcjoy</a> // © 2026 HONG KONG CONTEMPORARY ART LAB
     </div>
   </div>
 </div>
