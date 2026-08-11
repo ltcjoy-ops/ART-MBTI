@@ -572,8 +572,8 @@
   <!-- QUIZ SCREEN -->
   <div id="quiz-screen" class="screen">
     <div class="q-meta">
-      <span id="q-number">CATALOGUE NO. 01/12</span>
-      <span id="q-progress-text">0%</span>
+      <span id="q-number">CATALOGUE NO. 01/30</span>
+      <span id="q-progress-text">3%</span>
     </div>
     <div class="progress-bar-container">
       <div id="progress-bar" class="progress-bar"></div>
@@ -651,6 +651,8 @@
 // ⚠️ 請填入你在 Google Apps Script 部署後獲得的 Web App 網址 ⚠️
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxouFrfhAGljIKzhhtBxC1QMYh_0b--noZkQuIds28muEDMp_MHx9D4V7EigbGK1CWHow/exec";
 
+
+<script>
 const profiles = {
     "TALK-ARTIST": {
         code: "TALK-ARTIST",
@@ -689,7 +691,7 @@ const profiles = {
         bank: "💰 (只夠買個白面包)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/LOVE-POWER.png",
         bestMatch: { key: "INDIE-REBEL", desc: "一同仇視商業資本，精神理想極度契合。" },
-        worstMatch: { key: "EXIT-PLAN", desc: "對方嘅現實同理性會瞬間打碎你嘅理想泡沫。" }
+        worstMatch: { key: "EXIT-PLAN", desc: "對方的現實同理性會瞬間打碎你嘅理想泡沫。" }
     },
     "FORM-MASTER": {
         code: "FORM-MASTER",
@@ -766,7 +768,7 @@ const profiles = {
         liver: "強迫症發作導致肝氣鬱結",
         bank: "💰💰💰 (位數都要整整齊齊)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/GRID-FREAK.png",
-        bestMatch: { key: "DESIGN-SLAVE", desc: "同樣對 pixel 完美主義有病態般嘅理解。" },
+        bestMatch: { key: "DESIGN-SLAVE", desc: "同樣對 pixel 完美主義有病態般的理解。" },
         worstMatch: { key: "GARBAGE-KING", desc: "混亂無章法嘅雜物場景會直接讓你強迫症發作崩潰。" }
     },
     "PARTY-SOCIAL": {
@@ -780,7 +782,7 @@ const profiles = {
         bank: "💰💰💰 (包裝自己門面花費甚巨)",
         avatar: "https://ltcjoy-ops.github.io/ART-MBTI/PARTY-SOCIAL.png",
         bestMatch: { key: "SELF-PROMOTER", desc: "互追 IG、互相 Tag，互利共生創造雙贏流量。" },
-        worstMatch: { key: "STAGE-GHOST", desc: "根本搵唔到佢，完全無法進行任何公關社交。" }
+        worstMatch: { key: "STAGE-GHOST", desc: "根本找不到他的人，完全無法進行任何公關社交。" }
     },
     "INTEL-PROUD": {
         code: "INTEL-PROUD",
@@ -980,7 +982,187 @@ const questions = [
          { text: "睇下有冇免費嘅野食同野飲可以省返一餐。", type: "LOVE-POWER" },
          { text: "現場有冇有趣嘅廢棄展架可以在會後撿走。", type: "GARBAGE-KING" },
          { text: "觀察現場有冇潛在嘅商業合作客戶。", type: "GALLERY-PET" },
-         { text: "偷偷觀察其他人嘅穿搭，搵下個創作靈感。", type: "VINTAGE-SOUL" }
+         { text: "偷偷評估呢間畫廊嘅燈光同音響設備有幾差。", type: "STAGE-GHOST" }
+     ]
+  },
+  {
+     q: "13. 你最希望作品帶比觀者咩感受？",
+     options: [
+         { text: "懷疑自己嘅智商與哲學素養。", type: "INTEL-PROUD" },
+         { text: "覺得好靚、很療癒，然後爽快比錢買走。", type: "GALLERY-PET" },
+         { text: "感到被社會體制衝擊，從此睇世界嘅方式不一樣。", type: "INDIE-REBEL" },
+         { text: "點讚破萬，留言區瘋狂洗版。", type: "SELF-PROMOTER" },
+         { text: "感受作品帶來嘅溫度。", type: "VINTAGE-SOUL" }
+     ]
+  },
+  {
+     q: "14. 關於「AI生成藝術（AI Art）」，你嘅態度是？",
+     options: [
+         { text: "呢個就係未來！Prompt就係我嘅魔法咒語。", type: "PROMPT-GOD" },
+         { text: "冇靈魂嘅數位垃圾，只有手作先係藝術。", type: "VINTAGE-SOUL" },
+         { text: "太好啦！proposal入面又多左一個「AI沉浸式」關鍵字拎Funding！", type: "FORM-MASTER" },
+         { text: "無所謂，只要可以幫到我改稿，佢就係我大佬。", type: "DESIGN-SLAVE" },
+         { text: "又一個可以拿來吹捧「後人類去主體化」嘅哲學概念。", type: "TALK-ARTIST" }
+     ]
+  },
+  {
+     q: "15. 當你需要搬家或整理studio時，最大嘅災難是？",
+     options: [
+         { text: "執返來嘅「寶物垃圾」太多，需要叫三輛大貨車。", type: "GARBAGE-KING" },
+         { text: "太多有紀念價值嘅野，唔捨得。", type: "VINTAGE-SOUL" },
+         { text: "器材好多包裝唔曬。", type: "SELF-PROMOTER" },
+         { text: "冇任何災難，我隨時準備轉行，資產極度輕量化。", type: "EXIT-PLAN" },
+         { text: "長期身體半解體，根本冇時間精力搬。", type: "BURN-OUT" }
+     ]
+  },
+  {
+     q: "16. 喺藝術圈生存，你認為最不可或缺嘅「武器」係咩？",
+     options: [
+         { text: "可以將垃圾講成大師作嘅吹水能力。", type: "TALK-ARTIST" },
+         { text: "無限量供應嘅紅牛、黑咖啡與強大嘅肝臟。", type: "BURN-OUT" },
+         { text: "掌握政府與財團補助案嘅表格填寫技巧。", type: "FORM-MASTER" },
+         { text: "切割藝術圈嘅理智同勇氣。", type: "EXIT-PLAN" },
+         { text: "游刃有餘嘅社交公關手腕。", type: "PARTY-SOCIAL" }
+     ]
+  },
+  {
+     q: "17. 如果要你做一場個人藝術展覽，你首選嘅展出場地係？",
+     options: [
+         { text: "高檔嘅商業畫廊，現場要有免費香檳同refreshment。", type: "PARTY-SOCIAL" },
+         { text: "暗黑無光嘅劇場黑盒，沉浸式體驗。", type: "STAGE-GHOST" },
+         { text: "未開發嘅廢棄工廠或街頭空間。", type: "INDIE-REBEL" },
+         { text: "網紅打卡打爆嘅熱門文創園區或 IG 熱點。", type: "SELF-PROMOTER" },
+         { text: "全線上 VR / 數位元宇宙展覽。", type: "PROMPT-GOD" }
+     ]
+  },
+  {
+     q: "18. 面對藝術創作過程中嘅「重複勞動與手工細節」，你嘅態度係？",
+     options: [
+         { text: "享受工藝嘅每一步驟。", type: "VINTAGE-SOUL" },
+         { text: "追求 0.1mm 級別嘅精確度，任何錯位都係犯罪。", type: "GRID-FREAK" },
+         { text: "完全唔想動手，能用 AI 工具自動化處理就自動化。", type: "PROMPT-GOD" },
+         { text: "無所謂，反正最後展出嘅效果好睇能賣錢就行。", type: "GALLERY-PET" },
+         { text: "求其做下，反正背後嘅理論註解寫得比作品本體精彩。", type: "INTEL-PROUD" }
+     ]
+  },
+  {
+     q: "19. 你對「當代藝術評論家」嘅看法係？",
+     options: [
+         { text: "非常崇拜，因為可以帶比作品唔一樣嘅註釋。", type: "INTEL-PROUD" },
+         { text: "只要佢地寫嘅文章可以幫我申請到 Funding，我就感謝他們。", type: "FORM-MASTER" },
+         { text: "一群被資本主義養肥嘅寄生蟲，彈我多過讚我。", type: "INDIE-REBEL" },
+         { text: "最好可以幫我件work寫評論，係 IG tag 我，流量越高越好。", type: "SELF-PROMOTER" },
+         { text: "寫成點唔關我事，只要比錢我個位開心我就開心。", type: "DESIGN-SLAVE" }
+     ]
+  },
+  {
+     q: "20. 你最驚在展覽開幕當日遇到咩狀況？",
+     options: [
+         { text: "突然要出門同人social，身心感到極度不適。", type: "STAGE-GHOST" },
+         { text: "現場冇免費酒水，啲人唔黎。", type: "PARTY-SOCIAL" },
+         { text: "作品被其他人問：「呢個咪就係一件垃圾整成另一件垃圾」", type: "GARBAGE-KING" },
+         { text: "作品caption字體排版歪了 0.5 度，而且冇對齊邊框。", type: "GRID-FREAK" },
+         { text: "見返以前嘅同學，原來大家已經係成功人士，而自己戶口只剩兩位數。", type: "LOVE-POWER" }
+     ]
+  },
+  {
+     q: "21. 如果可以獲得一項「藝術超能力」，你希望係：",
+     options: [
+         { text: "隨便dum一個關鍵字就能瞬間生成 8K 精細作品。", type: "PROMPT-GOD" },
+         { text: "填寫任何政府表格都 100% 拎到最高額資助。", type: "FORM-MASTER" },
+         { text: "24 個鐘唔訓覺，肝功能永遠維持健康。", type: "BURN-OUT" },
+         { text: "靠對藝術嘅熱情就能飽腹，唔洗煩三餐。", type: "LOVE-POWER" },
+         { text: "瞬間睇透商業規則，隨時能在職場高薪轉行。", type: "EXIT-PLAN" }
+     ]
+  },
+  {
+     q: "22. 當你嘅創作被大眾批評「完全睇唔明」時，你會：",
+     options: [
+         { text: "「睇唔明就啱！呢個代表當代意識形態嘅去中心化！」", type: "TALK-ARTIST" },
+         { text: "「大眾嘅庸俗正係商業社會嘅悲哀，我唔需要庸俗者理解。」", type: "INDIE-REBEL" },
+         { text: "連忙詢問其他人嘅意見，即刻改成符合大眾審美嘅版本。", type: "GALLERY-PET" },
+         { text: "立刻拍返集「點解大眾睇唔明我嘅作品」解說 Reels。", type: "SELF-PROMOTER" },
+         { text: "拎出所有學者嘅論文，用理論砸暈對方。", type: "INTEL-PROUD" }
+     ]
+  },
+  {
+     q: "23. 你日常最常造訪的地方係？",
+     options: [
+         { text: "獨立書店、古著店或暗房工作室。", type: "VINTAGE-SOUL" },
+         { text: "各種高端畫廊 VIP 預展與私人派對酒會。", type: "PARTY-SOCIAL" },
+         { text: "資源回收場、舊貨市場或建築廢料堆放處。", type: "GARBAGE-KING" },
+         { text: "暗黑無光的劇場舞台控台區（Dimmer Room）。", type: "STAGE-GHOST" },
+         { text: "補習班、科技業職訓中心或公務員考試考場。", type: "EXIT-PLAN" }
+     ]
+  },
+  {
+     q: "24. 當展覽現場設備突然斷電或故障時，你會？",
+     options: [
+         { text: "直接崩潰，因為我嘅創作生命全依賴電能與算力。", type: "PROMPT-GOD" },
+         { text: "憑藉在無光暗房的本能，精準係黑暗中移動並修好設備。", type: "STAGE-GHOST" },
+         { text: "順勢宣稱「斷電也係呢場概念展覽嘅一部份」。", type: "TALK-ARTIST" },
+         { text: "立刻打開手機閃光燈開直播：「突發！展覽現場大斷電！」", type: "SELF-PROMOTER" },
+         { text: "冷靜評估損失，並檢查企劃書保險條款能賠多少錢。", type: "FORM-MASTER" }
+     ]
+  },
+  {
+     q: "25. 關於作品嘅「定價」，你嘅原則是？",
+     options: [
+         { text: "畫廊話賣幾多就賣幾多，最緊要下次有得合作。", type: "GALLERY-PET" },
+         { text: "價格一定要訂得極高，咁才能顯得我嘅理論很權威。", type: "INTEL-PROUD" },
+         { text: "唔賣！唔會屈服於資本主義之下！", type: "INDIE-REBEL" },
+         { text: "免費或象徵性收費，只要可以推廣藝術我就開心。", type: "LOVE-POWER" },
+         { text: "精確計算每小時工時與 CP 值，唔會蝕比你。", type: "GRID-FREAK" }
+     ]
+  },
+  {
+     q: "26. 當你收到一份頁數極多、格式極嚴格嘅展覽申請表時：",
+     options: [
+         { text: "興奮不已，填表係我的強項，這根本是我嘅個人舞台。", type: "FORM-MASTER" },
+         { text: "感到極度焦慮，因為邊框和表格對齊成日都唔夠完美。", type: "GRID-FREAK" },
+         { text: "邊看邊打瞌睡，最後拖到截止前最後一秒先爆肝填完。", type: "BURN-OUT" },
+         { text: "直接扔入垃圾桶，體制內嘅funding只會扼殺藝術靈魂。", type: "INDIE-REBEL" },
+         { text: "交比 AI 工具，10 秒鐘自動生成整份申請企劃。", type: "PROMPT-GOD" }
+     ]
+  },
+  {
+     q: "27. 你希望別人如何形容你嘅創作風格？",
+     options: [
+         { text: "帶有濃厚嘅歲月顆粒感與懷舊詩意。", type: "VINTAGE-SOUL" },
+         { text: "精緻、甜美、非常適合掛在客廳嘅高雅作品。", type: "GALLERY-PET" },
+         { text: "充滿前衛批判性，直擊社會體制嘅痛處。", type: "INDIE-REBEL" },
+         { text: "視覺衝擊力極強，令人忍唔住想影相分享上傳。", type: "SELF-PROMOTER" },
+         { text: "將廢棄物轉化為高貴裝置嘅驚人魔法。", type: "GARBAGE-KING" }
+     ]
+  },
+  {
+     q: "28. 面對「交稿 Deadline」這件事，你嘅真實狀態係：",
+     options: [
+         { text: "離截稿剩 2 小時才是靈感大爆發嘅黃金時期。", type: "BURN-OUT" },
+         { text: "第 99 次重導出 PDF，永遠有下一個 Final 要改。", type: "DESIGN-SLAVE" },
+         { text: "作品仲係一片空白，但已經準備好 3000 字 artist statement。", type: "TALK-ARTIST" },
+         { text: "早早就按格式排版好並提前送出，從來唔會拖泥帶水。", type: "GRID-FREAK" },
+         { text: "過左 Deadline 咪唔交。", type: "EXIT-PLAN" }
+     ]
+  },
+  {
+     q: "29. 當你睇到其他同行拎到獎或爆紅時，你嘅內心想法係：",
+     options: [
+         { text: "「車，佢啲work背後完全冇強大嘅哲學理論支撐。」", type: "INTEL-PROUD" },
+         { text: "即刻同佢影返張合照，係 IG tag 佢寫句congrats。", type: "PARTY-SOCIAL" },
+         { text: "「佢 PR 做得真係好，我都要向佢學習下。」", type: "SELF-PROMOTER" },
+         { text: "「我做藝術唔係為左呢啲世俗名利。」", type: "LOVE-POWER" },
+         { text: "「真係好，唔知佢今轉賺幾多。」", type: "EXIT-PLAN" }
+     ]
+  },
+  {
+     q: "30. 一句話總結你係藝術圈的生存狀態：",
+     options: [
+         { text: "靠著 Red Bull 同咖啡，係解體邊緣創造奇蹟。", type: "BURN-OUT" },
+         { text: "用愛發電，光合作用也能維持靈魂嘅高度。", type: "LOVE-POWER" },
+         { text: "精通表格與關鍵字，補助款就是我嘅創作養分。", type: "FORM-MASTER" },
+         { text: "改稿到天荒地老，世界上冇真正 Final。", type: "DESIGN-SLAVE" },
+         { text: "隨時準備轉行，搵錢先係人生真理。", type: "EXIT-PLAN" }
      ]
   }
 ];
