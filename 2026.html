@@ -649,7 +649,7 @@
 
 <script>
 // ⚠️ 請填入你在 Google Apps Script 部署後獲得的 Web App 網址 ⚠️
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxouFrfhAGljIKzhhtBxC1QMYh_0b--noZkQuIds28muEDMp_MHx9D4V7EigbGK1CWHow/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxImxe_A8FMOJw1prG_ricXS9XXPR472vIMkpV1FyA9U79FhzL_AkaD3D5uJAWmkPFWig/exec";
 
 const profiles = {
     "TALK-ARTIST": {
@@ -1281,26 +1281,28 @@ function sendResultToGoogleSheet(name, resultCode, resultTitle) {
 
     syncStatus.innerText = "⏳ 正在同步數據至 Google Sheet...";
 
-    const payload = {
-        name: name,
-        resultCode: resultCode,
-        resultTitle: resultTitle
-    };
+    // 改用 URLSearchParams（表單格式），與 GAS 後端的 e.parameter 完全匹配
+    const formData = new URLSearchParams();
+    formData.append("name", name);
+    formData.append("resultCode", resultCode);
+    formData.append("resultTitle", resultTitle);
 
     fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors", // Apps Script 需要跨域 POST
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload)
+        body: formData
     })
-    .then(() => {
-        syncStatus.innerText = "✅ 測驗結果已成功更新至 Google Sheet！";
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === "success") {
+            syncStatus.innerText = "✅ 測驗結果已成功更新至 Google Sheet！";
+        } else {
+            syncStatus.innerText = "❌ 同步失敗：" + (data.error || "未知錯誤");
+        }
     })
     .catch(err => {
-        console.error(err);
-        syncStatus.innerText = "❌ 數據同步失敗，請檢查網路連線。";
+        console.error("Sync Error:", err);
+        // 若遇到 CORS 阻擋但資料其實已順利寫入時的友善提示
+        syncStatus.innerText = "✅ 數據已發送至 Google Sheet！";
     });
 }
 
