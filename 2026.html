@@ -649,14 +649,14 @@
 
 <script>
 // ⚠️ 請填入你在 Google Apps Script 部署後獲得的 Web App 網址 ⚠️
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxwJ0wCoQChAImkV7BBOZJI25u1E6NIHtR3yC2FrVKP71_ejM03O1olTOcDD797IPijGA/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyHckor7rqOGAXN1AQX9lyIdrQ3dLqC4conqfAHAGeCl7VdMqjfEu2FXtfQarvH1E9HAA/exec";
 
 const profiles = {
     "TALK-ARTIST": {
         code: "TALK-ARTIST",
         title: "眼高手低概念大師",
         quote: "「作品重點唔係視覺，而係背後嘅concept。」",
-        core: "作品未動，把口先行；靈魂在雲端，雙手在打遊戲。",
+        core: "作品未動，把口先行；靈魂在雲端，雙情在打遊戲。",
         skill: "講左兩個鐘當代藝術理論，作品其實係一張白紙加上一個點。",
         weakness: "最怕比人問：「咁你幾時要開始做？」",
         liver: "非常健康（有時會夜晚睇下書）",
@@ -1096,7 +1096,7 @@ const questions = [
   {
      q: "24. 當展覽現場設備突然斷電或故障時，你會？",
      options: [
-         { text: "直接崩潰，因為我嘅創作生命全依賴電能與算力。", type: "PROMPT-GOD" },
+         { text: "直接崩潰，因為我嘅創作生命全依心賴電能與算力。", type: "PROMPT-GOD" },
          { text: "憑藉在無光暗房的本能，精準係黑暗中移動並修好設備。", type: "STAGE-GHOST" },
          { text: "順勢宣稱「斷電也係呢場概念展覽嘅一部份」。", type: "TALK-ARTIST" },
          { text: "立刻打開手機閃光燈開直播：「突發！展覽現場大斷電！」", type: "SELF-PROMOTER" },
@@ -1168,7 +1168,7 @@ const questions = [
 let currentQuestion = 0;
 let scores = {};
 let playerName = "";
-let userAnswers = []; // 👈 新增：用來記錄每一題選了什麼
+let userAnswers = []; // 用來記錄每一題選了什麼
 
 function startQuiz() {
     const input = document.getElementById("player-name");
@@ -1185,19 +1185,23 @@ function startQuiz() {
         scores[key] = 0;
     }
     currentQuestion = 0;
-    userAnswers = []; // 👈 開始測驗時清空紀錄
+    userAnswers = []; // 開始測驗時清空紀錄
 
     switchScreen("quiz-screen");
     renderQuestion();
 }
 
-function selectOption(type) {
+function selectOption(type, text) {
     if (scores[type] !== undefined) {
         scores[type]++;
     }
 
-    // 👈 記錄當前題目與選擇的選項類型 (例如 Q1: TALK-ARTIST)
-    userAnswers.push(`Q${currentQuestion + 1}: ${type}`);
+    // 記錄當前題目、選擇的類型與選項文字
+    userAnswers.push({
+        q: currentQuestion + 1,
+        type: type,
+        text: text
+    });
 
     currentQuestion++;
     if (currentQuestion < questions.length) {
@@ -1226,22 +1230,9 @@ function renderQuestion() {
         const btn = document.createElement("button");
         btn.className = "option-btn";
         btn.innerText = opt.text;
-        btn.onclick = () => selectOption(opt.type);
+        btn.onclick = () => selectOption(opt.type, opt.text);
         optionsContainer.appendChild(btn);
     });
-}
-
-function selectOption(type) {
-    if (scores[type] !== undefined) {
-        scores[type]++;
-    }
-
-    currentQuestion++;
-    if (currentQuestion < questions.length) {
-        renderQuestion();
-    } else {
-        showResult();
-    }
 }
 
 function showResult() {
@@ -1303,7 +1294,7 @@ function sendResultToGoogleSheet(name, resultCode, resultTitle) {
     formData.append("resultCode", resultCode);
     formData.append("resultTitle", resultTitle);
     
-    // 👈 將答題陣列轉成 JSON 字串發送
+    // 將答題陣列轉成 JSON 字串發送
     formData.append("answers", JSON.stringify(userAnswers));
 
     fetch(GOOGLE_SCRIPT_URL, {
@@ -1313,14 +1304,14 @@ function sendResultToGoogleSheet(name, resultCode, resultTitle) {
     .then(response => response.json())
     .then(data => {
         if (data.status === "success") {
-            syncStatus.innerText = "✅ 多謝參與！";
+            syncStatus.innerText = "✅ 數據同步成功！多謝參與！";
         } else {
             syncStatus.innerText = "❌ 同步失敗：" + (data.error || "未知錯誤");
         }
     })
     .catch(err => {
         console.error("Sync Error:", err);
-        syncStatus.innerText = "✅ 多謝參與！";
+        syncStatus.innerText = "❌ 網路錯誤，無法同步數據";
     });
 }
 
